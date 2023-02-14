@@ -3,6 +3,7 @@ const app = express()
 const path = require('path')
 const mongoose = require('mongoose');
 const ejsMate = require("ejs-mate");
+const Product = require("./models/product");
 const methodOverride = require('method-override')
 
 //Mongoose Setup
@@ -28,8 +29,9 @@ app.get('/', (req, res) => {
     res.render('pages/home')
 })
 
-app.get('/products', (req, res) => {
-    res.render('pages/products')
+app.get('/products', async (req, res) => {
+    const products = await Product.find({});
+    res.render('pages/products', { products })
 })
 
 app.get('/packages', (req, res) => {
