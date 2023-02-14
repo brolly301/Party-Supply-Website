@@ -25,7 +25,23 @@ app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('pages/home')
+})
+
+app.get('/products', (req, res) => {
+    res.render('pages/products')
+})
+
+app.get('/packages', (req, res) => {
+    res.render('pages/packages')
+})
+
+app.get('/blog', (req, res) => {
+    res.render('pages/blog')
+})
+
+app.get('/register', (req, res) => {
+    res.render('pages/register')
 })
 
 //Setting up the applications listener
