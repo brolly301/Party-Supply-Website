@@ -31,7 +31,13 @@ app.get('/', (req, res) => {
 
 app.get('/products', async (req, res) => {
     const products = await Product.find({});
-    res.render('pages/products', { products })
+    res.render('pages/products/products', { products })
+})
+
+app.get('/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const product = await Product.findById(id)
+    res.render('pages/products/showPage', { product })
 })
 
 app.get('/packages', (req, res) => {
