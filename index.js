@@ -40,20 +40,8 @@ app.get('/products/:id', async (req, res) => {
     res.render('pages/products/showPage', { product })
 })
 
-app.get('/packages', (req, res) => {
-    res.render('pages/packages')
-})
-
-app.get('/blog', (req, res) => {
-    res.render('pages/blog')
-})
-
 app.get('/login', (req, res) => {
     res.render('pages/login')
-})
-
-app.get('/register', (req, res) => {
-    res.render('pages/register')
 })
 
 //Setting up the applications listener
