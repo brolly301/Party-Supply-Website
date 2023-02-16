@@ -33,36 +33,48 @@ app.get("/", (req, res) => {
 
 app.get("/balloons", async (req, res) => {
   const products = await Product.find({ category: 'Balloons' });
-  res.render("pages/products/balloons", { products });
+  res.render("pages/products/balloons/balloons", { products });
 });
 
 app.get("/balloons/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  res.render("pages/products/balloonsShowPage", { product });
+  res.render("pages/products/balloons/balloonsShowPage", { product });
 });
 
 app.get("/decorations", async (req, res) => {
   const products = await Product.find({ category: 'Decorations' });
-  res.render("pages/products/decorations", { products });
+  res.render("pages/products/decorations/decorations", { products });
 });
 
 app.get("/decorations/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  res.render("pages/products/decorationsShowPage", { product });
+  res.render("pages/products/decoration/decorationsShowPage", { product });
 });
 
 app.get("/themes", async (req, res) => {
   const products = await Product.find({ category: 'Themes' });
-  res.render("pages/products/themes", { products });
+  res.render("pages/products/themes/themesSplash", { products });
 });
 
 app.get("/themes/:name", async (req, res) => {
   const {name} =  req.params
-  const product = await Product.find({ name: name });
-  res.render("pages/products/themesShowPage", { product });
+  const theme = await Product.find({ name: name });
+  res.render("pages/products/themes/themes", { theme });
 });
+
+app.get("/fancyDress", async (req, res) => {
+  const fancyDress = await Product.find({ category: 'Themes' });
+  res.render("pages/products/fancyDress/fancyDressSplash", { fancyDress });
+});
+
+app.get("/fancyDress/:name", async (req, res) => {
+  const {name} =  req.params
+  const fancyDress = await Product.find({ name: name });
+  res.render("pages/products/fancyDress/fancyDress", { fancyDress });
+});
+
 
 app.get("/login", (req, res) => {
   res.render("pages/login");
