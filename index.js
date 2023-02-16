@@ -88,6 +88,10 @@ app.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
+app.get("/basket", (req, res) => {
+  res.render("pages/basket");
+});
+
 //Setting up the applications listener
 app.listen(3000, () => {
   console.log("LISTENING ON PORT 3000");
