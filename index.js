@@ -4,6 +4,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const Product = require("./models/product");
+const Basket = require("./models/basket");
 const methodOverride = require("method-override");
 
 //Mongoose Setup
@@ -88,9 +89,19 @@ app.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
-app.get("/basket", (req, res) => {
-  res.render("pages/basket");
+app.get("/basket", async (req, res) => {
+  const basketItems = await Basket.find({})
+  res.render("pages/basket", {basketItems});
+  console.log(basketItems[1].products)
 });
+
+app.post("/basket", async (req, res) => {
+  const id = req.body.id
+  const balloon = await Product.findById(id)
+  const newItemAdded = new Basket({products: balloon, price: balloon.price})
+  await newItemAdded.save()
+  res.redirect('/basket')
+})
 
 //Setting up the applications listener
 app.listen(3000, () => {
