@@ -75,6 +75,10 @@ app.get("/fancyDress/:name", async (req, res) => {
   res.render("pages/products/fancyDress/fancyDress", { fancyDress });
 });
 
+app.get("/marketplace", async (req, res) => {
+  res.render("pages/products/marketplace/marketplaceSplash");
+});
+
 app.get("/login", (req, res) => {
   res.render("pages/login");
 });
