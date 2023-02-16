@@ -10,7 +10,10 @@ const ProductSchema = new Schema({
     size: String,
     color: String,
     theme: String,
-    matieral: String
+    matieral: String,
+    package: {
+        products: [String]
+    }
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

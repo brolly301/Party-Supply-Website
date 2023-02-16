@@ -4,6 +4,7 @@ const balloons = require("./balloons");
 const decorations = require("./decorations");
 const themes = require("./themes");
 const fancyDress = require("./fancyDress");
+const packages = require("./packages");
 mongoose.set("strictQuery", false);
 mongoose
     .connect("mongodb://127.0.0.1:27017/partySupplies", {
@@ -24,6 +25,7 @@ const seedDB = async () => {
     await Product.insertMany(decorations);
     await Product.insertMany(themes);
     await Product.insertMany(fancyDress);
+    await Product.insertMany(packages);
 }
 
 seedDB().then(() => {

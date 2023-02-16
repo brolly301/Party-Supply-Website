@@ -79,6 +79,11 @@ app.get("/marketplace", async (req, res) => {
   res.render("pages/products/marketplace/marketplaceSplash");
 });
 
+app.get("/packages", async (req, res) => {
+  const package = await Product.find({ category: 'Packages' });
+  res.render("pages/products/packages/packages", {package});
+});
+
 app.get("/login", (req, res) => {
   res.render("pages/login");
 });
