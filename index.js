@@ -50,7 +50,7 @@ app.get("/decorations", async (req, res) => {
 app.get("/decorations/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Product.findById(id);
-  res.render("pages/products/decoration/decorationsShowPage", { product });
+  res.render("pages/products/decorations/decorationsShowPage", { product });
 });
 
 app.get("/themes", async (req, res) => {
@@ -65,7 +65,7 @@ app.get("/themes/:name", async (req, res) => {
 });
 
 app.get("/fancyDress", async (req, res) => {
-  const fancyDress = await Product.find({ category: 'Themes' });
+  const fancyDress = await Product.find({ category: 'Fancy Dress' });
   res.render("pages/products/fancyDress/fancyDressSplash", { fancyDress });
 });
 
@@ -74,7 +74,6 @@ app.get("/fancyDress/:name", async (req, res) => {
   const fancyDress = await Product.find({ name: name });
   res.render("pages/products/fancyDress/fancyDress", { fancyDress });
 });
-
 
 app.get("/login", (req, res) => {
   res.render("pages/login");
