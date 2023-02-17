@@ -92,7 +92,6 @@ app.get("/login", (req, res) => {
 app.get("/basket", async (req, res) => {
   const basketItems = await Basket.find({})
   res.render("pages/basket", {basketItems});
-  console.log(basketItems[1].products)
 });
 
 app.post("/basket", async (req, res) => {
@@ -102,6 +101,13 @@ app.post("/basket", async (req, res) => {
   await newItemAdded.save()
   res.redirect('/basket')
 })
+
+app.delete("/basket", async (req, res) => {
+  const id = req.body.id
+  await Basket.findByIdAndDelete(id);
+  
+});
+
 
 //Setting up the applications listener
 app.listen(3000, () => {
