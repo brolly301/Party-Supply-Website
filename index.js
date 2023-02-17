@@ -105,7 +105,8 @@ app.post("/basket", async (req, res) => {
 app.delete("/basket", async (req, res) => {
   const id = req.body.id
   await Basket.findByIdAndDelete(id);
-  
+  console.log(id)
+  res.redirect('/basket')
 });
 
 
