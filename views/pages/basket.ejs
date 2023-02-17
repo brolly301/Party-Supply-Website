@@ -19,6 +19,12 @@
                 </div>
             </div>
             <br>
+            
         </div>
        <%} %>
+
+       <% for(let i =0; i<basketItems.length; i++) {  %>
+        <% total+=basketItems[i].products[0].price  %>
+        <% } %>
+        <h3 class="py-5">Total: £<%= total %> </h3>
 </div>

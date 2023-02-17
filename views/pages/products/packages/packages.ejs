@@ -19,8 +19,11 @@
                         <h3 class="card-text">
                                 £<%=package[i].price%>
                         </h3>
-                        <a class="btn btn-primary" >Add to Basket</a>
-                        <a class="btn btn-primary" >More Details</a>
+                        <form class="d-inline" action="/basket" method="POST">
+                            <input type="hidden" name="id" value="<%= package[i]._id  %>">
+                          <button type="submit" class="btn btn-primary">Add to Basket</button>
+                        </form>
+                       <a class="btn btn-primary" >More Details</a>
                     </div>
                 </div>
             </div>

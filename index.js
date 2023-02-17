@@ -91,7 +91,8 @@ app.get("/login", (req, res) => {
 
 app.get("/basket", async (req, res) => {
   const basketItems = await Basket.find({})
-  res.render("pages/basket", {basketItems});
+  let total = 0;
+  res.render("pages/basket", {basketItems, total});
 });
 
 app.post("/basket", async (req, res) => {
