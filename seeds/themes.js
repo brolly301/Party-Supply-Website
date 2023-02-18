@@ -14,7 +14,7 @@ module.exports = [{
     image: `https://img.freepik.com/free-vector/flat-design-christmas-wreath_23-2148748027.jpg?w=740&t=st=1676544442~exp=1676545042~hmac=fbe054a6f574063facfa677cbd56449b42095b50a11c20d4b577638d9feb7a4a`,
     category: 'Themes'
 }, {
-    name: `St. Patricks Day`,
+    name: `St Patricks Day`,
     description: `Collection of 12 Red Balloons`,
     image: `https://img.freepik.com/free-vector/hand-drawn-st-patricks-day-element-collection_23-2148434073.jpg?w=740&t=st=1676544541~exp=1676545141~hmac=47f928e2c35ecca7d6e5209943a6a548931323d351330817b92dbf64137e5684`,
     category: 'Themes'

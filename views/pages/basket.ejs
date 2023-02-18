@@ -12,6 +12,7 @@
                     <h4 class="card-title"><%= basketItems[i].products[0].name  %></h4>
                     <p class="card-text"><%= basketItems[i].products[0].description  %></p>
                     <h4 class="card-text">£<%= basketItems[i].products[0].price  %></h4>
+                    <h4 class="card-text"><%= basketItems[i].products[0].package.products  %></h4>
                 <form action="/basket?_method=DELETE" method="POST">
                     <input type="hidden" name="id" value="<%= basketItems[i]._id  %>">
                     <button class="my-2 btn btn-danger">Remove</button>
