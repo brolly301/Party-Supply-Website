@@ -172,6 +172,12 @@ app.get("/packages", async (req, res) => {
   res.render("pages/products/packages/packages", {package});
 });
 
+app.get("/packages/:id", async (req, res) => {
+  const { id } = req.params;
+  const package = await Product.findById(id);
+  res.render("pages/products/packages/packageShowPage", { package });
+});
+
 app.get("/login", (req, res) => {
   res.render("pages/login");
 });
