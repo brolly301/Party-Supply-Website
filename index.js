@@ -41,8 +41,8 @@ app.use(session(sessionOptions))
 app.use(flash())
 
 app.use((req,res,next) => {
-  res.locals.addedToBasket = req.flash('success')
-  res.locals.removeFromBasket = req.flash('success')
+  res.locals.success = req.flash('success')
+  res.locals.error = req.flash('error')
   next()
 })
 
