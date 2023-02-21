@@ -4,6 +4,7 @@ const catchAsync = require("../utilities/catchAsync");
 const User = require("../models/user");
 const passport = require('passport');
 
+
 router.get("/register", (req, res) => {
     res.render('pages/register')
   });
@@ -36,7 +37,7 @@ router.post("/login", passport.authenticate('local', {failureFlash:true, failure
         res.redirect('/balloons')
   }));
 
-router.get('/logout', (req,res) => {
+router.post('/logout', (req,res) => {
     req.logout(function(err) {
     if (err) return next(err)
     req.flash('success', 'Successful Logged Out')
