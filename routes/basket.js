@@ -5,13 +5,27 @@ const ExpressError = require("../utilities/ExpressError")
 const Product = require("../models/product");
 const Basket = require("../models/basket");
 
-router.get("/", catchAsync(async (req, res) => {
-    const basketItems = await Basket.find({})
+router.get("/",  catchAsync(async (req, res) => {
+  if (typeof req.user === 'undefined') {
+    const basketItems = await Basket.find({username: {$exists: false}})
+    let total = 0;
+    return res.render("pages/basket", {basketItems, total});
+  }
+    const {username} = req.user
+    const basketItems = await Basket.find({username: username})
     let total = 0;
     res.render("pages/basket", {basketItems, total});
   }));
   
 router.post("/", catchAsync(async (req, res) => {
+  if (typeof req.user === 'undefined') {
+    const id = req.body.id
+    const product = await Product.findById(id)
+    const newItemAdded = new Basket({products: product, price: product.price})
+    await newItemAdded.save()
+    req.flash('success', 'Added to Basket')
+    res.redirect('back')
+  }
     const id = req.body.id
     const product = await Product.findById(id)
     const newItemAdded = new Basket({products: product, price: product.price, username: req.user.username})

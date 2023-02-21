@@ -5,7 +5,6 @@ const User = require("../models/user");
 const passport = require('passport');
 const Basket = require('../models/basket')
 
-
 router.get("/register", (req, res) => {
     res.render('pages/register')
   });
