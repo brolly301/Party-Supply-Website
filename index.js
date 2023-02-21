@@ -5,6 +5,12 @@ const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utilities/ExpressError")
 const methodOverride = require("method-override");
+const flash = require ('connect-flash')
+const session = require ('express-session')
+const passport = require('passport')
+const LocalAuth = require('passport-local')
+const User = require('./models/user')
+
 const balloons = require ('./routes/balloons')
 const decorations = require ('./routes/decorations')
 const themes = require ('./routes/themes')
@@ -12,8 +18,7 @@ const fancyDress = require ('./routes/fancyDress')
 const packages = require ('./routes/packages')
 const marketplace = require ('./routes/marketplace')
 const basket = require ('./routes/basket')
-const flash = require ('connect-flash')
-const session = require ('express-session')
+const authorisation = require ('./routes/authorisation')
 
 //Mongoose Setup
 mongoose.set("strictQuery", false);
@@ -40,9 +45,17 @@ cookie: {
 app.use(session(sessionOptions))
 app.use(flash())
 
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(new LocalAuth(User.authenticate()))
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
 app.use((req,res,next) => {
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
+  res.locals.signedInUser = req.user
   next()
 })
 
@@ -52,6 +65,8 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+//Routes
 app.use('/balloons', balloons)
 app.use('/decorations', decorations)
 app.use('/themes', themes)
@@ -59,14 +74,11 @@ app.use('/fancyDress', fancyDress)
 app.use('/packages', packages)
 app.use('/marketplace', marketplace)
 app.use('/basket', basket)
+app.use('/', authorisation)
 
 //Additional routes & middleware
 app.get("/", (req, res) => {
   res.render("pages/home");
-});
-
-app.get("/login", (req, res) => {
-  res.render("pages/login");
 });
 
 app.all('*', (req,res,next) => {

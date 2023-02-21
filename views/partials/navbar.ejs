@@ -26,9 +26,18 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="/marketplace">Marketplace</a>
             </li>
+            <% if (!signedInUser) { %>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/login"><span class="material-symbols-outlined">person</span></a>
+                <a class="nav-link text-white" href="/login">Login</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/register">Register</a>
+            </li>
+            <%} else { %>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/logout">Logout</a>
+            </li>
+            <%} %>
             <li class="nav-item">
                 <a class="nav-link text-white" href="/basket"><span class="material-symbols-outlined">shopping_cart</span></a>
             </li>
