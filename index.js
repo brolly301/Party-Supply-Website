@@ -18,6 +18,7 @@ const fancyDress = require ('./routes/fancyDress')
 const packages = require ('./routes/packages')
 const marketplace = require ('./routes/marketplace')
 const basket = require ('./routes/basket')
+const account = require ('./routes/account')
 const authorisation = require ('./routes/authorisation')
 
 //Mongoose Setup
@@ -74,6 +75,7 @@ app.use('/fancyDress', fancyDress)
 app.use('/packages', packages)
 app.use('/marketplace', marketplace)
 app.use('/basket', basket)
+app.use('/account', account)
 app.use('/', authorisation)
 
 //Additional routes & middleware
