@@ -6,10 +6,9 @@ const Product = require("../models/product");
 const Basket = require("../models/basket");
 
 router.get("/", catchAsync(async (req, res) => {
-    const username = req.user.username
-    const basketItems = await Basket.find({username: username})
+    const basketItems = await Basket.find({})
     let total = 0;
-    res.render("pages/basket", {basketItems, total, username});
+    res.render("pages/basket", {basketItems, total});
   }));
   
 router.post("/", catchAsync(async (req, res) => {

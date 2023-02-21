@@ -3,6 +3,7 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const User = require("../models/user");
 const passport = require('passport');
+const Basket = require('../models/basket')
 
 
 router.get("/register", (req, res) => {
@@ -38,6 +39,7 @@ router.post("/login", passport.authenticate('local', {failureFlash:true, failure
   }));
 
 router.get('/logout', (req,res) => {
+    
     req.logout(function(err) {
     if (err) return next(err)
     req.flash('success', 'Successful Logged Out')
