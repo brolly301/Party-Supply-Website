@@ -1,17 +1,29 @@
 <div class="container">
     <form action="/register" method="POST" class="" novalidate>
         <div class="form-outline mb-4">
-            <input type="text" id="username" name="username" class="form-control" />
-            <label class="form-label" for="username">Username</label>
+            <label class="form-label" for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" class="form-control" />
         </div>
         <div class="form-outline mb-4">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" class="form-control" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="username">Email</label>
             <input type="text" id="email" name="email" class="form-control" />
-            <label class="form-label" for="email">Email</label>
         </div>
         <div class="form-outline mb-4">
-            <input type="password" id="password" name="password" class="form-control" />
-            <label class="form-label" for="password">Password</label>
+            <label class="form-label" for="phoneNumber">Phone Number</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
         </div>
-        <button class="btn btn-primary">Sign Up</button>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" />
+        </div>
+        <button class="btn btn-primary mb-4">Sign Up</button>
     </form>
 </div>
