@@ -1,2 +1,20 @@
 <% layout('layouts/boilerplate')%>
-<h1>Hello</h1>
+
+<div class="container-fluid">
+    <h1 class="text-center"> <%= signedInUser.username %> </h1>
+
+    <div class="container">
+            <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <h5><%= signedInUser.username %></h5>
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email</label>
+                <h5><%= signedInUser.email %></h5>
+            </div>
+            <form action="/account/<%= signedInUser.username %>/edit" method="GET" class="" novalidate>
+            <button class="btn btn-primary">Edit</button>
+        </form>
+    </div>
+</div>
+
