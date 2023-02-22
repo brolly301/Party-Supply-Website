@@ -20,6 +20,7 @@ const marketplace = require ('./routes/marketplace')
 const basket = require ('./routes/basket')
 const account = require ('./routes/account')
 const authorisation = require ('./routes/authorisation')
+const checkout = require ('./routes/checkout')
 
 //Mongoose Setup
 mongoose.set("strictQuery", false);
@@ -77,6 +78,7 @@ app.use('/marketplace', marketplace)
 app.use('/basket', basket)
 app.use('/account', account)
 app.use('/', authorisation)
+app.use('/checkout', checkout)
 
 //Additional routes & middleware
 app.get("/", (req, res) => {
