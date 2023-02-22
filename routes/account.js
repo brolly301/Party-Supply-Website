@@ -13,12 +13,9 @@ router.get("/:username/:edit", (req, res) => {
 
 router.put("/:username", catchAsync(async(req, res) => {
   const {username} = req.params
-  await User.findOneAndUpdate(username, {...req.body})
+  await User.find({username})
+  await User.updateMany({username}, {...req.body})
   res.redirect(username);
 }))
-
-
-
-
 
   module.exports = router;
