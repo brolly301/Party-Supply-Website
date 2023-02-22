@@ -11,15 +11,21 @@ router.get("/register", (req, res) => {
 
 router.post("/register", catchAsync(async (req, res) => {
     try {
-        const {firstName, lastName, phoneNumber, email, password, username} = req.body
+        const {confirmPassword, firstName, lastName, phoneNumber, email, password, username} = req.body
         const newUser = new User({email, username, firstName, lastName, phoneNumber})
-        const registerUser = await User.register(newUser, password)
-        //Logs in once registerd 
-        req.login(registerUser, err => {
-          if (err) return next(err)
-        req.flash('success', `Registration Successful, Welcome :)! `)
-        res.redirect('/balloons')
-      })
+
+        if (confirmPassword !== password) {
+            req.flash('error', `Passwords do not match`)
+            res.redirect('/register')
+        } else {
+          const registerUser = await User.register(newUser, password)
+          //Logs in once registerd 
+          req.login(registerUser, err => {
+            if (err) return next(err)
+          req.flash('success', `Registration Successful, Welcome :)! `)
+          res.redirect('/balloons')
+        })
+        }
     } 
     catch (error) {
         req.flash('error', error.message)
