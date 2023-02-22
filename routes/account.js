@@ -13,8 +13,18 @@ router.get("/:username/:edit", (req, res) => {
 
 router.put("/:username", catchAsync(async(req, res) => {
   const {username} = req.params
+  const {password} = req.body
   await User.find({username})
   await User.updateMany({username}, {...req.body})
+
+  //Setting password
+  await User.findByUsername(username).then(function(user) {
+    if (user) {
+      user.setPassword(password, () => {
+        user.save();
+      })
+    }
+  })
   res.redirect(username);
 }))
 
