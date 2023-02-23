@@ -12,7 +12,7 @@ router.get("/",  catchAsync(async (req, res) => {
     return res.render("pages/basket", {basketItems, total});
   }
     const {username} = req.user
-    const basketItems = await Basket.find({username: username})
+    const basketItems = await Basket.find({username: username}).populate("product")
     let total = 0;
     res.render("pages/basket", {basketItems, total});
   }));
@@ -21,14 +21,14 @@ router.post("/", catchAsync(async (req, res) => {
   if (typeof req.user === 'undefined') {
     const id = req.body.id
     const product = await Product.findById(id)
-    const newItemAdded = new Basket({products: product, price: product.price})
+    const newItemAdded = new Basket({product: product})
     await newItemAdded.save()
     req.flash('success', 'Added to Basket')
     res.redirect('back')
   }
     const id = req.body.id
     const product = await Product.findById(id)
-    const newItemAdded = new Basket({products: product, price: product.price, username: req.user.username})
+    const newItemAdded = new Basket({product: product, username: req.user.username})
     await newItemAdded.save()
     req.flash('success', 'Added to Basket')
     res.redirect('back')

@@ -8,13 +8,12 @@
         <div class="container mb-2" style="width:600px;height:160px">
             <div class="card flex-row flex-wrap ">
                 <div class="card-header ">
-                    <img src="<%= basketItems[i].products[0].image  %>" style="width:100px;height:100px" >
+                    <img src="<%= basketItems[i].product.image  %>" style="width:100px;height:100px" >
                 </div>
                 <div class="card-block px-2">
-                    <h4 class="card-title"><%= basketItems[i].products[0].name  %></h4>
-                    <p class="card-text"><%= basketItems[i].products[0].description  %></p>
-                    <h4 class="card-text">£<%= basketItems[i].products[0].price  %></h4>
-                    <h4 class="card-text"><%= basketItems[i].products[0].package.products  %></h4>
+                    <h4 class="card-title"><%= basketItems[i].product.name  %></h4>
+                    <p class="card-text"><%= basketItems[i].product.description  %></p>
+                    <h4 class="card-text">£<%= basketItems[i].product.price %></h4>
                 <form action="/basket?_method=DELETE" method="POST">
                     <input type="hidden" name="id" value="<%= basketItems[i]._id  %>">
                     <button class="my-2 btn btn-danger">Remove</button>
@@ -27,7 +26,7 @@
        <%} %>
 
        <% for(let i =0; i<basketItems.length; i++) {  %>
-        <% total+=basketItems[i].products[0].price  %>
+        <% total+=basketItems[i].product.price  %>
         <% } %>
 
        <% if (total === 0) { %>
@@ -44,13 +43,12 @@
                 <div class="container mb-2" style="width:600px;height:160px">
                     <div class="card flex-row flex-wrap ">
                         <div class="card-header ">
-                            <img src="<%= basketItems[i].products[0].image  %>" style="width:100px;height:100px" >
+                            <img src="<%= basketItems[i].product.image  %>" style="width:100px;height:100px" >
                         </div>
                         <div class="card-block px-2">
-                            <h4 class="card-title"><%= basketItems[i].products[0].name  %></h4>
-                            <p class="card-text"><%= basketItems[i].products[0].description  %></p>
-                            <h4 class="card-text">£<%= basketItems[i].products[0].price  %></h4>
-                            <h4 class="card-text"><%= basketItems[i].products[0].package.products  %></h4>
+                            <h4 class="card-title"><%= basketItems[i].product.name %></h4>
+                            <p class="card-text"><%= basketItems[i].product.description %></p>
+                            <h4 class="card-text">£<%= basketItems[i].product.price %></h4>
                         <form action="/basket?_method=DELETE" method="POST">
                             <input type="hidden" name="id" value="<%= basketItems[i]._id  %>">
                             <button class="my-2 btn btn-danger">Remove</button>
@@ -63,7 +61,7 @@
                <%} %>
         
                <% for(let i =0; i<basketItems.length; i++) {  %>
-                <% total+=basketItems[i].products[0].price  %>
+                <% total+=basketItems[i].product.price  %>
                 <% } %>
 
                <% if (total === 0) { %>
