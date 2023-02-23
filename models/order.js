@@ -27,8 +27,10 @@ const OrderSchema = new Schema({
         type: String
     },
     products: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }
     }],
     price: {
         type: Number
