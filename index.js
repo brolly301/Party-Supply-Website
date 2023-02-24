@@ -10,6 +10,7 @@ const session = require ('express-session')
 const passport = require('passport')
 const LocalAuth = require('passport-local')
 const User = require('./models/user')
+const MongoStore = require('connect-mongo')
 
 const balloons = require ('./routes/balloons')
 const decorations = require ('./routes/decorations')
@@ -37,11 +38,11 @@ mongoose
     console.log(err);
   });
 
-const sessionOptions = {secret: 'Test', resave: false, saveUninitialized: true, 
+const sessionOptions = {secret: 'Test', resave: false, saveUninitialized: true, store: MongoStore.create({mongoUrl: "mongodb://127.0.0.1:27017/partySupplies"}),
 cookie: {
   httpOnly: true,
   expires: Date.now() + 1000 * 60 * 60 * 24 * 2,
-  maxAge: 1000 * 60 * 60 * 24 * 2
+  maxAge: 120 * 60 * 1000
 }}
 
 app.use(session(sessionOptions))
@@ -58,6 +59,7 @@ app.use((req,res,next) => {
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
   res.locals.signedInUser = req.user
+  res.locals.session = req.session
   next()
 })
 
