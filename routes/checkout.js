@@ -6,23 +6,18 @@ const Order = require('../models/order')
 const Basket = require('../models/basket')
 
 router.get("/", async(req, res) => {
-
-
     res.render("pages/checkout");
   });
 
 router.post("/", async(req, res) => {
-     
-
-  const {username} = req.user
-  let basketItem = await Basket.findOne({username: username }).populate('products')
-  let array = basketItem.products
-     console.log(array)
+    
+     const {username} = req.user
+     const basketItem = await Basket.findOne({username: username })
      const deliveryDetails = req.body
-     const newOrder = new Order(deliveryDetails)
-     newOrder.save()
-     newOrder.update(basketItem.products)
+     const newOrder = Order.create(deliveryDetails, {basket:basketItem})
      res.render("pages/checkout");
-  });  
+
+  });
+    
 
   module.exports = router;

@@ -26,10 +26,9 @@ const OrderSchema = new Schema({
     postcode: {
         type: String
     },
-    basket: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-    }],
+    basket: {
+        type: Object
+    },
     price: {
         type: Number
     }
