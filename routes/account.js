@@ -11,6 +11,10 @@ router.get("/:username/:edit", (req, res) => {
     res.render("pages/accountEdit");
   });
 
+router.get("/:username/orders", (req, res) => {
+    res.render("pages/orders");
+  });
+
 router.put("/:username", catchAsync(async(req, res) => {
   const {username} = req.params
   const {password} = req.body
