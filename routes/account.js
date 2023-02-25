@@ -11,24 +11,8 @@ router.get("/:username", (req, res) => {
 
 router.get("/:username/orders", async(req, res) => {
     const {username} = req.user
-    const orders = await Order.find({username: username})
-    const productArray = []
-    //Get all ids from basket, best to do this over in ejs probably
-     for (let i = 0; i<orders.length; i++)  {
-       for (let j = 0; j<orders[i].basket.length; j++)  {
-           productArray.push(orders[i].basket[j])
-        }
-      }
-     //Get all product information
-      let products = [];
-      for(let i = 0; i<productArray.length; i++) {
-        products = await Product.findById(productArray[i])
-        console.log(products)
-      }
-     
-     
-
-    res.render("pages/orders", {orders, productArray});
+    const orders = await Order.find({username: username}).populate('basket')
+    res.render("pages/orders", {orders});
   });
 
 router.get("/:username/:edit", (req, res) => {

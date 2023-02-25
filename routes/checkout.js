@@ -12,11 +12,8 @@ router.get("/", async(req, res) => {
   });
 
 router.post("/", async(req, res) => {
-    
      const {username} = req.user
      const basketItem = await Basket.findOne({username: username })
-     
-     const deliveryDetails = req.body
      const newOrder = new Order({customerName: req.body.customerName, username,  basket:basketItem.products})
      newOrder.save()
      basketItem.delete({})

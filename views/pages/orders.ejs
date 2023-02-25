@@ -1,9 +1,14 @@
 <% layout('layouts/boilerplate')%>
 <div class="container-fluid">
-    <h1>Orders</h1>
+    <h1 class="text-center">Orders</h1>
     <div>
-        
-            <%= productArray  %>
-           
-    </div>
+         
+       <% for (let i = 0; i<orders.length; i++)  { %>
+            <h2>Order: <%=[i + 1]%></h2>
+           <%  for (let j = 0; j<orders[i].basket.length; j++)  {%>
+                 <h3><%=orders[i].basket[j].name%></h3>
+                 <%}%>
+                 <br>
+            <%}%>
 </div>
+
