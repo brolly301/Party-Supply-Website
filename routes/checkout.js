@@ -15,8 +15,10 @@ router.post("/", async(req, res) => {
     
      const {username} = req.user
      const basketItem = await Basket.findOne({username: username })
+     
      const deliveryDetails = req.body
-     Order.create(deliveryDetails, {basket:basketItem.products})
+     const newOrder = new Order({customerName: req.body.customerName, username,  basket:basketItem.products})
+     newOrder.save()
      basketItem.delete({})
      res.render("pages/checkoutComplete");
 
