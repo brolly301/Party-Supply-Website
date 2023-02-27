@@ -1,51 +1,42 @@
 module.exports.mens = [{
     name: 'Man Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'mens',
+    category: 'Mens',
 },{
     name: 'Man Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'mens',
+    category: 'Mens',
 },{
     name: 'Man Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'mens',
+    category: 'Mens',
 }]
 
 module.exports.womens = [{
     name: 'Womens Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'womens',
+    category: 'Womens',   
 },{
     name: 'Womens Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'womens',
+    category: 'Womens',
 },{
     name: 'Womens Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'womens',
+    category: 'Womens',
 },]
 
 module.exports.kids = [{
     name: 'Kids Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'kids',
+    category: 'Kids',
 },{
     name: 'Kids Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'kids',
+    category: 'Kids',
 },{
     name: 'Kids Product',
     price: 10,
-    category: 'Clothing',
-    subCategory: 'kids',
+    category: 'Kids',
 },]
 

@@ -11,8 +11,8 @@ router.get("/", catchAsync(async (req, res) => {
 
 router.get("/:name", catchAsync(async (req, res) => {
   const {name} = req.params
-  const products = await Product.find({category:'Clothing', subCategory: name});
-  console.log(products)
+  const toLowerCaseName = name[0].toUpperCase() + name.slice(1).toLowerCase();
+  const products = await Product.find({category:toLowerCaseName});
   res.render("pages/products/fancyDress/clothing", { products });
 }));
 
