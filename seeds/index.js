@@ -12,6 +12,7 @@ const halloween = require("./themes/halloween");
 const christmas = require("./themes/christmas");
 const valentines = require("./themes/valentines");
 const paddysDay = require("./themes/paddysDay");
+const marketplace = require("./marketplace");
 const birthdays = require("./themes/birthdays");
 
 mongoose.set("strictQuery", false);
@@ -46,6 +47,7 @@ const seedDB = async () => {
     await Product.insertMany(christmas);
     await Product.insertMany(paddysDay);
     await Product.insertMany(valentines);
+    await Product.insertMany(marketplace);
     await Product.insertMany(birthdays);
 }
 

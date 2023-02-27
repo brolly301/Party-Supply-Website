@@ -17,6 +17,7 @@ const ProductSchema = new Schema({
     theme: String,
     matieral: String,
     subCategory: String,
+    username: String,
     package: {
         products: [String]
     },
