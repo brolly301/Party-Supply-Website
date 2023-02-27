@@ -11,9 +11,11 @@ const ProductSchema = new Schema({
     color: String,
     theme: String,
     matieral: String,
+    subCategory: String,
     package: {
         products: [String]
-    }
+    },
+    clothing: [this]
 })
 
 module.exports = mongoose.model('Product', ProductSchema)
