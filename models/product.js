@@ -15,8 +15,12 @@ const ProductSchema = new Schema({
     size: String,
     color: String,
     theme: String,
-    username: String,
-
+    matieral: String,
+    subCategory: String,
+    package: {
+        products: [String]
+    },
+    clothing: [this]
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

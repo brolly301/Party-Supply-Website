@@ -9,37 +9,16 @@ router.get("/", catchAsync(async (req, res) => {
   res.render("pages/products/fancyDress/fancyDressSplash", { fancyDress });
 }));
 
-router.get("/mens", catchAsync(async (req, res) => {
-  const mens = await Product.find({category:'Mens'});
-  res.render("pages/products/fancyDress/clothing/mens", { mens });
+router.get("/:name", catchAsync(async (req, res) => {
+  const {name} = req.params
+  const toLowerCaseName = name[0].toUpperCase() + name.slice(1).toLowerCase();
+  const products = await Product.find({category:toLowerCaseName});
+  res.render("pages/products/fancyDress/clothing", { products });
 }));
 
-router.get("/mens/:id", catchAsync(async (req, res) => {
+router.get("/:name/:id", catchAsync(async (req, res) => {
   const { id } = req.params;
-  const mens = await Product.findById(id);
-  res.render("pages/products/fancyDress/clothing/mensShowPage", { mens });
-}));
-
-router.get("/womens", catchAsync(async (req, res) => {
-  const womens = await Product.find({category:'Womens'});
-  res.render("pages/products/fancyDress/clothing/womens", { womens });
-}));
-
-router.get("/womens/:id", catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const womens = await Product.findById(id);
-  res.render("pages/products/fancyDress/clothing/womensShowPage", { womens });
-}));
-
-router.get("/kids", catchAsync(async (req, res) => {
-  const kids = await Product.find({category:'Kids'});
-  res.render("pages/products/fancyDress/clothing/kids", { kids });
-}));
-
-router.get("/kids/:id", catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const kids = await Product.findById(id);
-  res.render("pages/products/fancyDress/clothing/kidsShowPage", { kids });
-}));
-  
+  const products = await Product.findById(id);
+  res.render("pages/products/fancyDress/showPage", { products });
+})); 
   module.exports = router;

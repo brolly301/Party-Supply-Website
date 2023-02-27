@@ -5,23 +5,37 @@ const User = require('../models/user')
 const Order = require('../models/order')
 const Basket = require('../models/basket')
 
-
+let array = []
 
 router.get("/", async(req, res) => {
-    res.render("pages/checkout/checkout");
+  const {username} = req.user
+  
+
+  const basketItems = await Basket.find({username: username})
+  for(let i = 0; i<basketItems.length; i++) {
+    array.push(basketItems[i].product)
+  }
+
+  console.log(array)
+
+    res.render("pages/checkout");
   });
 
 router.post("/", async(req, res) => {
+     const deliveryDetails = req.body
      const {username} = req.user
-     const basketItem = await Basket.findOne({username: username })
-     const {customerName, email, phoneNumber, address, city, country} = req.body
-     const newOrder = new Order({
-      customerName, email, phoneNumber, address, city, country, username, basket:basketItem.products})
-     newOrder.save()
-     basketItem.delete({})
-     res.render("pages/checkout/checkoutComplete");
-
-  });
+  
+     const basketItems = await Basket.find({username: username})
+     const newOrder = new Order(deliveryDetails)
+     await newOrder.save()
+ 
+     console.log(newOrder)
+     console.log(basketItems)
     
+     await newOrder.updateOne({products: [array]})
+     console.log(basketItems[0].product[0])
+   
+     res.render("pages/checkout");
+  });  
 
   module.exports = router;
