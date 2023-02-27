@@ -5,7 +5,7 @@ const BasketSchema = new Schema({
     username: String,
     products: [
         {
-        type:mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
       }
   ],
