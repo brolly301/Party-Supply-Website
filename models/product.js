@@ -8,14 +8,15 @@ const ProductSchema = new Schema({
     image: String,
     category: {
         type: String,
+        default: 'Marketplace'
     },
+    subCategory: String,
+    condition: String,
     size: String,
     color: String,
     theme: String,
-    matieral: String,
-    package: {
-        products: [String]
-    }
+    username: String,
+
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

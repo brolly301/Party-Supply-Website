@@ -8,7 +8,7 @@ const Basket = require('../models/basket')
 
 
 router.get("/", async(req, res) => {
-    res.render("pages/checkout");
+    res.render("pages/checkout/checkout");
   });
 
 router.post("/", async(req, res) => {
@@ -19,7 +19,7 @@ router.post("/", async(req, res) => {
       customerName, email, phoneNumber, address, city, country, username, basket:basketItem.products})
      newOrder.save()
      basketItem.delete({})
-     res.render("pages/checkoutComplete");
+     res.render("pages/checkout/checkoutComplete");
 
   });
     

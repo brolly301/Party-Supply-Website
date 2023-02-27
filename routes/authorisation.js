@@ -6,7 +6,7 @@ const passport = require('passport');
 const Basket = require('../models/basket')
 
 router.get("/register", (req, res) => {
-    res.render('pages/register')
+    res.render('pages/authentication/register')
   });
 
 router.post("/register", catchAsync(async (req, res) => {
@@ -34,7 +34,7 @@ router.post("/register", catchAsync(async (req, res) => {
   }));
   
 router.get("/login", (req, res) => {
-    res.render('pages/login')
+    res.render('pages/authentication/login')
   });
 
 //Authenticates user and allows for logging in.

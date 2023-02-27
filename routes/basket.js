@@ -9,7 +9,7 @@ router.get("/",  catchAsync(async (req, res) => {
     const {username} = req.user
     const basketItems = await Basket.find({username: username}).populate('products')
     let total = 0;
-    res.render("pages/basket", {basketItems, total});
+    res.render("pages/checkout/basket", {basketItems, total});
   }));
 
 router.post("/", catchAsync(async (req, res) => {

@@ -3,26 +3,26 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const User = require('../models/user')
 const Order = require('../models/order')
-const Listing = require('../models/listing')
+const Product = require('../models/product')
 
 router.get("/:username", (req, res) => {
-    res.render("pages/account");
+    res.render("pages/authentication/account/account");
   });
 
 router.get("/:username/listings", async(req, res) => {
     const {username} = req.user
-    const listings = await Listing.find({username: username})
-    res.render("pages/listings", {listings});
+    const listings = await Product.find({username: username})
+    res.render("pages/authentication/account/listings", {listings});
   });
 
 router.get("/:username/orders", async(req, res) => {
     const {username} = req.user
     const orders = await Order.find({username: username}).populate('basket')
-    res.render("pages/orders", {orders});
+    res.render("pages/authentication/account/orders", {orders});
   });
 
 router.get("/:username/:edit", (req, res) => {
-    res.render("pages/accountEdit");
+    res.render("pages/authentication/account/accountEdit");
   });
 
 
