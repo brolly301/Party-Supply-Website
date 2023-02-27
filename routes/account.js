@@ -3,10 +3,16 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const User = require('../models/user')
 const Order = require('../models/order')
-const Product = require('../models/product')
+const Listing = require('../models/listing')
 
 router.get("/:username", (req, res) => {
     res.render("pages/account");
+  });
+
+router.get("/:username/listings", async(req, res) => {
+    const {username} = req.user
+    const listings = await Listing.find({username: username})
+    res.render("pages/listings", {listings});
   });
 
 router.get("/:username/orders", async(req, res) => {

@@ -20,7 +20,7 @@ router.get("/listings", isLoggedIn, async(req, res) => {
 router.post("/listings", isLoggedIn, async (req, res) => {
     const {username} = req.user
     const postDetails = req.body
-    const newListing = new Listing(postDetails, username)
+    const newListing = new Listing({...postDetails, username})
     newListing.save()
     const listings = await Listing.find({})
     res.render('pages/products/marketplace/marketplaceMain', {listings})
