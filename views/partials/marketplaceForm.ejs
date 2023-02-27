@@ -1,20 +1,28 @@
 <div class="container">
-    <form action="/marketplacePost" method="POST" class="" novalidate>
+    <form action="/marketplace/listings" method="POST" class="" novalidate>
         <div class="form-outline mb-4">
-            <label class="form-label" for="itemName">Item Name</label>
-            <input type="text" id="itemName" name="itemName" class="form-control" />
+            <label class="form-label" for="name">Item Name</label>
+            <input type="text" id="name" name="name" class="form-control" />
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="category">Category</label>
             <input type="text" id="category" name="category" class="form-control" />
         </div>
         <div class="form-outline mb-4">
+            <label class="form-label" for="condition">Condition</label>
+            <input type="text" id="condition" name="condition" class="form-control" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="size">Size</label>
+            <input type="text" id="size" name="size" class="form-control" />
+        </div>
+        <div class="form-outline mb-4">
             <label class="form-label" for="description">Description</label>
             <textarea type="text" id="description" name="description" class="form-control"></textarea>
         </div>
         <div class="form-outline mb-4">
-            <label class="form-label" for="color">Color</label>
-            <input type="text" id="color" name="color" class="form-control" />
+            <label class="form-label" for="image">Image</label>
+            <textarea type="text" id="image" name="image" class="form-control"></textarea>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="price">Price</label>

@@ -1,1 +1,0 @@
-require('../../../partials/marketplaceForm')
