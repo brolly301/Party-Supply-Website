@@ -12,5 +12,13 @@
             <button class="btn btn-success">Post New Listing</button>
             </form>
         </div>
+       <% if (signedInUser) {%>
+            <div class="d-block py-2 ">
+                <form action="/account/<%= signedInUser.username %>/listings" method="GET">
+                <button class="btn btn-warning">My Listings</button>
+                </form>
+            </div>     
+        <%}%>
+       
     </div>
 </div>
