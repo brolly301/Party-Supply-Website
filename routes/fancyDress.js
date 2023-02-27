@@ -13,12 +13,12 @@ router.get("/:name", catchAsync(async (req, res) => {
   const {name} = req.params
   const products = await Product.find({category:'Clothing', subCategory: name});
   console.log(products)
-  res.render("pages/products/fancyDress/clothing/mens", { products });
+  res.render("pages/products/fancyDress/clothing", { products });
 }));
 
 router.get("/:name/:id", catchAsync(async (req, res) => {
   const { id } = req.params;
   const products = await Product.findById(id);
-  res.render("pages/products/fancyDress/clothing/showPage", { products });
+  res.render("pages/products/fancyDress/showPage", { products });
 })); 
   module.exports = router;
