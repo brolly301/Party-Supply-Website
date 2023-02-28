@@ -7,12 +7,14 @@ const Basket = require("../models/basket");
 
 router.get("/",  catchAsync(async (req, res) => {
 
- let basket = []
-  for (let i =0; i< req.session.basket.products.length; i++) {
-     const basketItems = await Product.findById(req.session.basket.products[i])
-     basket.push(basketItems)
+  if(!req.session.basket) {
+    return res.redirect('/')
+  } 
+    let basket = []
+    for (let i =0; i< req.session.basket.products.length; i++) {
+       const basketItems = await Product.findById(req.session.basket.products[i])
+       basket.push(basketItems)
   }
-  
 
   res.render("pages/checkout/basket", {basket});
   }));
