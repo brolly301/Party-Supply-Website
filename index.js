@@ -11,6 +11,7 @@ const passport = require('passport')
 const LocalAuth = require('passport-local')
 const User = require('./models/user')
 const MongoStore = require('connect-mongo')
+const stripe = require("stripe")("sk_test_51MgRG0AYx3n7HkYcaolBrw29SN2beilaDLgGCEYSzRnnQOPYt2BCM86W5j3DGvCSGcgeCwc4VbB8I5IavwYddYON008lZ0AzGN")
 
 const balloons = require ('./routes/balloons')
 const decorations = require ('./routes/decorations')
@@ -72,6 +73,9 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
+
+app.use(express.json())
+
 //Routes
 app.use('/balloons', balloons)
 app.use('/decorations', decorations)
@@ -84,6 +88,24 @@ app.use('/account', account)
 app.use('/', authorisation)
 app.use('/checkout', checkout)
 app.use('/search', search)
+
+app.post("/checkout", async(req, res) => {
+    
+  const products = req.session.basket;
+  console.log(products)
+
+
+  const paymentIntent = await stripe.paymentIntents.create({
+  amount: req.session.basket.price,
+  currency: "gbp",
+  automatic_payment_methods: {
+    enabled: true,
+  },
+});
+res.send({
+  clientSecret: paymentIntent.client_secret,
+});
+});
 
 //Additional routes & middleware
 app.get("/", (req, res) => {
