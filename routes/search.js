@@ -4,15 +4,11 @@ const catchAsync = require("../utilities/catchAsync");
 const Product = require("../models/product");
 
 router.get("/", catchAsync(async (req, res) => {
-    res.render("pages/search");
-  }));
-
-router.post("/", catchAsync(async (req, res) => {
-    const {search} = req.body
-    console.log(search)
-    const package = await Product.find({ name: {$in: [search]  } });
-    console.log(package)
-    res.redirect("back");
+ 
+    const {search} = req.query
+    const products = await Product.find({ name: {$regex: search || '___' , $options: 'i'}});
+    res.render("pages/search", {products, search});
+  
   }));
 
 module.exports = router;

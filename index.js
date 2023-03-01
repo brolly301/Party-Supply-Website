@@ -61,6 +61,7 @@ app.use((req,res,next) => {
   res.locals.error = req.flash('error')
   res.locals.signedInUser = req.user
   res.locals.session = req.session
+  res.locals.params = req.params
   next()
 })
 
