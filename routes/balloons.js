@@ -3,6 +3,7 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const ExpressError = require("../utilities/ExpressError")
 const Product = require("../models/product");
+const Review = require("../models/review");
 
 router.get("/sortByNameAZ", catchAsync(async (req, res) => {
     const products = await Product.find({ category: 'Balloons' }).sort({name: 1})
@@ -24,13 +25,13 @@ router.get("/sortByPriceLowHigh", catchAsync(async (req, res) => {
     res.render("pages/products/balloons/balloons", { products });
   }));
 
-router.get("/", catchAsync(async (req, res) => {
+router.get(":theme?/", catchAsync(async (req, res) => {
     const products = await Product.find({ category: 'Balloons' });
 
     res.render("pages/products/balloons/balloons", { products });
   }));
   
-router.get("/:id", catchAsync(async (req, res) => {
+router.get("/:theme?/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id);
     if (!product) {
@@ -39,5 +40,16 @@ router.get("/:id", catchAsync(async (req, res) => {
     }
     res.render("pages/products/balloons/balloonsShowPage", { product });
   }));
+
+router.post("/:id/reviews", catchAsync(async (req, res) => {
+    const products = await Product.findById(req.params.id);
+    const review = new Review({...req.body})
+    console.log(req.body)
+    products.reviews.push(review)
+    await review.save()
+    await products.save()
+    res.redirect('back');
+  }));
+  
 
   module.exports = router;
