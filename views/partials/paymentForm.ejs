@@ -1,0 +1,15 @@
+<div class="container">
+    <form id="payment-form" action="/checkout" method="POST">
+        <div id="link-authentication-element">
+          <!--Stripe.js injects the Link Authentication Element-->
+        </div>
+        <div id="payment-element">
+          <!--Stripe.js injects the Payment Element-->
+        </div>
+        <button id="checkoutButton">
+          <div class="spinner hidden" id="spinner"></div>
+          <span id="button-text">Pay now</span>
+        </button>
+        <div id="payment-message" class="hidden"></div>
+      </form>
+</div>

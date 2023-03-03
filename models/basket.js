@@ -12,4 +12,8 @@ const BasketSchema = new Schema({
     price: 0,
 })
 
+BasketSchema.statics.generateProducts = () => {
+      
+}
+
 module.exports = mongoose.model('Basket', BasketSchema)

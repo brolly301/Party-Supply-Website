@@ -2,37 +2,36 @@
 <div class="container text-center">
     <h1>Basket</h1>
 
-       <% for (let i = 0; i<basketItems[0].products.length; i++) {%>
-        <div class="container mb-2" style="width:600px;height:160px">
-            <div class="card flex-row flex-wrap ">
-                <div class="card-header ">
-                    <img src="<%= basketItems[0].products[i].image  %>" style="width:100px;height:100px" >
+    <% if (session.basket)  {%>
+        <% basket.forEach(item => { %>
+            <div class="container mb-2" style="width:600px;height:160px">
+                <div class="card flex-row flex-wrap ">
+                    <div class="card-header ">
+                        <img src="<%= item.image  %>" style="width:100px;height:100px" >
+                    </div>
+                    <div class="card-block px-2">
+                        <h4 class="card-title"><%= item.name  %></h4>
+                        <p class="card-text"><%=item.description    %></p>
+                        <h4 class="card-text">£<%= item.price   %></h4>
+                    <form action="/basket?_method=DELETE" method="POST">
+                        <input type="hidden" name="id" value="<%= item._id  %>">
+                        <button class="my-2 btn btn-danger">Remove</button>
+                    </form>
+                    </div>
                 </div>
-                <div class="card-block px-2">
-                    <h4 class="card-title"><%= basketItems[0].products[i].name   %></h4>
-                    <p class="card-text"><%=basketItems[0].products[i].description    %></p>
-                    <h4 class="card-text">£<%= basketItems[0].products[i].price   %></h4>
-                <form action="/basket?_method=DELETE" method="POST">
-                    <input type="hidden" name="id" value="<%= basketItems[0].products[i]._id  %>">
-                    <button class="my-2 btn btn-danger">Remove</button>
-                </form>
                 </div>
-            </div>
-            <br>
-            
-        </div>
-       <%} %>
+         <%  });  %>
+        
+        <h3 class="pt-4">Total: £<%= total  %></h3>
+         <form action="/checkout" method="GET">
+            <button class="btn btn-primary mb-3">Checkout</button>
+        </form>
+    </div>
+    <%}else {%>
+            <h2>No items in basket.</h2>
+  <%}%>
 
-       <% for(let i =0; i<basketItems[0].products.length; i++) {  %>
-        <% total+=basketItems[0].products[i].price   %>
-        <% } %>
-
-       <% if (total === 0) { %>
-                  <h3>NOTHING IN YOUR BASKET YET!!!</h3>
-                  <% } else {%>
-                    <h3 class="py-3">Total: £<%= total %> </h3>
-                    <form action="/checkout" method="GET">
-                        <button class="btn btn-primary">Checkout</button>
-                   </form>
-                    <%}%>
 </div>
+
+
+

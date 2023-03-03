@@ -11,6 +11,8 @@ const passport = require('passport')
 const LocalAuth = require('passport-local')
 const User = require('./models/user')
 const MongoStore = require('connect-mongo')
+const Stripe = require('stripe')
+const stripe = Stripe("sk_test_51MgRG0AYx3n7HkYcaolBrw29SN2beilaDLgGCEYSzRnnQOPYt2BCM86W5j3DGvCSGcgeCwc4VbB8I5IavwYddYON008lZ0AzGN");
 
 const balloons = require ('./routes/balloons')
 const decorations = require ('./routes/decorations')
@@ -22,6 +24,7 @@ const basket = require ('./routes/basket')
 const account = require ('./routes/account')
 const authorisation = require ('./routes/authorisation')
 const checkout = require ('./routes/checkout')
+const search = require ('./routes/search')
 
 //Mongoose Setup
 mongoose.set("strictQuery", false);
@@ -60,6 +63,7 @@ app.use((req,res,next) => {
   res.locals.error = req.flash('error')
   res.locals.signedInUser = req.user
   res.locals.session = req.session
+  res.locals.params = req.params
   next()
 })
 
@@ -69,6 +73,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+
+app.use(express.json())
 
 //Routes
 app.use('/balloons', balloons)
@@ -81,6 +88,9 @@ app.use('/basket', basket)
 app.use('/account', account)
 app.use('/', authorisation)
 app.use('/checkout', checkout)
+app.use('/search', search)
+
+
 
 //Additional routes & middleware
 app.get("/", (req, res) => {
