@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate')%>
+<div class="container">
+
+    <h1 class=" text-center">Edit Listing</h1>
+
+    <form action="/marketplace/listings/<%=listing._id%>?_method=PUT" method="POST" class="" novalidate>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="name">Item Name</label>
+            <input type="text" id="name" name="name" class="form-control" value="<%=listing.name%>" />
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="subCategory">Category</label>
+            <input type="text" id="subCategory" name="subCategory" class="form-control" value="<%=listing.subCategory%>"/>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="condition">Condition</label>
+            <input type="text" id="condition" name="condition" class="form-control" value="<%=listing.condition%>"/>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="size">Size</label>
+            <input type="text" id="size" name="size" class="form-control" value="<%=listing.size%>"/>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="description">Description</label>
+            <textarea type="text" id="description" name="description" class="form-control"> </textarea>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="image">Image</label>
+            <input type="text" name="image" id="image" class="form-control" value="<%=listing.image%>">
+        </div>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="price">Price</label>
+            <input type="text" id="price" name="price" class="form-control" value="<%=listing.price%>" />
+        </div>
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>

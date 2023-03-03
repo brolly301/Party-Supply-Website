@@ -23,6 +23,29 @@ router.get("/listings/:id", async(req, res) => {
     res.render("pages/products/marketplace/marketplaceShowPage", {listing, id});
   });
 
+router.get("/listings/:id/edit", async(req, res) => {
+     const {id} = req.params
+     const listing = await Product.findById(id)
+    res.render("pages/authentication/account/listingsEdit", {listing, id});
+  });
+
+  router.put("/listings/:id", catchAsync(async(req, res) => {
+    const {id} = req.params
+    console.log(id)
+    console.log(req.body)
+    await Product.findByIdAndUpdate(id, { ...req.body })
+ 
+    res.redirect(`/marketplace/listings/${id}`);
+  }))
+
+  //Route for deleting camps
+router.delete('/listings/:id', async (req, res) => {
+  const { id } = req.params
+  await Product.findByIdAndDelete(id)
+  res.redirect(`/account/${req.user.username}/listings`)
+})
+    
+
 router.post("/listings", isLoggedIn, async (req, res) => {
     const {username} = req.user
     const postDetails = req.body

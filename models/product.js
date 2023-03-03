@@ -15,13 +15,12 @@ const ProductSchema = new Schema({
     size: String,
     color: String,
     theme: String,
-    matieral: String,
     subCategory: String,
     username: String,
-    package: {
-        products: [String]
-    },
-    clothing: [this]
+    reviews:  [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }]
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

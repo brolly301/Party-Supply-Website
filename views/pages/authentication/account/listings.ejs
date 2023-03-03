@@ -11,6 +11,8 @@
             <h3><%= listing.condition  %></h3>
             <h3><%= listing.price  %></h3>
         </div>
+        <input type="hidden" name="id" value="<%=listing._id  %>">
+        <a href="/marketplace/listings/<%=listing._id %>"><button class="btn btn-primary">View Listing</button></a>
     <% } %>
     </div>
 </div>
