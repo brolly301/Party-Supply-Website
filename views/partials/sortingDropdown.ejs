@@ -1,0 +1,23 @@
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Sort By
+    </button>
+    <ul class="dropdown-menu">
+        <li><form action="/balloons/sortByNameAZ" method="GET">
+            <button class="dropdown-item">Name A - Z</button>
+             </form>
+        </li>
+        <li><form action="/balloons/sortByNameZA" method="GET">
+            <button class="dropdown-item">Name Z - A</button>
+             </form>
+        </li>
+        <li><form action="/balloons/sortByPriceLowHigh" method="GET">
+            <button class="dropdown-item">Price Low - High</button>
+             </form>
+        </li>
+        <li><form action="/balloons/sortByPriceHighLow" method="GET">
+            <button class="dropdown-item">Price High - Low</button>
+             </form>
+        </li>
+    </ul>
+  </div>
