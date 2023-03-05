@@ -1,12 +1,14 @@
 <div class="container">
-    <form action="/login" method="POST" class="" novalidate>
+    <form action="/login" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
-            <input type="text" id="username" name="username" class="form-control" />
+            <input type="text" id="username" name="username" class="form-control" required />
             <label class="form-label" for="username">Username</label>
+            <div class="invalid-feedback">Please enter your username.</div>
         </div>
         <div class="form-outline mb-4">
-            <input type="password" id="password" name="password" class="form-control" />
+            <input type="password" id="password" name="password" class="form-control" required />
             <label class="form-label" for="password">Password</label>
+            <div class="invalid-feedback">Please enter your password.</div>
         </div>
         <div class="mb-3">
             <a href="/register"><h5>Not Registered? Sign up here.</h5></a>
@@ -14,3 +16,4 @@
         <button class="btn btn-primary">Sign In</button>
     </form>
 </div>
+

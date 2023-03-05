@@ -1,32 +1,39 @@
 <div class="container">
-    <form action="/checkout" method="POST" class="" novalidate>
+    <form action="/checkout" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
             <label class="form-label" for="customerName">Customer Name</label>
-            <input type="text" id="customerName" name="customerName" class="form-control" />
+            <input type="text" id="customerName" name="customerName" class="form-control" required />
+            <div class="invalid-feedback">Please enter a customer name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="email">Email</label>
-            <input type="text" id="email" name="email" class="form-control" />
+            <input type="text" id="email" name="email" class="form-control" required />
+            <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required />
+            <div class="invalid-feedback">Please enter a valid phone number.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="address">Address</label>
-            <input type="text" id="address" name="address" class="form-control" />
+            <input type="text" id="address" name="address" class="form-control" required/>
+            <div class="invalid-feedback">Please enter an address.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="city">City</label>
-            <input type="text" id="city" name="city" class="form-control" />
+            <input type="text" id="city" name="city" class="form-control" required />
+            <div class="invalid-feedback">Please enter a city name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="country">Country</label>
-            <input type="text" id="country" name="country" class="form-control" />
+            <input type="text" id="country" name="country" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a country.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="postcode">Postcode</label>
-            <input type="password" id="postcode" name="postcode" class="form-control" />
+            <input type="password" id="postcode" name="postcode" class="form-control" required />
+            <div class="invalid-feedback">Please enter a postcode.</div>
         </div>
         <button class="btn btn-primary mb-4">Order</button>
     </form>

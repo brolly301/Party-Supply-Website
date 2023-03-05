@@ -1,11 +1,13 @@
 <div class="d-flex container my-4">
     <div class="row nav justify-content-center text-center ">
-        <form action="/<%=product.category%>/<%=product._id%>/reviews" method="POST">
+        <form action="/<%=product.category%>/<%=product._id%>/reviews" method="POST" class="validate-form" novalidate>
         <h3>Reviews</h3>
         <label for="rating">Rating</label>
-        <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= product._id  %>">
+        <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= product._id  %>" required>
+        <div class="invalid-feedback">Please enter a rating.</div>
         <label for="review">Review</label>
-        <textarea style="width: 445px;" name="body" id="body[review]" cols="30" rows="5"></textarea>
+        <textarea style="width: 445px;" name="body" id="body[review]" cols="30" rows="5" required></textarea>
+        <div class="invalid-feedback">Please enter review details.</div>
             <input type="hidden" name="id" value="<%= product._id  %>">
             <button type="submit" class="btn btn-success my-3">Post Review</button>
         </form>

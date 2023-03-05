@@ -17,6 +17,9 @@ router.get("/",  catchAsync(async (req, res) => {
        basket.push(basketItems)
        total+=basketItems.price
        req.session.basket.price = total
+       req.session.basket.quantity = req.session.basket.products.length
+
+       console.log(req.session.basket)
   }
 
   res.render("pages/checkout/basket", {basket, total});
@@ -35,6 +38,7 @@ router.post("/", catchAsync(async (req, res) => {
     req.session.basket = basket
     req.flash('success', 'Item added to Basket')
     res.redirect('back')
+    console.log(req.session)
    })
   }))
 

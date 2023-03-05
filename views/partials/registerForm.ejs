@@ -1,32 +1,39 @@
 <div class="container">
-    <form action="/register" method="POST" class="" novalidate>
+    <form action="/register" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
             <label class="form-label" for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" class="form-control" />
+            <input type="text" id="firstName" name="firstName" class="form-control" required />
+            <div class="invalid-feedback">Please enter your first name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" class="form-control" />
+            <input type="text" id="lastName" name="lastName" class="form-control" required/>
+            <div class="invalid-feedback">Please enter your last name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="username">Email</label>
-            <input type="text" id="email" name="email" class="form-control" />
+            <input type="text" id="email" name="email" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" />
+            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a valid phone number.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" />
+            <input type="text" id="username" name="username" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a username.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" />
+            <input type="password" id="password" name="password" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a password.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" />
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required/>
+            <div class="invalid-feedback">Please enter confirm password.</div>
         </div>
         <button class="btn btn-primary mb-4">Sign Up</button>
     </form>

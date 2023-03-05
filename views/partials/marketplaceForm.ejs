@@ -1,16 +1,19 @@
 <div class="container">
-    <form action="/marketplace/listings" method="POST" class="" novalidate>
+    <form action="/marketplace/listings" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
             <label class="form-label" for="name">Item Name</label>
-            <input type="text" id="name" name="name" class="form-control" />
+            <input type="text" id="name" name="name" class="form-control" required />
+            <div class="invalid-feedback">Please enter a product name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="subCategory">Category</label>
-            <input type="text" id="subCategory" name="subCategory" class="form-control" />
+            <input type="text" id="subCategory" name="subCategory" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a category.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="condition">Condition</label>
-            <input type="text" id="condition" name="condition" class="form-control" />
+            <input type="text" id="condition" name="condition" class="form-control" required/>
+            <div class="invalid-feedback">Please specify the products condition.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="size">Size</label>
@@ -18,15 +21,18 @@
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="description">Description</label>
-            <textarea type="text" id="description" name="description" class="form-control"></textarea>
+            <textarea type="text" id="description" name="description" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please enter a description.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="image">Image</label>
-            <textarea type="text" id="image" name="image" class="form-control"></textarea>
+            <input type="text" id="image" name="image" class="form-control" required>
+            <div class="invalid-feedback">Please enter a city name.</div>
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="price">Price</label>
-            <input type="text" id="price" name="price" class="form-control" />
+            <input type="text" id="price" name="price" class="form-control" required/>
+            <div class="invalid-feedback">Please enter a price.</div>
         </div>
         <button class="btn btn-success">Post New Listing</button>
     </form>
