@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate')%>
+<div class="container-fluid text-center">
+    <h1 class="text-center">Reviews</h1>
+    <% for (let i =0; i<products.length; i++) {%>
+        <% for (let j =0; j<products[i].reviews.length; j++) {%>
+            <h1>Review <%= [i + 1] %> :</h1>
+            <% if (signedInUser.username === products[i].reviews[j].username){ %>
+                <h3><%= products[i].reviews[j].body  %></h3>
+                <a href="/<%=products[i].category.toLowerCase()%>/<%= products[i].id %>">
+                <button class="btn btn-primary">View Review</button>
+                 </a>
+                 <form action="/balloons/<%= products[i]._id  %>?_method=DELETE" method="POST">
+                    <input type="hidden" name="id" id="id" value="<%= products[i].reviews[j].id  %>">
+                    <button class="btn btn-danger mb-2">Delete</button>
+                </form>
+                <% } %>
+            <% } %>
+        <% } %>
+</div>
+

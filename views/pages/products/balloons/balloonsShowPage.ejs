@@ -30,6 +30,7 @@
 
         <% if (signedInUser && signedInUser.username === review.username) { %>
         <form action="/balloons/<%= product._id  %>?_method=DELETE" method="POST">
+            <input type="hidden" name="id" id="id" value="<%= review.id  %>">
             <button class="btn btn-danger mb-2">Delete</button>
         </form>
         <% } %>

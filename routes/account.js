@@ -9,6 +9,18 @@ router.get("/:username", (req, res) => {
     res.render("pages/authentication/account/account");
   });
 
+router.get("/:username/reviews", async(req, res) => {
+    const products = await Product.find({reviews: {$exists: true, $not: {$size: 0}}}).populate('reviews')
+    res.render("pages/authentication/account/reviews", {products});
+  });
+
+router.delete("/:username/reviews", catchAsync(async (req, res) => {
+    await Review.findByIdAndDelete(req.body.id)
+    console.log(req.body.id)
+    
+    res.redirect('back');
+  }));    
+
 router.get("/:username/listings", async(req, res) => {
     const {username} = req.user
     const listings = await Product.find({username: username})

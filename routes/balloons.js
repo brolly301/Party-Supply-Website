@@ -53,9 +53,8 @@ router.post("/:id/reviews", isLoggedIn, catchAsync(async (req, res) => {
   }));
 
 router.delete("/:id", catchAsync(async (req, res) => {
-    const product = await Product.findById(req.params.id).populate('reviews');
-    console.log(product.reviews[3])
-
+    await Review.findByIdAndDelete(req.body.id)
+    console.log(req.body.id)
     
     res.redirect('back');
   }));  
