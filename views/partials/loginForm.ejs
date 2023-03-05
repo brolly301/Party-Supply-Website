@@ -1,19 +1,18 @@
-<div class="container">
+<div class="container-fluid mt-4" style="width:350px">
     <form action="/login" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
-            <input type="text" id="username" name="username" class="form-control" required />
-            <label class="form-label" for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder=" Username" required />
             <div class="invalid-feedback">Please enter your username.</div>
         </div>
         <div class="form-outline mb-4">
-            <input type="password" id="password" name="password" class="form-control" required />
-            <label class="form-label" for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder=" Password" required />
             <div class="invalid-feedback">Please enter your password.</div>
         </div>
-        <div class="mb-3">
-            <a href="/register"><h5>Not Registered? Sign up here.</h5></a>
-        </div>
-        <button class="btn btn-primary">Sign In</button>
+        <button class="btn btn-primary text-center mb-3" style="width:325px">Sign In</button>
     </form>
+    <p><b>Or</b></p>
+     <a href="/register"><button class="btn btn-success" style="width:325px">Register</button>
+     </a>
 </div>
+
 
