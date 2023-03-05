@@ -16,9 +16,6 @@ router.get("/:name", catchAsync(async (req, res) => {
   res.render("pages/products/fancyDress/clothing", { products });
 }));
 
-router.get("/:name/:id", catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const products = await Product.findById(id);
-  res.render("pages/products/fancyDress/showPage", { products });
-})); 
+
+
   module.exports = router;

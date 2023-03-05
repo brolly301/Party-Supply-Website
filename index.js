@@ -25,6 +25,7 @@ const account = require ('./routes/account')
 const authorisation = require ('./routes/authorisation')
 const checkout = require ('./routes/checkout')
 const search = require ('./routes/search')
+const products = require ('./routes/products')
 
 //Mongoose Setup
 mongoose.set("strictQuery", false);
@@ -89,6 +90,7 @@ app.use('/account', account)
 app.use('/', authorisation)
 app.use('/checkout', checkout)
 app.use('/search', search)
+app.use('/', products)
 
 
 

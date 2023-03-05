@@ -26,21 +26,16 @@ router.get("/sortByPriceLowHigh", catchAsync(async (req, res) => {
     res.render("pages/products/balloons/balloons", { products });
   }));
 
-router.get(":theme?/", catchAsync(async (req, res) => {
-    const products = await Product.find({ category: 'Balloons' });
-
-    res.render("pages/products/balloons/balloons", { products });
-  }));
   
-router.get("/:theme?/:id", catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const product = await Product.findById(id).populate('reviews')
-    if (!product) {
-      req.flash('error', 'Unable to find product.')
-      return res.redirect('/balloons')
-    }
-    res.render("pages/products/balloons/balloonsShowPage", { product });
-  }));
+// router.get("/:theme?/:id", catchAsync(async (req, res) => {
+//     const { id } = req.params;
+//     const product = await Product.findById(id).populate('reviews')
+//     if (!product) {
+//       req.flash('error', 'Unable to find product.')
+//       return res.redirect('/balloons')
+//     }
+//     res.render("pages/products/balloons/balloonsShowPage", { product });
+//   }));
 
 router.post("/:id/reviews", isLoggedIn, catchAsync(async (req, res) => {
     const products = await Product.findById(req.params.id);

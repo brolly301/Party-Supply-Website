@@ -17,11 +17,6 @@ router.get("/listings", async(req, res) => {
     res.render("pages/products/marketplace/marketplaceMain", {listings});
   });
 
-router.get("/listings/:id", async(req, res) => {
-     const {id} = req.params
-     const listing = await Product.findById(id)
-    res.render("pages/products/marketplace/marketplaceShowPage", {listing, id});
-  });
 
 router.get("/listings/:id/edit", async(req, res) => {
      const {id} = req.params
