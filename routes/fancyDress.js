@@ -9,12 +9,7 @@ router.get("/", catchAsync(async (req, res) => {
   res.render("pages/products/fancyDress/fancyDressSplash", { fancyDress });
 }));
 
-router.get("/:name", catchAsync(async (req, res) => {
-  const {name} = req.params
-  const toLowerCaseName = name[0].toUpperCase() + name.slice(1).toLowerCase();
-  const products = await Product.find({category:toLowerCaseName});
-  res.render("pages/products/fancyDress/clothing", { products });
-}));
+
 
 
 

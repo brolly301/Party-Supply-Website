@@ -6,13 +6,6 @@ const Product = require("../models/product");
 const Review = require("../models/review");
 const {isLoggedIn} = require("../views/pages/middleware")
 
-router.get("/:theme/:name", catchAsync(async (req, res) => {
-  let {name} = req.params
-  name = name.charAt(0).toUpperCase() + name.slice(1);
-  const products = await Product.find({ category: name });
-  res.render("pages/products/balloons/balloons", { products, name });
-}));
-
 router.get("/:name", catchAsync(async (req, res) => {
   let {name} = req.params
   name = name.charAt(0).toUpperCase() + name.slice(1);
