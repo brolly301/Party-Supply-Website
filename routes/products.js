@@ -13,6 +13,13 @@ router.get("/:name", catchAsync(async (req, res) => {
   res.render("pages/products/balloons/balloons", { products, name });
 }));
 
+router.get("/:theme?/:name", catchAsync(async (req, res) => {
+  let {name} = req.params
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  const products = await Product.find({ category: name });
+    res.render("pages/products/balloons/balloons", { products, name });
+  }));
+
 router.get("/:theme?/:name/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id).populate('reviews')
