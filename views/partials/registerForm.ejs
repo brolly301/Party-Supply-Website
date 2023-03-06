@@ -1,40 +1,98 @@
-<div class="container " style="width:350px">
-    <form action="/register" method="POST" class="validate-form" novalidate>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="firstName">First Name</label>
-            <input type="text" id="firstName" name="firstName" class="form-control" required />
-            <div class="invalid-feedback">Please enter your first name.</div>
+<section>
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+              <form action="/register" method="POST" class="validate-form" novalidate>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="firstName">First Name</label>
+                        <input type="text" id="firstName" class="form-control form-control-lg" />
+                      
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="lastName">Last Name</label>
+                        <input type="text" id="lastName" class="form-control form-control-lg" />
+                      
+                    </div>
+  
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline datepicker w-100">
+                      <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control form-control-lg" id="username" />
+                      
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline datepicker w-100">
+                      <label for="birthday" class="form-label">Birthday</label>
+                        <input type="text" class="form-control form-control-lg" id="birthday" />
+                      
+                    </div>
+  
+                  </div>
+                 
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="email">Email</label>
+                        <input type="email" id="email" class="form-control form-control-lg" />
+                     
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                      <label class="form-label" for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-outline">
+                      <label class="form-label" for="password">Password</label>
+                        <input type="password" id="password" class="form-control form-control-lg" />
+                     
+                    </div>
+  
+                  </div>
+                  <div class="col-md-6 mb-4 pb-2">
+                    <div class="form-outline">
+                      <label class="form-label" for="password">Confirm Password</label>
+                        <input type="password" id="password" class="form-control form-control-lg" />
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <div >
+                    <button class="btn btn-primary mb-4">Sign Up</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="lastName">Last Name</label>
-            <input type="text" id="lastName" name="lastName" class="form-control" required/>
-            <div class="invalid-feedback">Please enter your last name.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="username">Email</label>
-            <input type="text" id="email" name="email" class="form-control" required/>
-            <div class="invalid-feedback">Please enter a valid email address.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required/>
-            <div class="invalid-feedback">Please enter a valid phone number.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" required/>
-            <div class="invalid-feedback">Please enter a username.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" required/>
-            <div class="invalid-feedback">Please enter a password.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required/>
-            <div class="invalid-feedback">Please enter confirm password.</div>
-        </div>
-        <button class="btn btn-primary mb-4">Sign Up</button>
-    </form>
-</div>
+      </div>
+    </div>
+  </section>
