@@ -64,7 +64,6 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
 router.delete("/:name/:id", catchAsync(async (req, res) => {
     await Review.findByIdAndDelete(req.body.id)
     console.log(req.body.id)
-    
     res.redirect('back');
   }));  
 

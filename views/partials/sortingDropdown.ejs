@@ -3,19 +3,19 @@
       Sort By
     </button>
     <ul class="dropdown-menu">
-        <li><form action="/balloons/sortByNameAZ" method="GET">
+        <li><form action="/<%=name%>/sortByNameAZ" method="GET">
             <button class="dropdown-item">Name A - Z</button>
              </form>
         </li>
-        <li><form action="/balloons/sortByNameZA" method="GET">
+        <li><form action="/<%=name%>/sortByNameZA" method="GET">
             <button class="dropdown-item">Name Z - A</button>
              </form>
         </li>
-        <li><form action="/balloons/sortByPriceLowHigh" method="GET">
+        <li><form action="/<%=name%>/sortByPriceLowHigh" method="GET">
             <button class="dropdown-item">Price Low - High</button>
              </form>
         </li>
-        <li><form action="/balloons/sortByPriceHighLow" method="GET">
+        <li><form action="/<%=name%>/sortByPriceHighLow" method="GET">
             <button class="dropdown-item">Price High - Low</button>
              </form>
         </li>
