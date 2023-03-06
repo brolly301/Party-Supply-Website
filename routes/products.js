@@ -6,21 +6,41 @@ const Product = require("../models/product");
 const Review = require("../models/review");
 const {isLoggedIn} = require("../views/pages/middleware")
 
-router.get("/:name", catchAsync(async (req, res) => {
-  let {name} = req.params
-  name = name.charAt(0).toUpperCase() + name.slice(1);
-  const products = await Product.find({ category: name });
+const uppercaseFirstLetter = (name) => {
+  return name = name.charAt(0).toUpperCase() + name.slice(1);
+}
+router.get("/:name/sortByNameAZ", catchAsync(async (req, res) => {
+  const {name} = req.params
+  const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1})
+res.render("pages/products/balloons/balloons", { products, name });
+}));
+
+router.get("/:name/sortByNameZA", catchAsync(async (req, res) => {
+  const {name} = req.params
+  const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: -1})
   res.render("pages/products/balloons/balloons", { products, name });
 }));
 
-router.get("/:theme?/:name", catchAsync(async (req, res) => {
+router.get("/:name/sortByPriceHighLow", catchAsync(async (req, res) => {
+  const {name} = req.params
+  const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({price: -1});
+  res.render("pages/products/balloons/balloons", { products, name });
+}));
+
+router.get("/:name/sortByPriceLowHigh", catchAsync(async (req, res) => {
+  const {name} = req.params
+  console.log(name)
+  const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({price: 1});
+  res.render("pages/products/balloons/balloons", { products, name });
+}));
+
+router.get("/:name", catchAsync(async (req, res) => {
   let {name} = req.params
-  name = name.charAt(0).toUpperCase() + name.slice(1);
-  const products = await Product.find({ category: name });
+  const products = await Product.find({ category: uppercaseFirstLetter(name)});
     res.render("pages/products/balloons/balloons", { products, name });
   }));
 
-router.get("/:theme?/:name/:id", catchAsync(async (req, res) => {
+router.get("/:name/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id).populate('reviews')
     if (!product) {
@@ -29,5 +49,9 @@ router.get("/:theme?/:name/:id", catchAsync(async (req, res) => {
     }
     res.render("pages/products/balloons/balloonsShowPage", { product });
   }));
+
+
+
+
 
   module.exports = router;
