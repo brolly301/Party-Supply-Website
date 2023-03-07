@@ -3,7 +3,7 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const User = require("../models/user");
 const passport = require('passport');
-const Basket = require('../models/basket')
+const Product = require('../models/product')
 
 router.get("/register", (req, res) => {
     res.render('pages/authentication/register')
@@ -51,5 +51,14 @@ router.get('/logout', (req,res) => {
     res.redirect('/balloons')
     })
 })
+
+router.get("/search", catchAsync(async (req, res) => {
+ 
+  const {search} = req.query
+  const products = await Product.find({ name: {$regex: search || '___' , $options: 'i'}});
+  res.render("pages/search", {products, search});
+
+}));
+
   
 module.exports = router;

@@ -11,8 +11,6 @@ const passport = require('passport')
 const LocalAuth = require('passport-local')
 const User = require('./models/user')
 const MongoStore = require('connect-mongo')
-const Stripe = require('stripe')
-const stripe = Stripe("sk_test_51MgRG0AYx3n7HkYcaolBrw29SN2beilaDLgGCEYSzRnnQOPYt2BCM86W5j3DGvCSGcgeCwc4VbB8I5IavwYddYON008lZ0AzGN");
 
 const packages = require ('./routes/packages')
 const marketplace = require ('./routes/marketplace')
@@ -20,7 +18,6 @@ const basket = require ('./routes/basket')
 const account = require ('./routes/account')
 const authorisation = require ('./routes/authorisation')
 const checkout = require ('./routes/checkout')
-const search = require ('./routes/search')
 const products = require ('./routes/products')
 
 //Mongoose Setup
@@ -81,13 +78,18 @@ app.use('/basket', basket)
 app.use('/account', account)
 app.use('/', authorisation)
 app.use('/checkout', checkout)
-app.use('/search', search)
 app.use('/', products)
 
 //Additional routes & middleware
 app.get("/", (req, res) => {
   res.render("pages/home");
 });
+
+app.get("/hey/config", (req,res) => {
+  res.send({
+    publishableKey: process.env.STRIPE_PUBLISHABLE_KEY
+  })
+})
 
 app.all('*', (req,res,next) => {
    next(new ExpressError('Page Not Found', 404)) 

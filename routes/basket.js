@@ -18,9 +18,10 @@ router.get("/",  catchAsync(async (req, res) => {
        total+=basketItems.price
        req.session.basket.price = total
        req.session.basket.quantity = req.session.basket.products.length
-
-       console.log(req.session.basket)
   }
+  
+  const product = await Product.findById(req.session.basket.products[0])
+  console.log(product.price)
 
   res.render("pages/checkout/basket", {basket, total});
   }));
