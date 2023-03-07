@@ -53,11 +53,9 @@ router.get('/logout', (req,res) => {
 })
 
 router.get("/search", catchAsync(async (req, res) => {
- 
   const {search} = req.query
-  const products = await Product.find({ name: {$regex: search || '___' , $options: 'i'}});
+  const products = await Product.find({$and: [{ name: {$regex: search || '   ', $options: 'i'}},  {category: {$ne: 'Costumes' && 'Occasions'}}]})
   res.render("pages/search", {products, search});
-
 }));
 
   
