@@ -28,7 +28,6 @@ router.get("/",  catchAsync(async (req, res) => {
  
 
 router.post("/", catchAsync(async (req, res) => {
-   
    const {id} = req.body
    const basket = new Basket(req.session.basket)
     Product.findById(id, function (error, product) {
@@ -39,7 +38,7 @@ router.post("/", catchAsync(async (req, res) => {
     req.session.basket = basket
     req.flash('success', 'Item added to Basket')
     res.redirect('back')
-    console.log(req.session)
+    console.log(req.session.basket.price)
    })
   }))
 

@@ -9,10 +9,12 @@ const {isLoggedIn} = require("../views/pages/middleware")
 const uppercaseFirstLetter = (name) => {
   return name = name.charAt(0).toUpperCase() + name.slice(1);
 }
-  router.get("/:name/sortByNameAZ", catchAsync(async (req, res) => {
+  router.get("/:name", catchAsync(async (req, res) => {
     const {name} = req.params
+
     const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1})
-  res.render("pages/products/products", { products, name });
+  console.log(req.params)
+    res.render("pages/products/products", { products, name });
   }));
   
   router.get("/:name/sortByNameZA", catchAsync(async (req, res) => {
@@ -42,6 +44,10 @@ const uppercaseFirstLetter = (name) => {
 
   router.get("/themes/:subCategory/:name", catchAsync(async (req, res) => {
     let {name} = req.params
+    if (name === 'stpatricksday') {
+      name = 'St Patricks Day'
+    }
+    console.log(name)
     const products = await Product.find({ category: uppercaseFirstLetter(name)});
     res.render("pages/products/products", { products, name });
     }));

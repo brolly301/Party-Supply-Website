@@ -21,9 +21,9 @@ router.get("/checkoutComplete", async(req, res) => {
 
 router.post("/", async(req, res) => {
  
-  const product = await Product.findById(req.session.basket.products[0])
+  // const product = await Product.findById(req.session.basket.products[0])
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: req.session.basket.price * 100,
+    amount: 110,
     currency: 'gbp',
     payment_method_types: ['card'],
   });
