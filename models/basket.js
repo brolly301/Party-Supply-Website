@@ -9,9 +9,15 @@ const BasketSchema = new Schema({
         quantity: Number,
         name: String,
         price: Number,
+        image: String,
+        description: String,
+        totalPrice: {
+          type: Number,
+          default: 0
+        }
       },
   ],
-    totalPrice: 0,
+    totalBasketPrice: 0,
 })
 
 BasketSchema.statics.generateProducts = () => {

@@ -1,27 +1,30 @@
 <% layout('layouts/boilerplate')%>
 <div class="container text-center">
     <h1>Basket</h1>
-
+    
     <% if (session.basket)  {%>
-        <% basket.forEach(item => { %>
+        <% for(let i = 0; i<session.basket.products.length; i++) {%>
+        
             <div class="container mb-2" style="width:600px;height:160px">
                 <div class="card flex-row flex-wrap ">
                     <div class="card-header ">
-                        <img src="<%= item.image  %>" style="width:100px;height:100px" >
+                        <img src="<%= session.basket.products[i].image  %>" style="width:100px;height:100px" >
+                        <h4 class="card-text">x<%= session.basket.products[i].quantity   %></h4>
+
                     </div>
                     <div class="card-block px-2">
-                        <h4 class="card-title"><%= item.name  %></h4>
-                        <p class="card-text"><%=item.description    %></p>
-                        <h4 class="card-text">£<%= item.price   %></h4>
+                        <h4 class="card-title"><%= session.basket.products[i].name  %></h4>
+                        <p class="card-text"><%=session.basket.products[i].description  %></p>
+                        <h4 class="card-text">£<%= session.basket.products[i].price   %></h4>
                     <form action="/basket?_method=DELETE" method="POST">
-                        <input type="hidden" name="id" value="<%= item._id  %>">
+                        <input type="hidden" name="id" value="<%= session.basket.products[i].productId  %>">
                         <button class="my-2 btn btn-danger">Remove</button>
                     </form>
                     </div>
                 </div>
                 </div>
-         <%  });  %>
-        
+
+         <% } %>
         <h3 class="pt-4">Total: £<%= total  %></h3>
          <form action="/checkout" method="GET">
             <button class="btn btn-primary mb-3">Checkout</button>
@@ -30,7 +33,7 @@
     <%}else {%>
             <h2>No items in basket.</h2>
   <%}%>
-
+ 
 </div>
 
 
