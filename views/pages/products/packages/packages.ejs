@@ -20,7 +20,12 @@
                                 £<%=package[i].price%>
                         </h3>
                         <form class="d-inline" action="/basket" method="POST">
-                            <input type="hidden" name="id" value="<%= package[i]._id  %>">
+                            <input type="hidden" name="productId" value="<%= package[i]._id  %>">
+                            <input type="hidden" name="name" value="<%= package[i].name  %>">
+                            <input type="hidden" name="price" value="<%= package[i].price  %>">
+                            <input type="hidden" name="quantity" value="<%= package[i].quantity  %>">
+                            <input type="hidden" name="image" value="<%= package[i].image  %>">
+                            <input type="hidden" name="description" value="<%= package[i].description  %>">
                           <button type="submit" class="btn btn-primary">Add to Basket</button>
                         </form>
                        <a href="/packages/<%=package[i]._id%>" class="btn btn-primary" >More Details</a>

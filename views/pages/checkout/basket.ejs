@@ -17,15 +17,23 @@
                         <p class="card-text"><%=session.basket.products[i].description  %></p>
                         <h4 class="card-text">£<%= session.basket.products[i].price   %></h4>
                     <form action="/basket?_method=DELETE" method="POST">
-                        <input type="hidden" name="id" value="<%= session.basket.products[i].productId  %>">
+                        <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
                         <button class="my-2 btn btn-danger">Remove</button>
+                    </form>
+                    <form action="/basket?_method=PUT" method="POST">
+                        <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
+                        <button class="my-2 btn btn-success">Increase Qty</button>
+                    </form>
+                    <form action="/basket?_method=PATCH" method="POST">
+                        <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
+                        <button class="my-2 btn btn-danger">Decrease Qty</button>
                     </form>
                     </div>
                 </div>
                 </div>
 
          <% } %>
-        <h3 class="pt-4">Total: £<%= total  %></h3>
+        <h3 class="pt-4">Total: £<%= session.basket.totalBasketPrice  %></h3>
          <form action="/checkout" method="GET">
             <button class="btn btn-primary mb-3">Checkout</button>
         </form>

@@ -14,7 +14,8 @@ router.get("/",  catchAsync(async (req, res) => {
 router.post("/", catchAsync(async (req, res) => {
 
 const { productId, name, price, quantity, image, description } = req.body;
-// const totalPrice 
+let totalPrice = 1
+totalPrice *= price
 
   try {
     let cart = req.session.basket
@@ -23,20 +24,18 @@ const { productId, name, price, quantity, image, description } = req.body;
       //cart exists for user
       let itemIndex = req.session.basket.products.findIndex(p => p.productId == productId);
       
-    
-
       if (itemIndex > -1) {
         //product exists in the cart, update the quantity
         let productItem =  req.session.basket.products[itemIndex];
         productItem.quantity++
-        productItem.price = productItem.totalPrice * productItem.quantity
-        
+        productItem.price = totalPrice * productItem.quantity
+        req.session.basket.totalBasketPrice +=totalPrice
         req.session.basket.products[itemIndex] = productItem;
-        
+        console.log( req.session.basket.totalBasketPrice)
       } else {
         //product does not exists in cart, add new item
         req.session.basket.products.push({ productId, quantity, name, price, image, description });
-        console.log(req.session.basket.products)
+        req.session.basket.totalBasketPrice += totalPrice
       }
  
       req.flash('success', 'Item added to Basket')
@@ -47,6 +46,8 @@ const { productId, name, price, quantity, image, description } = req.body;
         products: [{ productId, quantity, name, price, image, description, totalPrice }]
       });
       req.session.basket = newCart
+      req.session.basket.totalBasketPrice = totalPrice
+
       req.flash('success', 'Item added to Basket')
       return  res.redirect('back')
     }
@@ -54,56 +55,48 @@ const { productId, name, price, quantity, image, description } = req.body;
     console.log(err);
     res.status(500).send("Something went wrong");
   }
-
   }))
 
  router.delete("/", catchAsync(async (req, res) => {
-    const product = req.session.basket.products
-    product.pop()
+  const {productId} = req.body
+  let cart = req.session.basket
+  let itemIndex = cart.products.findIndex((p) => p.productId == productId);
+
+  if (itemIndex > -1) {
+    cart.products.splice(itemIndex, 1);
+    let productItem =  req.session.basket.products[itemIndex]
+    // req.session.basket.totalBasketPrice -= productItem.price
+  }
     req.flash('success', 'Removed from Basket')
     res.redirect('back')
   })); 
 
+ router.put("/", catchAsync(async (req, res) => {
+  const {productId} = req.body
+  let cart = req.session.basket
+  let itemIndex = cart.products.findIndex((p) => p.productId == productId);
+
+  if (itemIndex > -1) {
+  let productItem = cart.products[itemIndex];
+    productItem.quantity += 1;
+    cart.products[itemIndex] = productItem;
+  }
+    req.flash('success', 'Quantity decreased')
+    res.redirect('back')
+  })); 
+
+ router.patch("/", catchAsync(async (req, res) => {
+  const {productId} = req.body
+  let cart = req.session.basket
+  let itemIndex = cart.products.findIndex((p) => p.productId == productId);
+
+  if (itemIndex > -1) {
+  let productItem = cart.products[itemIndex];
+    productItem.quantity -= 1;
+    cart.products[itemIndex] = productItem;
+  }
+    req.flash('success', 'Quantity decreased')
+    res.redirect('back')
+  })); 
+
 module.exports = router;
-
-//WORKING WITH ONLY USERNAME
-// router.post("/", catchAsync(async (req, res) => {
-
-//   const { productId, name, price, quantity } = req.body;
-  
-//     try {
-//       let cart = await Basket.findOne({username: req.user.username });
-  
-//       if (cart) {
-//         //cart exists for user
-//         let itemIndex = req.session.basket.products.findIndex(p => p.productId == productId);
-  
-//         if (itemIndex > -1) {
-//           //product exists in the cart, update the quantity
-//           let productItem =  req.session.basket.products[itemIndex];
-//           productItem.quantity++
-//           req.session.basket.products[itemIndex] = productItem;
-//         } else {
-//           //product does not exists in cart, add new item
-//           req.session.basket.products.push({ productId, quantity, name, price });
-//           console.log(req.session.basket.products)
-//         }
-//         cart = await cart.save();
-//         return res.status(201).send(cart);
-//       } else {
-//         //no cart for user, create new cart
-//         const newCart = await Basket.create({
-//           username : req.user.username,
-//           products: [{ productId, quantity, name, price }]
-//         });
-//         req.session.basket = newCart
-//         console.log(req.session.basket.products)
-  
-//         return res.status(201).send(req.session.basket.products);
-//       }
-//     } catch (err) {
-//       console.log(err);
-//       res.status(500).send("Something went wrong");
-//     }
-  
-//     }))

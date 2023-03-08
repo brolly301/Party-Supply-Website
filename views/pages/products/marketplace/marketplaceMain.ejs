@@ -9,7 +9,12 @@
                 <h5> <%=listings[i].description%></h5>
                 <h3>£<%=listings[i].price%></h3>
                 <form action="/basket" method="POST">
-                    <input type="hidden" name="id" value="<%= listings[i]._id  %>">
+                    <input type="hidden" name="productId" value="<%= listings[i]._id  %>">
+                    <input type="hidden" name="name" value="<%= listings[i].name  %>">
+                    <input type="hidden" name="price" value="<%= listings[i].price  %>">
+                    <input type="hidden" name="quantity" value="<%= listings[i].quantity  %>">
+                    <input type="hidden" name="image" value="<%= listings[i].image  %>">
+                    <input type="hidden" name="description" value="<%= listings[i].description  %>">
                     <button type="submit" class="btn btn-primary">Add to Basket</button>
                 </form>
             </div>
