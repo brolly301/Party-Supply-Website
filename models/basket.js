@@ -5,11 +5,13 @@ const BasketSchema = new Schema({
     username: String,
     products: [
         {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
-      }
+        productId: String,
+        quantity: Number,
+        name: String,
+        price: Number,
+      },
   ],
-    price: 0,
+    totalPrice: 0,
 })
 
 BasketSchema.statics.generateProducts = () => {

@@ -12,7 +12,10 @@
                             <h5> <%=products[i].description%></h5>
                             <h3>£<%=products[i].price%></h3>
                         <form action="/basket" method="POST">
-                            <input type="hidden" name="id" value="<%= products[i]._id  %>">
+                            <input type="hidden" name="productId" value="<%= products[i]._id  %>">
+                            <input type="hidden" name="name" value="<%= products[i].name  %>">
+                            <input type="hidden" name="price" value="<%= products[i].price  %>">
+                            <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
                             <button type="submit" class="btn btn-primary">Add to Basket</button>
                         </form>
                         </div>

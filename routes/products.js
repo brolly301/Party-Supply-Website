@@ -13,7 +13,6 @@ const uppercaseFirstLetter = (name) => {
     const {name} = req.params
 
     const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1})
-  console.log(req.params)
     res.render("pages/products/products", { products, name });
   }));
   
@@ -31,7 +30,6 @@ const uppercaseFirstLetter = (name) => {
   
   router.get("/:name/sortByPriceLowHigh", catchAsync(async (req, res) => {
     const {name} = req.params
-    console.log(name)
     const products = await Product.find({ category: uppercaseFirstLetter(name) }).sort({price: 1});
     res.render("pages/products/products", { products, name });
   }));
@@ -47,7 +45,6 @@ const uppercaseFirstLetter = (name) => {
     if (name === 'stpatricksday') {
       name = 'St Patricks Day'
     }
-    console.log(name)
     const products = await Product.find({ category: uppercaseFirstLetter(name)});
     res.render("pages/products/products", { products, name });
     }));
@@ -82,7 +79,6 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
   router.post("/:name/:id/reviews", isLoggedIn, catchAsync(async (req, res) => {
     const products = await Product.findById(req.params.id);
     const review = new Review({...req.body, username: req.user.username})
-    console.log(req.body)
     products.reviews.push(review)
     await review.save()
     await products.save()
@@ -91,7 +87,6 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
 
 router.delete("/:name/:id", catchAsync(async (req, res) => {
     await Review.findByIdAndDelete(req.body.id)
-    console.log(req.body.id)
     res.redirect('back');
   }));  
 

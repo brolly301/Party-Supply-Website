@@ -20,7 +20,11 @@ const ProductSchema = new Schema({
     reviews:  [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
+    quantity: {
+        type: Number,
+        default: 1
+    }
 })
 
 module.exports = mongoose.model('Product', ProductSchema)
