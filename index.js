@@ -58,6 +58,7 @@ app.use((req,res,next) => {
   res.locals.signedInUser = req.user
   res.locals.session = req.session
   res.locals.params = req.params
+  // res.locals.totalBasketPrice = req.session.basket.totalBasketPrice
   next()
 })
 

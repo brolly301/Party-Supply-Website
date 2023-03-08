@@ -33,10 +33,12 @@
                 </div>
 
          <% } %>
-        <h3 class="pt-4">Total: £<%= session.basket.totalBasketPrice  %></h3>
+         <div class="position-absolute">
+        <h3 class="position-relative top-10">Total: £<%= session.basket.totalBasketPrice  %></h3>
          <form action="/checkout" method="GET">
             <button class="btn btn-primary mb-3">Checkout</button>
         </form>
+    </div>
     </div>
     <%}else {%>
             <h2>No items in basket.</h2>
