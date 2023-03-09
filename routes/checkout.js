@@ -23,6 +23,22 @@ router.get("/payment", async(req, res) => {
   res.render("pages/checkout/payment");
   });
 
+router.post("/", async(req, res) => {
+  const deliveryDetails = req.body
+  
+  if (!req.user) {
+    const newOrder = new Order({...deliveryDetails, basket:[...req.session.basket.products]})
+    await newOrder.save()
+    req.session.basket = null
+    return res.render("pages/checkout/payment");
+  }
+  const {username} = req.user
+  const newOrder = new Order({...deliveryDetails, username, basket:[...req.session.basket.products]})
+  await newOrder.save()
+  req.session.basket = null
+  res.render("pages/checkout/payment");
+  });  
+
 router.post("/payment", async(req, res) => {
  
   // const product = await Product.findById(req.session.basket.products[0])
