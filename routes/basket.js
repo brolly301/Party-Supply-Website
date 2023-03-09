@@ -7,18 +7,26 @@ const Basket = require("../models/basket");
 
 router.get("/",  catchAsync(async (req, res) => {
   
-  let products = req.session.basket.products
-  let total = []
-  let hey = 0
-  let hello
-  for (let i =0; i<products.length; i++) {
-   total.push(products[i].quantity * products[i].price)
-   hello = total.reduce((acc, curVal) => acc + curVal, hey)
+  if (req.session.basket) {
+    let products = req.session.basket.products
+
+
+    let total = []
+    let hey = 0
+    let hello
+    for (let i =0; i<products.length; i++) {
+     total.push(products[i].quantity * products[i].price)
+     hello = total.reduce((acc, curVal) => acc + curVal)
+    }
+   req.session.basket.totalBasketPrice = hello
+   console.log(req.session.basket.totalBasketPrice)
+  
+  
+   return res.render("pages/checkout/basket");
+  } else {
+     res.render("pages/checkout/basket");
   }
-console.log(hello)
-
-
-  res.render("pages/checkout/basket", {total: 10});
+ 
   }));
  
   //Potentially working version
@@ -79,7 +87,7 @@ const { productId, name, price, quantity, image, description } = req.body;
   
     if (itemIndex > -1) {
     let productItem = cart.products[itemIndex];
-      productItem.quantity += 1;
+      productItem.quantity++;
       cart.products[itemIndex] = productItem;
     }
       req.flash('success', 'Quantity Increased')
@@ -94,7 +102,7 @@ const { productId, name, price, quantity, image, description } = req.body;
 
   if (itemIndex > -1) {
   let productItem = cart.products[itemIndex];
-    productItem.quantity -= 1;
+    productItem.quantity-- ;
     cart.products[itemIndex] = productItem;
   }
     req.flash('success', 'Quantity decreased')

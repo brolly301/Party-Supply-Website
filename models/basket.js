@@ -11,10 +11,6 @@ const BasketSchema = new Schema({
         price: Number,
         image: String,
         description: String,
-        totalPrice: {
-          type: Number,
-          default: 0
-        }
       },
   ],
     totalBasketPrice: 0,

@@ -19,11 +19,15 @@ router.get("/checkoutComplete", async(req, res) => {
   res.render("pages/checkout/checkoutComplete");
   });
 
-router.post("/", async(req, res) => {
+router.get("/payment", async(req, res) => {
+  res.render("pages/checkout/payment");
+  });
+
+router.post("/payment", async(req, res) => {
  
   // const product = await Product.findById(req.session.basket.products[0])
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 110,
+    amount: 100,
     currency: 'gbp',
     payment_method_types: ['card'],
   });

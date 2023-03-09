@@ -1,8 +1,11 @@
 <% layout('layouts/boilerplate')%>
-<div class="container text-center">
+<div class="container-fluid text-center">
     <h1>Basket</h1>
     
-    <% if (session.basket)  {%>
+    <% if (!session.basket || !session.basket.totalBasketPrice ) {%>
+        <h2>No items in basket.</h2>
+      
+    <%}else {%>
         <% for(let i = 0; i<session.basket.products.length; i++) {%>
         
             <div class="container mb-2" style="width:600px;height:160px">
@@ -15,7 +18,7 @@
                     <div class="card-block px-2">
                         <h4 class="card-title"><%= session.basket.products[i].name  %></h4>
                         <p class="card-text"><%=session.basket.products[i].description  %></p>
-                        <h4 class="card-text">£<%= session.basket.products[i].price   %></h4>
+                        <h4 class="card-text">£<%= session.basket.products[i].price * session.basket.products[i].quantity  %></h4>
                     <form action="/basket?_method=DELETE" method="POST">
                         <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
                         <button class="my-2 btn btn-danger">Remove</button>
@@ -40,8 +43,6 @@
         </form>
     </div>
     </div>
-    <%}else {%>
-            <h2>No items in basket.</h2>
   <%}%>
  
 </div>

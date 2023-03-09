@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', async() => {
     const stripe = Stripe(publishableKey)
     
 
-    const {clientSecret} = await fetch("/checkout", {
+    const {clientSecret} = await fetch("/checkout/payment", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
