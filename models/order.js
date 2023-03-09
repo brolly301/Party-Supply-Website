@@ -27,8 +27,12 @@ const OrderSchema = new Schema({
         type: String
     },
     basket: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product'
+        productId: String,
+        quantity: Number,
+        name: String,
+        price: Number,
+        image: String,
+        description: String,
     }],
     price: {
         type: Number
