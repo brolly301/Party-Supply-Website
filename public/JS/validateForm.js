@@ -1,5 +1,3 @@
-const Product = require('../models/product')
-
 
 (() => {
     'use strict'

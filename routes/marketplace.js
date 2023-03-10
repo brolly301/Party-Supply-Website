@@ -1,16 +1,15 @@
 const express = require('express')
 const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
-const {isLoggedIn} = require("../views/pages/middleware")
+const {isLoggedIn, validateMarketplace} = require("../views/pages/middleware")
 const Product = require('../models/product')
+const ExpressError = require("../utilities/ExpressError")
+const Joi = require("joi");
 
 router.get("/", (req, res) => {
     res.render("pages/products/marketplace/marketplaceSplash");
   });
 
-router.get("/newListing", isLoggedIn, (req, res) => {
-    res.render("pages/products/marketplace/marketplacePost");
-  });
 
 router.get("/listings", async(req, res) => {
      const listings = await Product.find({category: 'Marketplace'})
@@ -29,11 +28,9 @@ router.get("/listings/:id/edit", async(req, res) => {
     res.render("pages/authentication/account/listingsEdit", {listing, id});
   });
 
-  router.put("/listings/:id", catchAsync(async(req, res) => {
+  router.put("/listings/:id/edit", isLoggedIn, validateMarketplace, catchAsync(async(req, res) => {
     const {id} = req.params
-    console.log(id)
-    console.log(req.body)
-    await Product.findByIdAndUpdate(id, { ...req.body })
+    await Product.findByIdAndUpdate(id, { ...req.body.marketplace })
  
     res.redirect(`/marketplace/listings/${id}`);
   }))
@@ -45,15 +42,18 @@ router.delete('/listings/:id', async (req, res) => {
   res.redirect(`/account/${req.user.username}/listings`)
 })
     
+router.get("/newListing", isLoggedIn, (req, res) => {
+  res.render("pages/products/marketplace/marketplacePost");
+});
 
-router.post("/listings", isLoggedIn, async (req, res) => {
+router.post("/newListing", isLoggedIn, validateMarketplace ,catchAsync(async (req, res) => {
     const {username} = req.user
-    const postDetails = req.body
+    const postDetails = req.body.marketplace
     const newListing = new Product({...postDetails, username})
     newListing.save()
     const listings = await Product.find({category: 'Marketplace'})
     res.render('pages/products/marketplace/marketplaceMain', {listings})
-  });
+  }));
 
   
 
