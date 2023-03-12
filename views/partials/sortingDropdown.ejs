@@ -3,9 +3,11 @@
       Sort By
     </button>
     <ul class="dropdown-menu">
-        <li><form action="/<%=name%>" method="GET">
-            <button class="dropdown-item" value="sortByNameAZ">Name A - Z</button>
-             </form>
-       
+        <li>   
+         <a class="dropdown-item" href="/<%=name%>?sortBy=Name-A-Z">Name A-Z</a>
+         <a class="dropdown-item" href="/<%=name%>?sortBy=Name-Z-A">Name Z-A</a>
+         <a class="dropdown-item" href="/<%=name%>?sortBy=Price-Low-High">Price Low-High</a>
+         <a class="dropdown-item" href="/<%=name%>?sortBy=Price-High-Low">Price High-Low</a>
+        </li>
     </ul>
   </div>
