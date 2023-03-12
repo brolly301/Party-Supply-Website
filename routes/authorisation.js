@@ -4,6 +4,7 @@ const catchAsync = require("../utilities/catchAsync");
 const User = require("../models/user");
 const passport = require('passport');
 const Product = require('../models/product')
+const nodemailer = require('nodemailer');
 
 router.get("/register", (req, res) => {
     res.render('pages/authentication/register')
@@ -54,8 +55,51 @@ router.get('/logout', (req,res) => {
 
 router.get("/search", catchAsync(async (req, res) => {
   const {search} = req.query
-  const products = await Product.find({$and: [{ name: {$regex: search || '   ', $options: 'i'}},  {category: {$ne: 'Costumes' && 'Occasions'}}]})
-  res.render("pages/search", {products, search});
+
+    const page = req.query.page || 0
+    const productsPerPage = 8
+ const totalProducts =  await Product.find({$and: [{ name: {$regex: search || '   ', $options: 'i'}},  {category: {$ne: 'Costumes' && 'Occasions'}}]})
+    
+
+  const products = await Product.find({$and: [{ name: {$regex: search || '   ', $options: 'i'}},  {category: {$ne: 'Costumes' && 'Occasions'}}]}).skip(page * productsPerPage).limit(productsPerPage)
+  res.render("pages/search", {products, search, totalProducts, productsPerPage});
+}));
+
+router.get("/contactUs", catchAsync(async (req, res) => {
+  
+ res.render('pages/contactUs')
+}));
+
+router.post("/contactUs", catchAsync(async (req, res) => {
+ 
+  const {name, subject, message} = req.body
+  console.log(name, subject, message)
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "marcrobertjohn@gmail.com",
+      pass: "qklbtfcwnloxeckw"
+    }
+  })
+
+  const options = {
+    from: name,
+    to: "marcrobertjohn@gmail.com",
+    subject: subject,
+    text: `${message}`
+  }
+
+  transporter.sendMail(options, function (err, info) {
+    if (err) {
+      req.flash('error', 'Message has not been sent')
+      console.log(err)
+    }
+     req.flash('success', 'Message has been sent')
+     console.log("Sent:" + info.messageId)
+     return res.redirect('back')
+  
+  })
 }));
 
   
