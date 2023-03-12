@@ -1,0 +1,14 @@
+#basketQuantity {
+    font-size: 12px;
+    background: #4a8d41;
+    color: #fff;
+    padding: 2px;
+    padding-right: 5px;
+
+   
+    vertical-align: top;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    border: 1px solid black;
+}

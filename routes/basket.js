@@ -9,17 +9,13 @@ router.get("/",  catchAsync(async (req, res) => {
   
   if (req.session.basket) {
     let products = req.session.basket.products
-
-
-    let total = []
-    let hey = 0
-    let hello
+    let totalArray = []
+    let totalPrice
     for (let i =0; i<products.length; i++) {
-     total.push(products[i].quantity * products[i].price)
-     hello = total.reduce((acc, curVal) => acc + curVal)
+      totalArray.push(products[i].quantity * products[i].price)
+      totalPrice = totalArray.reduce((acc, curVal) => acc + curVal)
     }
-   req.session.basket.totalBasketPrice = hello
-   console.log(req.session.basket.totalBasketPrice)
+   req.session.basket.totalBasketPrice = totalPrice
   
   
    return res.render("pages/checkout/basket");

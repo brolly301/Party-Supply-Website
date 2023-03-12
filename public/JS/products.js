@@ -16,3 +16,5 @@ e.preventDefault();
 const button = document.getElementById('productQuantity')
 button.innerText++
 })
+
+console.log("Hello")

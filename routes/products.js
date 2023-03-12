@@ -44,8 +44,26 @@ const uppercaseFirstLetter = (name) => {
     if (name === 'stpatricksday') {
       name = 'St Patricks Day'
     }
-    const products = await Product.find({ category: uppercaseFirstLetter(name)});
-    res.render("pages/products/products", { products, name });
+    const page = req.query.page || 0
+    const sortBy = req.query.sortBy
+    const productsPerPage = 8
+
+    let products = []
+    const totalProducts = await Product.find({ category: uppercaseFirstLetter(name)})
+
+    if (sortBy === 'Name-A-Z') {
+      (await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
+    } else if(sortBy === 'Name-Z-A') {
+      (await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
+    } else if(sortBy === 'Price-Low-High') {
+      (await Product.find({ category: uppercaseFirstLetter(name) }).sort({price: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
+    } else if(sortBy === 'Price-High-Low') {
+      (await Product.find({ category: uppercaseFirstLetter(name) }).sort({price: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
+    } else {
+      (await Product.find({ category: uppercaseFirstLetter(name) }).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
+    }
+   
+    res.render("pages/products/products", { products, name, totalProducts, productsPerPage});
     }));
 
     router.get("/themes/:subCategory/:name/:id", catchAsync(async (req, res) => {
@@ -58,12 +76,6 @@ const uppercaseFirstLetter = (name) => {
     res.render("pages/products/productShowPage", { product });
   }));
 
-  
-router.get("/:name", catchAsync(async (req, res) => {
-  let {name} = req.params
-  const products = await Product.find({ category: uppercaseFirstLetter(name)});
-    res.render("pages/products/products", { products, name });
-  }));
 
 router.get("/:name/:id", catchAsync(async (req, res) => {
     const { id } = req.params;
@@ -72,7 +84,7 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
       req.flash('error', 'Unable to find product.')
       return res.redirect('/balloons')
     }
-    res.render("pages/products/productShowPage", { product });
+    res.render("pages/products/productShowPage", { product});
   }));
 
   router.post("/:name/:id/reviews", isLoggedIn, catchAsync(async (req, res) => {
@@ -88,6 +100,7 @@ router.delete("/:name/:id", catchAsync(async (req, res) => {
     await Review.findByIdAndDelete(req.body.id)
     res.redirect('back');
   }));  
+
 
 
   
