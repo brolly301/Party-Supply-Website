@@ -11,9 +11,9 @@
         <form id="decreaseQuantity" action="">
         <button id="submit" class="">-</button>
         </form> 
-        <span id="productQuantity">1</span> 
+        <span id="productQuantity"><%= product.quantity  %></span> 
         <form id="increaseQuantity" action="">
-            <button id="submit" class="">+</button>
+            <button id="submit" value=""  class="">+</button>
             </form> 
         <div class="mt-3">
             <form action="/basket" method="POST">
