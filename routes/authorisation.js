@@ -23,6 +23,31 @@ router.post("/register", catchAsync(async (req, res) => {
           //Logs in once registerd 
           req.login(registerUser, err => {
             if (err) return next(err)
+            const transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: "marcrobertjohn@gmail.com",
+                pass: "qklbtfcwnloxeckw"
+              }
+            })
+          
+            const options = {
+              from: "marcrobertjohn@gmail.com",
+              to: email,
+              subject: `Welcome ${firstName} ${lastName} to Party Supplies`,
+              text: `This is an automated message for welcoming you to our website. `
+            }
+          
+            transporter.sendMail(options, function (err, info) {
+              if (err) {
+                req.flash('error', 'Message has not been sent')
+                console.log(err)
+              }
+               req.flash('success', 'Message has been sent')
+               console.log("Sent:" + info.messageId)
+               return res.redirect('back')
+            
+            })
           req.flash('success', `Registration Successful, Welcome :)! `)
           res.redirect('/balloons')
         })
