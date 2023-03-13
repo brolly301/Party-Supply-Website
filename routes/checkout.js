@@ -29,25 +29,29 @@ router.post("/", async(req, res) => {
   if (!req.user) {
     const newOrder = new Order({...deliveryDetails, basket:[...req.session.basket.products]})
     await newOrder.save()
-    req.session.basket = null
+    // req.session.basket = null
     return res.render("pages/checkout/payment");
   }
   const {username} = req.user
   const newOrder = new Order({...deliveryDetails, username, basket:[...req.session.basket.products]})
   await newOrder.save()
-  req.session.basket = null
+  // req.session.basket = null
   res.render("pages/checkout/payment");
   });  
 
 router.post("/payment", async(req, res) => {
  
-  // const product = await Product.findById(req.session.basket.products[0])
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: 100,
-    currency: 'gbp',
-    payment_method_types: ['card'],
-  });
-  res.send({clientSecret: paymentIntent.client_secret})
+  if (!req.session.basket) {
+     return  res.render('pages/home')
+  } else {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: req.session.basket.totalBasketPrice*100,
+      currency: 'gbp',
+      payment_method_types: ['card'],
+    });
+    res.send({clientSecret: paymentIntent.client_secret})
+  }
+ 
 });
  
 router.get("/config", (req,res) => {

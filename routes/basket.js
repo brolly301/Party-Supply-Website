@@ -16,7 +16,7 @@ router.get("/",  catchAsync(async (req, res) => {
       totalPrice = totalArray.reduce((acc, curVal) => acc + curVal)
     }
    req.session.basket.totalBasketPrice = totalPrice
-  
+  console.log(req.session.basket.totalBasketPrice * 100)
   
    return res.render("pages/checkout/basket");
   } else {
@@ -53,6 +53,7 @@ const { productId, name, price, quantity, image, description } = req.body;
         products: [{ productId, quantity, name, price, image, description }]
       });
       req.session.basket = newCart
+      req.session.basket.totalBasketPrice = price * 10
 
       req.flash('success', 'Item added to Basket')
       return  res.redirect('back')
