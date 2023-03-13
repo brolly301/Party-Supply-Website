@@ -47,7 +47,6 @@ router.post("/payment", async(req, res) => {
       currency: 'gbp',
       payment_method_types: ['card'],
     });
-    req.session.basket = null
     res.send({clientSecret: paymentIntent.client_secret})
   }
  

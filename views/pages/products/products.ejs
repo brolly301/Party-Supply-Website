@@ -1,3 +1,5 @@
+
+
 <% layout('layouts/boilerplate')%>
     <div class="container text-center " >
         <h1> <%= products[0].category %> </h1>
@@ -12,7 +14,6 @@
                                     <a class="" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img style="width: 305px"; height="310px"
                                       src=<%=products[i].image%>
                                       class="card-img-top"
-                                      alt="Apple Computer"
                                     />
                                 </a>
                                     <div class="card-body">
@@ -21,8 +22,7 @@
                                         <p class="text-muted mb-2"><%=products[i].description%></p>
                                         <h4 class="mb-3">£<%=products[i].price%></h4>
                                       </div>
-                                      <div>
-                                      </div>
+                                      
                                       <form action="/basket" method="POST">
                                         <input type="hidden" name="productId" value="<%= products[i]._id  %>">
                                         <input type="hidden" name="name" value="<%= products[i].name  %>">
@@ -30,15 +30,12 @@
                                         <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
                                         <input type="hidden" name="image" value="<%= products[i].image  %>">
                                         <input type="hidden" name="description" value="<%= products[i].description  %>">
-                                        <button type="submit" class="btn btn-primary">Add to Basket</button>
-                                        <a class="btn btn-success" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a>
+                                        <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
+                                        <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
                                     </form>
-                               
                                     </div>
                                   </div>
                               </div>
-                              
-                        
                     <% } %>
             </div>
             <hr>
@@ -50,4 +47,7 @@
             </form>
             </div>    
     </div>
+
+
+
 
