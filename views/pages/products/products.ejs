@@ -1,36 +1,53 @@
 <% layout('layouts/boilerplate')%>
     <div class="container text-center " >
-
-        
         <h1> <%= products[0].category %> </h1>
-       
-
-        <div class="mb-3"><%- include('../../partials/sortingDropdown') %></div>
-       
-    
+        
+        <div class="d-flex justify-content-between align-items-center mb-3"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  <h4> Items(<%= totalProducts.length %>)</h4></div>
            <div class="row ">
+            <hr>
                     <% for (let i = 0; i < products.length; i++) {%>
+                     
                         <div class="col-12 col-md-3 mb-4">
-                            <a class="" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img class="mb-2 img-fluid" src="<%=products[i].image%>" style=width:100%;height:350px;></a>
-                            <h5> <%=products[i].name%></h5>
-                            <h5> <%=products[i].description%></h5>
-                            <h3>£<%=products[i].price%></h3>
-                        <form action="/basket" method="POST">
-                            <input type="hidden" name="productId" value="<%= products[i]._id  %>">
-                            <input type="hidden" name="name" value="<%= products[i].name  %>">
-                            <input type="hidden" name="price" value="<%= products[i].price  %>">
-                            <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
-                            <input type="hidden" name="image" value="<%= products[i].image  %>">
-                            <input type="hidden" name="description" value="<%= products[i].description  %>">
-                            <button type="submit" class="btn btn-primary">Add to Basket</button>
-                        </form>
-                        </div>
+                                  <div class="card text-black">
+                                    <a class="" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img style="width: 305px"; height="310px"
+                                      src=<%=products[i].image%>
+                                      class="card-img-top"
+                                      alt="Apple Computer"
+                                    />
+                                </a>
+                                    <div class="card-body">
+                                      <div class="text-center">
+                                        <h4 class="card-title"><%=products[i].name%></h4>
+                                        <p class="text-muted mb-2"><%=products[i].description%></p>
+                                        <h4 class="mb-3">£<%=products[i].price%></h4>
+                                      </div>
+                                      <div>
+                                      </div>
+                                      <form action="/basket" method="POST">
+                                        <input type="hidden" name="productId" value="<%= products[i]._id  %>">
+                                        <input type="hidden" name="name" value="<%= products[i].name  %>">
+                                        <input type="hidden" name="price" value="<%= products[i].price  %>">
+                                        <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
+                                        <input type="hidden" name="image" value="<%= products[i].image  %>">
+                                        <input type="hidden" name="description" value="<%= products[i].description  %>">
+                                        <button type="submit" class="btn btn-primary">Add to Basket</button>
+                                        <a class="btn btn-success" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a>
+                                    </form>
+                               
+                                    </div>
+                                  </div>
+                              </div>
+                              
+                        
                     <% } %>
             </div>
+            <hr>
             <div class="d-flex justify-content-around">
-                <% for (let i = 0; i < totalProducts.length / productsPerPage - 1; i++) {%>
-                    <a href="/<%=name%>?page=<%=[i + 1]%>"><button class="btn btn-secondary my-4"><%=[i + 2]%></button></a>
-                    <% } %>
-            </div>
+                <form id="page" action="">
+                <a  href="/<%=name%>?page=0" id="nextPage">
+               <button type="button">Next Page</button>
+               </a>
+            </form>
+            </div>    
     </div>
 

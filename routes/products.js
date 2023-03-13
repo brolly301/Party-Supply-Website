@@ -17,6 +17,7 @@ const uppercaseFirstLetter = (name) => {
 
     let products = []
     const totalProducts = await Product.find({ category: uppercaseFirstLetter(name)})
+    const totalPages = totalProducts/productsPerPage -1
 
     if (sortBy === 'Name-A-Z') {
       (await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
@@ -30,7 +31,7 @@ const uppercaseFirstLetter = (name) => {
       (await Product.find({ category: uppercaseFirstLetter(name) }).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
     }
    
-    res.render("pages/products/products", { products, name, totalProducts, productsPerPage});
+    res.render("pages/products/products", { products, name, totalProducts, productsPerPage, totalPages});
   }));
 
   router.get("/themes/:subCategory", catchAsync(async (req, res) => {
@@ -50,6 +51,7 @@ const uppercaseFirstLetter = (name) => {
 
     let products = []
     const totalProducts = await Product.find({ category: uppercaseFirstLetter(name)})
+    const totalPages = totalProducts/productsPerPage -1
 
     if (sortBy === 'Name-A-Z') {
       (await Product.find({ category: uppercaseFirstLetter(name) }).sort({name: 1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
@@ -63,7 +65,7 @@ const uppercaseFirstLetter = (name) => {
       (await Product.find({ category: uppercaseFirstLetter(name) }).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
     }
    
-    res.render("pages/products/products", { products, name, totalProducts, productsPerPage});
+    res.render("pages/products/products", { products, name, totalProducts, productsPerPage, totalPages});
     }));
 
     router.get("/themes/:subCategory/:name/:id", catchAsync(async (req, res) => {
