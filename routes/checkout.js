@@ -43,7 +43,7 @@ router.post("/payment", async(req, res) => {
      return  res.render('pages/home')
   } else {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: req.session.basket.totalBasketPrice*100,
+      amount: 1000,
       currency: 'gbp',
       payment_method_types: ['card'],
     });
