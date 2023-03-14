@@ -72,22 +72,7 @@
                         <%- include('../../partials/review') %>
 <div>
  
-    <% for (let review of product.reviews) {%>
-        <div class="border container-fluid mb-2">
-        <h3><%= review.username  %>'s Review:</h3>
-        <h4 class="mb-3"><%= review.body  %></h4>
-        <h3>Rating:</h3>
-        <h4><%= review.rating  %>/5</h4>
-
-        <% if (signedInUser && signedInUser.username === review.username) { %>
-        <form action="/balloons/<%= product._id  %>?_method=DELETE" method="POST">
-            <input type="hidden" name="id" id="id" value="<%= review.id  %>">
-            <button class="btn btn-danger mb-2">Delete</button>
-        </form>
-        <% } %>
-    </div>
-        <% } %>
- </div>
+   
                     </div> <!-- end card-->
                     
                 </div> <!-- end col-->

@@ -1,56 +1,56 @@
-<!-- <div class="d-flex container my-4">
-    <div class="row nav justify-content-center text-center ">
-        <form action="/<%=product.category%>/<%=product._id%>/reviews" method="POST" class="validate-form" novalidate>
-        <h3>Reviews</h3>
-        <label for="rating">Rating</label>
-        <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= product._id  %>" required>
-        <div class="invalid-feedback">Please enter a rating.</div>
-        <label for="review">Review</label>
-        <textarea style="width: 445px;" name="body" id="body[review]" cols="30" rows="5" required></textarea>
-        <div class="invalid-feedback">Please enter review details.</div>
-            <input type="hidden" name="id" value="<%= product._id  %>">
-            <button type="submit" class="btn btn-success my-3">Post Review</button>
-        </form>
-     </div>
-     </div> -->
-
-   <hr>
-
-        <div class="container mb-1">
-                <div class="bg-white rounded shadow-sm p-4 ">
-                    <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
-                            <div class="media-body">
-                                <div class="reviews-members-header">
-                                    <h6 class="mb-1"><a class="text-black" href="#">Singh Osahan</a></h6>
-                                    <p class="text-gray">Tue, 20 Mar 2020</p>
-                                </div>
-                                <div class="reviews-members-body">
-                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
-                                </div>
-                                <div class="reviews-members-body">
-                                    <p><span class="material-symbols-outlined"> star</span>
-                                        <span class="material-symbols-outlined"> star</span>
-                                        <span class="material-symbols-outlined"> star</span>
-                                        <span class="material-symbols-outlined"> star</span>
-                                        <span class="material-symbols-outlined"> star</span>
-                                    </p>
-                                </div>
+<hr>
+<div class="container mb-1"></div>
+<h5 class=" rounded shadow-sm px-4  mb-0 mb-2">Ratings and Reviews</h5>
+<hr>
+<% for (let review of product.reviews) {%>
+    
+            <div class="bg-white rounded shadow-sm px-4 ">
+                
+                        <div class="media-body">
+                            <div class="reviews-members-header">
+                                <h6 class="mb-1"><a class="text-black" href="#"><%= review.username  %></a></h6>
+                                <p class="text-gray">Tue, 20 Mar 2020</p>
                             </div>
-                            <hr>
-                    </div>
-                    <div class="bg-white rounded shadow-sm px-4 mb-4  rating-review-select-page">
-                        <h5 class="mb-4">Leave Review</h5>
-                        <p class="mb-2">Rate the Product</p>
-                        <div class="mb-4"></div>
-                        <form>
-                            <div class="form-group">
-                                <label>Your Review</label>
-                                <textarea class="form-control mb-3"></textarea>
+                            <div class="reviews-members-body">
+                                <p><%= review.body  %></p>
                             </div>
-                            <div class="form-group">
-                                <button class="btn btn-primary " type="button"> Submit Review </button>
+                            <div class="reviews-members-body">
+                                <div class="d-flex justify-content-between"> <p><span class="material-symbols-outlined"> star</span>
+                                    <span class="material-symbols-outlined"> star</span>
+                                    <span class="material-symbols-outlined"> star</span>
+                                    <span class="material-symbols-outlined"> star</span>
+                                    <span class="material-symbols-outlined"> star</span>
+                                    <span>  </span>
+                                </p> <% if (signedInUser && signedInUser.username === review.username) { %>
+                                    <form action="/balloons/<%= product._id  %>?_method=DELETE" method="POST">
+                                        <input type="hidden" name="id" id="id" value="<%= review.id  %>">
+                                        <button class="btn btn-danger mb-2">Delete</button>
+                                    </form>
+                                    <% } %></div>
+                                
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <hr>
                 </div>
-                </div>         
+                <% } %>
+                <div class="bg-white rounded shadow-sm px-4 mb-4  rating-review-select-page">
+                    <h5 class="mb-4">Leave Review</h5>
+                    <p class="mb-2">Rate the Product</p>
+                    <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= product._id  %>" required>
+                    <div class="mb-4"></div>
+                    <form action="/<%=product.category%>/<%=product._id%>/reviews" method="POST" class="validate-form" novalidate>
+                        <div class="form-group">
+                            <label>Your Review</label>
+                            <textarea class="form-control mb-3" name="body" id="body[review]"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="id" value="<%= product._id  %>">
+                            <button type="submit" class="btn btn-success">Submit Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>         
+
+        
+            </div>
