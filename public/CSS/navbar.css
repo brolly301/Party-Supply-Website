@@ -16,3 +16,17 @@
 #removeBasket:hover {
    color: red;
 }
+
+.pageNumber {
+        display: block;
+        height: 45px;
+        width: 40px;
+        line-height: 40px;
+        -moz-border-radius: 30px; /* or 50% */
+        border-radius: 30px; /* or 50% */
+        background-color: rgb(119, 115, 115);
+        color: white;
+        text-align: center;
+        font-size: 1.4em;
+        border: 2px solid black;
+}

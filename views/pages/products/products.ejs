@@ -40,13 +40,13 @@
                     <% } %>
             </div>
             <hr>
-            <div class="d-flex justify-content-around">
-                <form id="page" action="">
-                <a  href="/<%=name%>?page=0" id="nextPage">
-               <button type="button">Next Page</button>
-               </a>
-            </form>
+            <div class="d-flex justify-content-around mb-4">
+              <% for (let i = 0; i < totalProducts.length / productsPerPage - 1; i++) {%>
+                <a style="text-decoration:none"  href="/<%=name%>?page=<%=[i + 1]%>"><h4  class="pageNumber"><%=[i + 2]%></h4></a>
+            <% } %>
+
             </div>    
+            
     </div>
 
 
