@@ -16,7 +16,7 @@ router.get("/",  catchAsync(async (req, res) => {
       totalPrice = totalArray.reduce((acc, curVal) => acc + curVal)
     }
    req.session.basket.totalBasketPrice = totalPrice
-  console.log(req.session.basket.totalBasketPrice * 100)
+  console.log(req.session.basket.products)
   
    return res.render("pages/checkout/basket");
   } else {
@@ -28,7 +28,7 @@ router.get("/",  catchAsync(async (req, res) => {
   //Potentially working version
 router.post("/", catchAsync(async (req, res) => {
 
-const { productId, name, price, quantity, image, description } = req.body;
+const { productId, name, price, quantity, image, description, category } = req.body;
   try {
     let cart = req.session.basket
     if (cart) {
@@ -42,7 +42,7 @@ const { productId, name, price, quantity, image, description } = req.body;
         cart.products[itemIndex] = productItem;
       } else {
         //product does not exists in cart, add new item
-        req.session.basket.products.push({ productId, quantity, name, price, image, description });
+        req.session.basket.products.push({ productId, quantity, name, price, image, description, category });
       }
  
       req.flash('success', 'Item added to Basket')
@@ -50,7 +50,7 @@ const { productId, name, price, quantity, image, description } = req.body;
     } else {
       //no cart for user, create new cart
       const newCart = await Basket.create({
-        products: [{ productId, quantity, name, price, image, description }]
+        products: [{ productId, quantity, name, price, image, description, category }]
       });
       req.session.basket = newCart
       req.session.basket.totalBasketPrice = price * 10

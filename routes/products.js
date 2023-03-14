@@ -75,7 +75,8 @@ const uppercaseFirstLetter = (name) => {
       req.flash('error', 'Unable to find product.')
       return res.redirect('/balloons')
     }
-    res.render("pages/products/productShowPage", { product });
+    
+     res.render("pages/products/productShowPage", { product });
   }));
 
 
@@ -86,6 +87,13 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
       req.flash('error', 'Unable to find product.')
       return res.redirect('/balloons')
     }
+
+    
+    
+    const date = new Date(product.reviews[0].createdDate)
+    console.log(date.toString().substring(0, 21))
+    
+    console.log(product.reviews[0].createdDate)
     res.render("pages/products/productShowPage", { product});
   }));
 

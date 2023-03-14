@@ -29,6 +29,7 @@
                                         <input type="hidden" name="price" value="<%= products[i].price  %>">
                                         <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
                                         <input type="hidden" name="image" value="<%= products[i].image  %>">
+                                        <input type="hidden" name="category" value="<%= products[i].category  %>">
                                         <input type="hidden" name="description" value="<%= products[i].description  %>">
                                         <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
                                         <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
