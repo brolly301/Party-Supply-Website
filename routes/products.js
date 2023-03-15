@@ -88,12 +88,6 @@ router.get("/:name/:id", catchAsync(async (req, res) => {
       return res.redirect('/balloons')
     }
 
-    
-    
-    const date = new Date(product.reviews[0].createdDate)
-    console.log(date.toString().substring(0, 21))
-    
-    console.log(product.reviews[0].createdDate)
     res.render("pages/products/productShowPage", { product});
   }));
 

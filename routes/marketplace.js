@@ -5,6 +5,7 @@ const {isLoggedIn, validateMarketplace} = require("../views/pages/middleware")
 const Product = require('../models/product')
 const ExpressError = require("../utilities/ExpressError")
 const Joi = require("joi");
+const Review = require("../models/review");
 
 router.get("/", (req, res) => {
     res.render("pages/products/marketplace/marketplaceSplash");
@@ -12,13 +13,31 @@ router.get("/", (req, res) => {
 
 
 router.get("/listings", async(req, res) => {
-     const listings = await Product.find({category: 'Marketplace'})
-    res.render("pages/products/marketplace/marketplaceMain", {listings});
+      const page = req.query.page || 0
+    const sortBy = req.query.sortBy
+    const productsPerPage = 8
+
+    let listings = []
+    const totalProducts = await Product.find({ category: 'Marketplace'})
+    const totalPages = totalProducts/productsPerPage -1
+
+    if (sortBy === 'Name-A-Z') {
+      (await Product.find({ category: 'Marketplace' }).sort({name: 1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => listings.push(product))
+    } else if(sortBy === 'Name-Z-A') {
+      (await Product.find({ category: 'Marketplace'}).sort({name: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => listings.push(product))
+    } else if(sortBy === 'Price-Low-High') {
+      (await Product.find({ category: 'Marketplace' }).sort({price: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => listings.push(product))
+    } else if(sortBy === 'Price-High-Low') {
+      (await Product.find({ category: 'Marketplace' }).sort({price: -1}).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => listings.push(product))
+    } else {
+      (await Product.find({ category: 'Marketplace' }).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => listings.push(product))
+    }
+    res.render("pages/products/marketplace/marketplaceMain", {listings, totalProducts, productsPerPage, totalPages});
   });
 
 router.get("/listings/:id", async(req, res) => {
      const {id} = req.params
-     const listing = await Product.findById(id)
+     const listing = await Product.findById(id).populate('reviews')
     res.render("pages/products/marketplace/marketplaceShowPage", {listing, id});
   });
 
@@ -34,6 +53,14 @@ router.get("/listings/:id/edit", async(req, res) => {
  
     res.redirect(`/marketplace/listings/${id}`);
   }))
+  router.post("/listings/:id/reviews", isLoggedIn, catchAsync(async (req, res) => {
+    const products = await Product.findById(req.params.id);
+    const review = new Review({...req.body, username: req.user.username})
+    products.reviews.push(review)
+    await review.save()
+    await products.save()
+    res.redirect('back');
+  }));
 
   //Route for deleting camps
 router.delete('/listings/:id', async (req, res) => {
@@ -41,6 +68,8 @@ router.delete('/listings/:id', async (req, res) => {
   await Product.findByIdAndDelete(id)
   res.redirect(`/account/${req.user.username}/listings`)
 })
+
+
     
 router.get("/newListing", isLoggedIn, (req, res) => {
   res.render("pages/products/marketplace/marketplacePost");

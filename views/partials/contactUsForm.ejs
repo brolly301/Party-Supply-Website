@@ -1,18 +1,18 @@
-<div class="container">
-    <form action="/contactUs" method="POST" class="validate-form" novalidate>
-        <div class="form-outline mb-4">
+<div class="container ">
+    <form action="/contactUs" method="POST" class="validate-form " novalidate>
+        <div class="form-outline mb-4 d-flex row  justify-content-center ">
             <label class="form-label" for="name">Contact Name</label>
-            <input type="text" id="name" name="name" class="form-control" required />
+            <input type="text"  style="width: 600px;" id="name" name="name" class="form-control" required />
             <div class="invalid-feedback">Please enter a name.</div>
         </div>
-        <div class="form-outline mb-4">
+        <div class="form-outline mb-4 d-flex row  justify-content-center">
             <label class="form-label" for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" class="form-control" required />
+            <input type="text" style="width: 600px;" id="subject" name="subject" class="form-control" required />
             <div class="invalid-feedback">Please enter a subject.</div>
         </div>
-        <div class="form-outline mb-4">
+        <div class="form-outline mb-4 d-flex row  justify-content-center">
             <label class="form-label" for="message">Message</label>
-            <textarea class="form-control" name="message" id="message" cols="30" rows="10"></textarea>
+            <textarea class="form-control" style="width: 600px;" name="message" id="message" cols="30" rows="5"></textarea>
             <div class="invalid-feedback">Please enter a message.</div>
         </div>
             <button id="order" class="btn btn-primary mb-4">Send Message</button>

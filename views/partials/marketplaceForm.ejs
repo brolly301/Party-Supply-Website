@@ -1,5 +1,5 @@
-<div class="container">
-    <form action="/marketplace/newListing" method="POST" class="validate-form" novalidate>
+<div class="container d-flex justify-content-center" >
+    <form style="width: 500px" action="/marketplace/newListing" method="POST" class="validate-form" novalidate>
         <div class="form-outline mb-4">
             <label class="form-label" for="name">Item Name</label>
             <input type="text" id="name" name="marketplace[name]" class="form-control" required />
@@ -29,8 +29,9 @@
             <input type="text" id="image" name="marketplace[image]" class="form-control" required>
             <div class="invalid-feedback">Please enter an image URL.</div>
         </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="price">Price</label>
+        <label class="form-label" for="price">Price</label>
+        <div class="input-group form-outline mb-4">
+            <span class="input-group-text" id="basic-addon1">£</span>
             <input type="text" id="price" name="marketplace[price]" class="form-control" required/>
             <div class="invalid-feedback">Please enter a price.</div>
         </div>
