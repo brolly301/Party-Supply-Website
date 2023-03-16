@@ -9,7 +9,7 @@
                      
                         <div class="col-12 col-md-3 mb-4">
                                   <div class="card text-black">
-                                    <a class="" href="<%= listings[i].category.toLowerCase()  %>/<%= listings[i]._id  %>"><img style="width: 305px"; height="310px"
+                                    <a class="" href="/marketplace/listings/<%= listings[i]._id  %>"><img style="width: 305px"; height="310px"
                                       src=<%=listings[i].image%>
                                       class="card-img-top"
                                     />
@@ -29,7 +29,7 @@
                                         <input type="hidden" name="image" value="<%= listings[i].image  %>">
                                         <input type="hidden" name="category" value="<%= listings[i].category  %>">
                                         <input type="hidden" name="description" value="<%= listings[i].description  %>">
-                                        <div> <a class="btn btn-success border border-dark mb-2" href="<%= listings[i].category.toLowerCase()  %>/<%= listings[i]._id  %>"> View</a></div>
+                                        <div> <a class="btn btn-success border border-dark mb-2" href="/marketplace/listings/<%= listings[i]._id  %>"> View</a></div>
                                         <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
                                     </form>
                                     </div>
