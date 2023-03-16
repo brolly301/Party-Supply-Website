@@ -30,3 +30,8 @@
         font-size: 1.4em;
         border: 2px solid black;
 }
+
+#orderDropdown {
+    position: relative;
+    top: 7px
+}
