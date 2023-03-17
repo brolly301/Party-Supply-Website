@@ -1,0 +1,8 @@
+<% layout('layouts/boilerplate')%>
+<div class="container text-center">
+    <h1>Wishlist</h1>
+    <% for (let i =0; i< wishlist.products.length; i++) { %>
+        <h3><%= wishlist.products[i].name %></h3>
+    <% } %>
+
+    </div>

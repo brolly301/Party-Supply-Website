@@ -70,7 +70,6 @@ router.delete('/listings/:id', async (req, res) => {
 })
 
 
-    
 router.get("/newListing", isLoggedIn, (req, res) => {
   res.render("pages/products/marketplace/marketplacePost");
 });

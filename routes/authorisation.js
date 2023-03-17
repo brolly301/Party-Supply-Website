@@ -5,6 +5,7 @@ const User = require("../models/user");
 const passport = require('passport');
 const Product = require('../models/product')
 const nodemailer = require('nodemailer');
+const Wishlist = require("../models/wishlist");
 
 router.get("/register", (req, res) => {
     res.render('pages/authentication/register')
@@ -127,5 +128,51 @@ router.post("/contactUs", catchAsync(async (req, res) => {
   })
 }));
 
+router.get("/wishlist", catchAsync(async (req, res) => {
+
+  const products = await Wishlist.find({username: req.user.username}).populate('products')
+  console.log(products[0].products[0])
+
+  res.render('pages/wishlist', {wishlist: products[0]})
+ }));
+
+router.post("/wishlist", catchAsync(async (req, res) => {
+   
+      
+  const {id} = req.body
+  
+  try {
+    let wishlist = await Wishlist.findOne({username: req.user.username})
+    
+    if (wishlist) {
+      //cart exists for user
+      let itemIndex = wishlist.products.findIndex(p => p._id == id);
+   
+          if (itemIndex > -1) {
+          //product exists in the cart, update the quantity
+          req.flash('error', 'Item already added to Wishlist')
+          return res.redirect('back')
+      } else {
+        wishlist.products.push({_id : id})
+        wishlist.save()
+        console.log(wishlist)
+      }
+      req.flash('success', 'Item added to Wishlist')
+      return res.redirect('back')
+    } else {
+      const newWishlist = await Wishlist.create({products: id, username: req.user.username})
+        newWishlist.save()
+        req.flash('success', 'Item added to wishlist')
+        return res.redirect('back')
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something went wrong");
+  }
+  
+
+
+  res.render('pages/wishlist')
+ }));
   
 module.exports = router;

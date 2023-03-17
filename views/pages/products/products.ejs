@@ -34,6 +34,14 @@
                                         <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
                                         <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
                                     </form>
+                                    <form action="/wishlist" method="POST">
+                                      <input type="hidden" name="id" value="<%= products[i]._id  %>">
+                                    <button>
+                                      <span class="material-symbols-outlined">
+                                        favorite
+                                        </span></a>
+                                      </button>
+                                    </form>
                                     </div>
                                   </div>
                               </div>
