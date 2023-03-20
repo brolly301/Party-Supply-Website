@@ -131,7 +131,6 @@ router.post("/contactUs", catchAsync(async (req, res) => {
 router.get("/wishlist", catchAsync(async (req, res) => {
 
   const products = await Wishlist.find({username: req.user.username}).populate('products')
-  console.log(products[0].products[0])
 
   res.render('pages/wishlist', {wishlist: products[0]})
  }));

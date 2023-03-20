@@ -1,9 +1,6 @@
 <% layout('layouts/boilerplate')%>
 <div class="container-fluid">
-  
-    <h1 class="text-center">Wishlist</h1>
-    
-  
+    <h1 class="text-center"> Order - #<%= orders.id.substring(19, 24).toUpperCase()  %> </h1>
     <section >
         <div class="container py-3">
           <div class="row d-flex justify-content-center align-items-center">
@@ -12,33 +9,30 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col" class="h5">Wishlist</th>
-                      <th scope="col">Product Name</th>
+                      <th scope="col" class="h5">Products</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Quantity</th>
                       <th scope="col">Price</th>
-                      <th scope="col">Date Added</th>
                     </tr>
                   </thead>
-                  <% for (let i =0; i< wishlist.products.length; i++) { %>
+                  <% for (let basket of orders.basket) {%>
                       
                   <tbody>
                     <tr>
                       <td class="align-middle">
                           <div class="flex-column ms-4">
-                            <img src="<%= wishlist.products[i].image %>" class="img-fluid rounded-3"
+                            <img src="<%= basket.image %>" class="img-fluid rounded-3"
                             style="width: 120px; height: 150px;" alt="Book">
                           </div>
                         </td>
                       <td class="align-middle">
-                        <p class="mb-0" style="font-weight: 500;"><%= wishlist.products[i].name  %></p>
+                        <p class="mb-0" style="font-weight: 500;"><%= basket.name  %></p>
                       </td>
                       <td class="align-middle">
-                        <p class="mb-0 ml-4" style="font-weight: 500;">£40.29</p>
+                        <p class="mb-0 ml-4" style="font-weight: 500;"><%= basket.quantity  %></p>
                       </td>
                       <td class="align-middle">
-                        <p class="mb-0" style="font-weight: 500;">24/01/2021</p>
-                      </td>
-                      <td class="align-middle">
-                        <a href="/<%= wishlist.products[i].category.toLowerCase() %>/<%=wishlist.products[i].id%> " class="mb-0" style="font-weight: 500;">View</a>
+                        <p class="mb-0 ml-4" style="font-weight: 500;">£<%= basket.price  %></p>
                       </td>
                       <% } %>
                     </tr>
@@ -49,6 +43,7 @@
           </div>
         </div>
       </section>   
-    
-    </div>
-    </div>
+
+
+    <div>
+    <div>

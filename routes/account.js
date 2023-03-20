@@ -33,6 +33,13 @@ router.get("/:username/orders", async(req, res) => {
     res.render("pages/authentication/account/orders", {orders});
   });
 
+router.get("/:username/orders/:id", async(req, res) => {
+
+  const { id } = req.params;
+  const orders = await Order.findById(id).populate('basket')
+  res.render("pages/authentication/account/orderProducts", {orders});
+  });
+
 router.get("/:username/:edit", (req, res) => {
     res.render("pages/authentication/account/accountEdit");
   });

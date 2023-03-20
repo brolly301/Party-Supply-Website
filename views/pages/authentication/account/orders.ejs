@@ -2,56 +2,59 @@
 <div class="container-fluid">
     <h1 class="text-center">My Orders</h1>
     <div>
-     <section >
-     <div class="container py-3">
-       <div class="row d-flex justify-content-center align-items-center">
-         <div class="col">
-           <div class="table-responsive">
-             <table class="table">
-               <thead>
-                 <tr>
-                   <th scope="col" class="h5">OrderID</th>
-                   <th scope="col">Date</th>
-                   <th class="px-4" scope="col">Products</th>
-                   <th scope="col">Total</th>
-                 </tr>
-               </thead>
-               </table>
-              
-
-              <div class="d-flex justify-content-center">
-               <p>
-                    <a class="text-primary text-decoration-none" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Product Information <span id="orderDropdown"  class="material-symbols-outlined">
-                         expand_more
-                         </span></a>
-                    <a class="text-primary text-decoration-none" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Shipping Information <span id="orderDropdown"  class="material-symbols-outlined">
-                         expand_more
-                         </span></a>
-                  </p>
-               </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="multiCollapseExample1">
-                        <div class="card card-body">
-                          Number 1</div>
-                      </div>
-                    </div>
-                  <div class="row">
-                    <div class="col">
-                      <div class="collapse multi-collapse" id="multiCollapseExample2">
-                        <div class="card card-body">Number 2</div>
-                      </div>
-                    </div>
-                  </div>
-               
-       <% for (let i = 0; i<orders.length; i++)  { %>
-            <h2>Order: <%=[i + 1]%></h2>
-           <%  for (let j = 0; j<orders[i].basket.length; j++)  {%>
-                 <h3><%=orders[i].basket[j].name%></h3>
-                 <%}%>
-                 <br>
-            <%}%>
+    
+<section >
+  <div class="container py-3">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" class="h5">No</th>
+                <th scope="col" class="h5">OrderID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Items</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <% for (let i = 0; i<orders.length; i++)  { %>
+             
+                
+            <tbody>
+              <tr>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;"><%=[i+1]%></p>
+              </td>
+                <td class="align-middle">
+                  
+                      <p class="mb-2"> <b><%= orders[i].id %></b> </p>
+                  
+                  </td>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;">24/01/2023</p>
+                </td>
+                <td class="align-middle">
+                  <p class="mb-0 ml-4" style="font-weight: 500;"><%= orders[i].basket.length  %></p>
+                </td>
+                <td class="align-middle">
+                  <p class="mb-0" style="font-weight: 500;">£40.29</p>
+                </td>
+                <td class="align-middle">
+                  <a href="/account/<%= signedInUser.username%>/orders/<%= orders[i].id %>" class="mb-0" style="font-weight: 500;">View</a>
+                </td>
+             
+                <%}%>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
+
 
 
 
