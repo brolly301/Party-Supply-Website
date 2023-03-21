@@ -1,61 +1,61 @@
 
 
 <% layout('layouts/boilerplate')%>
-    <div class="container text-center " >
-        <h1> <%= products[0].category %> </h1>
-        
-        <div class="d-flex justify-content-between align-items-center mb-3"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  <h4> Items(<%= totalProducts.length %>)</h4></div>
-           <div class="row ">
-            <hr>
-                    <% for (let i = 0; i < products.length; i++) {%>
-                     
-                        <div class="col-12 col-md-3 mb-4">
-                                  <div class="card text-black">
-                                    <a class="" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img style="width: 305px"; height="310px"
-                                      src=<%=products[i].image%>
-                                      class="card-img-top"
-                                    />
-                                </a>
-                                    <div class="card-body">
-                                      <div class="text-center">
-                                        <h4 class="card-title"><%=products[i].name%></h4>
-                                        <p class="text-muted mb-2"><%=products[i].description%></p>
-                                        <h4 class="mb-3">£<%=products[i].price%></h4>
-                                      </div>
-                                      
-                                      <form action="/basket" method="POST">
-                                        <input type="hidden" name="productId" value="<%= products[i]._id  %>">
-                                        <input type="hidden" name="name" value="<%= products[i].name  %>">
-                                        <input type="hidden" name="price" value="<%= products[i].price  %>">
-                                        <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
-                                        <input type="hidden" name="image" value="<%= products[i].image  %>">
-                                        <input type="hidden" name="category" value="<%= products[i].category  %>">
-                                        <input type="hidden" name="description" value="<%= products[i].description  %>">
-                                        <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
-                                        <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
-                                    </form>
-                                    <form action="/wishlist" method="POST">
-                                      <input type="hidden" name="id" value="<%= products[i]._id  %>">
-                                    <button>
-                                      <span class="material-symbols-outlined">
-                                        favorite
-                                        </span></a>
-                                      </button>
-                                    </form>
-                                    </div>
-                                  </div>
-                              </div>
-                    <% } %>
+<div class="container text-center " >
+    <h1> <%= products[0].category %> </h1>
+    
+    <div class="d-flex justify-content-between align-items-center mb-3"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  <h4> Items(<%= totalProducts.length %>)</h4></div>
+        <div class="row ">
+        <hr>
+            <% for (let i = 0; i < products.length; i++) {%>
+              
+                <div class="col-12 col-md-3 mb-4">
+                    <div class="card text-black">
+                        <a class="" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img style="width: 305px"; height="310px"
+                          src=<%=products[i].image%>
+                          class="card-img-top"></a>
+                        <div class="card-body">
+                          <div class="text-center">
+                            <h4 class="card-title"><%=products[i].name%></h4>
+                            <p class="text-muted mb-2"><%=products[i].description%></p>
+                            <h4 class="mb-3">£<%=products[i].price%></h4>
+                          </div>
+                         
+                            <form action="/basket" method="POST">
+                              <input type="hidden" name="productId" value="<%= products[i]._id  %>">
+                              <input type="hidden" name="name" value="<%= products[i].name  %>">
+                              <input type="hidden" name="price" value="<%= products[i].price  %>">
+                              <input type="hidden" name="quantity" value="<%= products[i].quantity  %>">
+                              <input type="hidden" name="image" value="<%= products[i].image  %>">
+                              <input type="hidden" name="category" value="<%= products[i].category  %>">
+                              <input type="hidden" name="description" value="<%= products[i].description  %>">
+                              <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
+                              <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
+                          </form>
+                          <form action="/wishlist" method="POST">
+                            <input type="hidden" name="id" value="<%= products[i]._id  %>">
+                          <button class="btn">
+                            <span id="wishlist" class="material-symbols-outlined">
+                              favorite
+                        </span></a>
+                      </button>
+                    </form>
+                         </div>
+                  </div>
+                </div>
             </div>
-            <hr>
-            <div class="d-flex justify-content-around mb-4">
-              <% for (let i = 0; i < totalProducts.length / productsPerPage - 1; i++) {%>
-                <a style="text-decoration:none"  href="/<%=name%>?page=<%=[i + 1]%>"><h4  class="pageNumber"><%=[i + 2]%></h4></a>
-            <% } %>
+      <% } %>
+      </div>
+      <hr>
+      <div class="d-flex justify-content-around mb-4">
+        <% for (let i = 0; i < totalProducts.length / productsPerPage - 1; i++) {%>
+          <a style="text-decoration:none"  href="/<%=name%>?page=<%=[i + 1]%>"><h4  class="pageNumber"><%=[i + 2]%></h4></a>
+      <% } %>
 
-            </div>    
-            
-    </div>
+      </div>    
+      
+</div>
 
 
 

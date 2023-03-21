@@ -2,6 +2,10 @@
 <div class="container-fluid">
     <h1 class="text-center">My Orders</h1>
     <div>
+
+      <% if (orders < 1 ) {%>
+        <h3 class="text-center">You currently have no orders!</h3>
+        <%  } else {%>
     
 <section >
   <div class="container py-3">
@@ -44,6 +48,7 @@
                   <a href="/account/<%= signedInUser.username%>/orders/<%= orders[i].id %>" class="mb-0" style="font-weight: 500;">View</a>
                 </td>
              
+                <%}%>
                 <%}%>
               </tr>
             </tbody>

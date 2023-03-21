@@ -2,7 +2,9 @@
 <div class="container-fluid text-center">
     <h1 class="text-center">Reviews</h1>
     </div>
-
+    <% if (reviews < 1 ) {%>
+      <h3 class="text-center">You have not left any reviews yet!</h3>
+      <%  } else {%>
 
 <section >
     <div class="container py-3">
@@ -50,6 +52,7 @@
                  
                   <% } %>
                 
+              <% } %>
               <% } %>
                 </tr>
               </tbody>

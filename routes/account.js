@@ -4,6 +4,7 @@ const catchAsync = require("../utilities/catchAsync");
 const User = require('../models/user')
 const Order = require('../models/order')
 const Product = require('../models/product')
+const Review = require('../models/review')
 
 router.get("/:username", (req, res) => {
     res.render("pages/authentication/account/account");
@@ -11,7 +12,9 @@ router.get("/:username", (req, res) => {
 
 router.get("/:username/reviews", async(req, res) => {
     const products = await Product.find({reviews: {$exists: true, $not: {$size: 0}}}).populate('reviews')
-    res.render("pages/authentication/account/reviews", {products});
+    const reviews = await Review.find({username: req.user.username})
+    console.log(reviews)
+    res.render("pages/authentication/account/reviews", {products, reviews});
   });
 
 router.delete("/:username/reviews", catchAsync(async (req, res) => {

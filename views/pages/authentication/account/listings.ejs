@@ -1,7 +1,10 @@
 <% layout('layouts/boilerplate')%>
+<h1 class="text-center">My Listings</h1>
+<% if (listings < 1 ) {%>
+  <h3 class="text-center">You currently have no listings!</h3>
+  <%  } else {%>
 
-<section style="background-color: #eee;">
-    <h1 class="text-center">My Listings</h1>
+<section>
     <% for (let listing of listings)  { %>
     <div class="container py-2 ">
       <div class="row justify-content-center mb-3">
@@ -38,6 +41,7 @@
             </div>
           </div>
         </div>
+        <% } %>
         <% } %>
       </div>
   </section>
