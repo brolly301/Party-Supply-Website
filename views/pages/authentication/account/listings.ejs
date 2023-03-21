@@ -1,19 +1,44 @@
 <% layout('layouts/boilerplate')%>
-<div class="container">
-    <h1 class="text-center">My Listings</h1>
-    <div>
-        <div class="row">
-       <% for (let listing of listings)  { %>
-        <div class="col-12 col-md-3 mb-4">
-            <a class="" href="/marketplace/listings/<%= listing._id  %>"><img class="mb-2 img-fluid" src="<%=listing.image%>" style=width:100%;height:350px;></a>
-            <h3><%= listing.name  %></h3>
-            <h3><%= listing.description  %></h3>
-            <h3><%= listing.condition  %></h3>
-            <h3><%= listing.price  %></h3>
-        </div>
-        <input type="hidden" name="id" value="<%=listing._id  %>">
-        <a href="/marketplace/listings/<%=listing._id %>"><button class="btn btn-primary">View Listing</button></a>
-    <% } %>
-    </div>
-</div>
 
+<section style="background-color: #eee;">
+    <h1 class="text-center">My Listings</h1>
+    <% for (let listing of listings)  { %>
+    <div class="container py-2 ">
+      <div class="row justify-content-center mb-3">
+        <div class="col-md-12 col-xl-10">
+          <div class="card shadow-0 border rounded-3">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                  <div class=" hover-zoom ripple rounded ripple-surface">
+                    <img src="<%=listing.image%>"
+                      style="width: 230px; height: 200px;" />
+                    <a href="#!">
+                      <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-6">
+                  <h5> <%=listing.name%></h5>
+                  <p class="mb-4 mb-md-0">
+                    <%=listing.description%>
+                  </p>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                  <div class="d-flex flex-row align-items-center mb-1">
+                    <h4 class="mb-1 me-1"> £<%=listing.price%>.00</h4>
+                  </div>
+                  <a href="/marketplace/listings/<%=listing.id%>">View</a>
+                  <a href="/marketplace/listings/<%=listing.id%>/edit">Edit</a>
+                  <a href="">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+  </section>
+ 

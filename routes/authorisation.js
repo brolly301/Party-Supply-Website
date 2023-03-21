@@ -168,10 +168,14 @@ router.post("/wishlist", catchAsync(async (req, res) => {
     console.log(err);
     res.status(500).send("Something went wrong");
   }
-  
-
-
   res.render('pages/wishlist')
  }));
+
+ router.delete("/wishlist", catchAsync(async (req, res) => {
+  const wish = await Wishlist.updateOne({username: req.user.username},{$pull: {products: req.body.id}} )
+  
+
+  res.redirect('back');
+}));  
   
 module.exports = router;
