@@ -1,23 +1,23 @@
-<nav class=" sticky-top navbar navbar-expand-lg bg-body-tertiary navbar bg-dark d-flex align-items-end nav justify-content-center "
-    data-bs-theme="dark" style="height: 120px; padding-top: 70px;">
+<nav class=" navbar navbar-expand-lg bg-body-tertiary navbar-dark d-flex align-items-end nav justify-content-center "
+     style="height: 120px; padding-top: 70px; border-bottom: 1px solid rgba(0, 0, 0, 0.1);">
     <div class="position-absolute bottom-50">
         <h1>Party Supplies</h1>
     </div>
     <div class="container-fluid nav justify-content-center">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link text-white" href="/">Home</a>
+                <a class="nav-link text-black" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/decorations">Decorations</a>
+                <a class="nav-link text-black" href="/decorations">Decorations</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/balloons">Balloons</a>
+                <a class="nav-link text-black" href="/balloons">Balloons</a>
             </li>
             <li class="nav-item dropdown">
                 <div class="btn-group">
-                    <a href="/themes/occasions"> <button type="button" class="btn text-white">Occasions</button></a>
-                    <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-split" style="position:relative; right: 9px;" data-bs-toggle="dropdown"></button>
+                    <a href="/themes/occasions"> <button type="button" class="btn text-black">Occasions</button></a>
+                    <button type="button" class="btn text-black dropdown-toggle dropdown-toggle-split" style="position:relative; right: 9px;" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                        <a class="dropdown-item" href="/themes/occasions/christmas">Christmas</a>
                        <a class="dropdown-item" href="/themes/occasions/halloween">Halloween</a>
@@ -30,8 +30,8 @@
               </li>
             <li class="nav-item dropdown">
                 <div class="btn-group">
-                   <a href="/themes/costumes"> <button type="button" class="btn text-white">Costumes</button></a>
-                    <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-split" style="position: relative; right: 9px;" data-bs-toggle="dropdown"></button>
+                   <a href="/themes/costumes"> <button type="button" class="btn text-black">Costumes</button></a>
+                    <button type="button" class="btn text-black dropdown-toggle dropdown-toggle-split" style="position: relative; right: 9px;" data-bs-toggle="dropdown"></button>
                     <div class="dropdown-menu">
                        <a class="dropdown-item" href="/themes/costumes/mens">Mens</a>
                        <a class="dropdown-item" href="/themes/costumes/womens">Womens</a>
@@ -40,19 +40,19 @@
                 </div>
               </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/packages">Packages</a>
+                <a class="nav-link text-black" href="/packages">Packages</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/marketplace">Marketplace</a>
+                <a class="nav-link text-black" href="/marketplace">Marketplace</a>
             </li>
             <% if (!signedInUser) { %>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/login"><span class="material-symbols-outlined">person</span></a>
+                <a class="nav-link text-black" href="/login"><span class="material-symbols-outlined">person</span></a>
             </li>
             <%} else { %>
                 <li class="nav-item dropdown">
                     <div class="btn-group">
-                       <a href="/account/<%=signedInUser.username%>"> <button type="button" class="btn text-white">Account</button></a>
+                       <a href="/account/<%=signedInUser.username%>"> <button type="button" class="btn text-black">Account</button></a>
                         <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-split" style="position: relative; right: 9px;" data-bs-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                            <a class="dropdown-item" href="/account/<%=signedInUser.username%>/orders">Orders</a>
@@ -67,7 +67,7 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white"  href="/wishlist"><span class="material-symbols-outlined">
+                <a class="nav-link text-white"  href="/wishlist"><span id="navbar-wishlist" class="material-symbols-outlined">
                     favorite
                     </span></a>
             </li>
@@ -75,14 +75,19 @@
         
             <li class="nav-item">
                 <% if (!session.basket) { %>
-                <a class="nav-link text-white" href="/basket"><span class="material-symbols-outlined">shopping_cart</span><span id="basketQuantity">  0</span></a>  
+                <a class="nav-link text-black" href="/basket"><span class="material-symbols-outlined">shopping_cart</span><span id="basketQuantity">  0</span></a>  
                 <%} else { %>   
-                <a class="nav-link text-white" href="/basket"><span class="material-symbols-outlined">shopping_cart</span><span id="basketQuantity">  <%=session.basket.products.length%></span></a>     
+                <a class="nav-link text-black" href="/basket"><span class="material-symbols-outlined">shopping_cart</span><span id="basketQuantity">  <%=session.basket.products.length%></span></a>     
                 <%} %>  
             </li>
            
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/search"><span class="material-symbols-outlined">search</span></a>
+            <li class="d-flex flex-row nav-item">
+                <a class="nav-link text-black" href="/search"><span class="material-symbols-outlined">search</span></a>
+                <span> 
+                    <form action="/search" method="">
+                    <input type="text" name="" id="searchInput">
+                </form>
+              </span>
             </li>
         </ul>
     </div>

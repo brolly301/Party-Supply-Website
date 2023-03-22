@@ -37,5 +37,52 @@
 }
 
 #wishlist:hover {
-    color: red;
+    color:red;
+}
+#navbar-wishlist:hover {
+    color: rgb(214, 36, 119);
+}
+
+.c-item {
+    height: 780px;
+}
+
+.c-img{
+   height: 100%;
+   object-fit: cover;
+}
+
+body {
+    font-family: 'Jost';
+    background: rgba(197, 228, 248, 0.4) !important;
+}
+
+h2.header {
+    color: white;
+    top: 0;
+    font-size: 70px;
+    position: absolute;
+    top: 160px;
+    text-align: center;
+    width: 100%;
+}
+
+#searchInput {
+    background-color: rgba(1, 1, 1, 0) ;
+    width: 100px;
+    color: white;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+.navbar-dark {
+    background-image: none;
+    background: rgba(197, 228, 248, 0.4) !important;
+}
+
+#marketplaceSplash {
+    object-fit: cover;
+    height: 400px;
+    width: 800px;
 }

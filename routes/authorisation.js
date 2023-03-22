@@ -6,6 +6,8 @@ const passport = require('passport');
 const Product = require('../models/product')
 const nodemailer = require('nodemailer');
 const Wishlist = require("../models/wishlist");
+const {isLoggedIn} = require("../views/pages/middleware")
+
 
 router.get("/register", (req, res) => {
     res.render('pages/authentication/register')
@@ -135,7 +137,7 @@ router.get("/wishlist", catchAsync(async (req, res) => {
   res.render('pages/wishlist', {wishlist: products[0]})
  }));
 
-router.post("/wishlist", catchAsync(async (req, res) => {
+router.post("/wishlist", isLoggedIn, catchAsync(async (req, res) => {
    
       
   const {id} = req.body
