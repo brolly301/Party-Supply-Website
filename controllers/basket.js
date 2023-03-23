@@ -18,7 +18,14 @@ module.exports.displayBasket = async (req, res) => {
     }
 
 module.exports.postBasketItem = async (req, res) => {
-    const { productId, name, price, quantity, image, description, category } = req.body;
+    const { productId, name, price, image, description, category, scrollQTY } = req.body;
+    let {quantity} =  req.body
+    if (scrollQTY) {
+      quantity *= scrollQTY
+    } else {
+      quantity === 1
+    }
+    
       try {
         let cart = req.session.basket
         if (cart) {
@@ -28,7 +35,12 @@ module.exports.postBasketItem = async (req, res) => {
           if (itemIndex > -1) {
             //product exists in the cart, update the quantity
             let productItem =   cart.products[itemIndex];
-            productItem.quantity++
+            if (scrollQTY) {
+              productItem.quantity = parseFloat(productItem.quantity) + parseFloat(scrollQTY)
+            } else {
+              productItem.quantity++
+            }
+            
             cart.products[itemIndex] = productItem;
           } else {
             //product does not exists in cart, add new item
