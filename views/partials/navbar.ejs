@@ -53,7 +53,7 @@
                 <li class="nav-item dropdown">
                     <div class="btn-group">
                        <a href="/account/<%=signedInUser.username%>"> <button type="button" class="btn text-black">Account</button></a>
-                        <button type="button" class="btn text-white dropdown-toggle dropdown-toggle-split" style="position: relative; right: 9px;" data-bs-toggle="dropdown"></button>
+                        <button type="button" class="btn text-black dropdown-toggle dropdown-toggle-split" style="position: relative; right: 9px;" data-bs-toggle="dropdown"></button>
                         <div class="dropdown-menu">
                            <a class="dropdown-item" href="/account/<%=signedInUser.username%>/orders">Orders</a>
                            <a class="dropdown-item" href="/account/<%=signedInUser.username%>/listings">Listings</a>
@@ -63,11 +63,11 @@
                   </li>
             <li class="nav-item">
                 <form action="/logout" method="POST">
-                <a class="nav-link text-white" id="logout" name="logout" href="/logout">Logout</a>
+                <a class="nav-link text-black" id="logout" name="logout" href="/logout">Logout</a>
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white"  href="/wishlist"><span id="navbar-wishlist" class="material-symbols-outlined">
+                <a class="nav-link text-black"  href="/wishlist"><span id="navbar-wishlist" class="material-symbols-outlined">
                     favorite
                     </span></a>
             </li>

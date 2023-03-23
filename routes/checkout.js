@@ -3,15 +3,15 @@ const router = express.Router();
 const checkout = require('../controllers/checkout')
 const catchAsync = require("../utilities/catchAsync");
 
-router.get("/", checkout.displayCheckout);
+router.route("/")
+.get(checkout.displayCheckout)
+.post(checkout.postOrder)
 
 router.get("/checkoutComplete", checkout.displayCheckoutConfirmation);
 
-router.get("/payment", checkout.displayPaymentPage);
-
-router.post("/", checkout.postOrder);  
-
-router.post("/payment", checkout.postPayment);
+router.route("/payment")
+.get(checkout.displayPaymentPage)
+.post(checkout.postPayment)
  
 router.get("/config", checkout.displayConfig)
 

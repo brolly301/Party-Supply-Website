@@ -4,15 +4,11 @@ const basket = require('../controllers/basket')
 const catchAsync = require("../utilities/catchAsync");
 const ExpressError = require("../utilities/ExpressError")
 
-router.get("/",  catchAsync(basket.displayBasket));
- 
-  //Potentially working version
-router.post("/", catchAsync(basket.postBasketItem))
-
-router.delete("/", catchAsync(basket.deleteBasketItem)); 
-
-router.put("/", catchAsync(basket.increaseItemQuantity)); 
-  
-router.patch("/", catchAsync(basket.decreaseItemQuantity)); 
+router.route("/")
+.get(catchAsync(basket.displayBasket))
+.post(catchAsync(basket.postBasketItem))
+.delete(catchAsync(basket.deleteBasketItem))
+.put(catchAsync(basket.increaseItemQuantity))
+.patch(catchAsync(basket.decreaseItemQuantity))
 
 module.exports = router;

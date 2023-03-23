@@ -8,19 +8,18 @@ router.get("/", marketplace.displayMarketplaceSplash );
 
 router.get("/listings", marketplace.displayListings);
 
-router.get("/listings/:id", marketplace.displayListingShow);
+router.route("/listings/:id")
+.get(marketplace.displayListingShow)
+.delete(marketplace.deleteListing)
 
-router.get("/listings/:id/edit", marketplace.displayListingEdit);
-
-router.put("/listings/:id/edit", isLoggedIn, validateMarketplace, catchAsync(marketplace.editListing))
+router.route("/listings/:id/edit")
+.get(marketplace.displayListingEdit)
+.put(isLoggedIn, validateMarketplace, catchAsync(marketplace.editListing))
 
 router.post("/listings/:id/reviews", isLoggedIn, catchAsync(marketplace.postReview));
 
-router.delete('/listings/:id', marketplace.deleteListing)
-
-router.get("/newListing", isLoggedIn, marketplace.displayNewListingPost);
-
-router.post("/newListing", isLoggedIn, validateMarketplace ,catchAsync(marketplace.postNewListing));
-
+router.route("/newListing")
+.get(isLoggedIn, marketplace.displayNewListingPost)
+.post(isLoggedIn, validateMarketplace ,catchAsync(marketplace.postNewListing))
 
 module.exports = router;
