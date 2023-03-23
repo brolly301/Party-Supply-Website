@@ -2,7 +2,8 @@
 <div class="container mb-1"></div>
 <h5 class=" rounded px-4  mb-0 mb-2">Ratings and Reviews</h5>
 <hr>
-<% for (let review of listing.reviews) {%><div class="bg-white rounded shadow-sm px-4 ">
+<% for (let review of listing.reviews) {%>
+    <div class="bg-white rounded shadow-sm px-4 ">
                 
                         <div class="media-body">
                             <div class="reviews-members-header">
@@ -15,30 +16,28 @@
                                 <p><%= review.body  %></p>
                             </div>
                             <div class="reviews-members-body">
-                                <div class="d-flex justify-content-between"> <p><span class="material-symbols-outlined"> star</span>
-                                    <span class="material-symbols-outlined"> star</span>
-                                    <span class="material-symbols-outlined"> star</span>
-                                    <span class="material-symbols-outlined"> star</span>
-                                    <span class="material-symbols-outlined"> star</span>
-                                    <span>  </span>
-                                </p> <% if (signedInUser && signedInUser.username === review.username) { %>
+                                <div class="d-flex justify-content-between"> <h3 class="mt-1" data-star="<%=review.rating%>"></h3>
+                             <% if (signedInUser && signedInUser.username === review.username) { %>
                                     <form action="/balloons/<%= listing._id  %>?_method=DELETE" method="POST">
                                         <input type="hidden" name="id" id="id" value="<%= review.id  %>">
                                         <button class="btn btn-danger mb-2">Delete</button>
                                     </form>
-                                    <% } %></div>
+                                    <% } %>  </div>
                                 
                             </div>
                         </div>
                         <hr>
-                </div>
-                <% } %>
+                       
+                    </div>
+                    <% } %>
+                    
+                    
                 <div class="bg-white rounded  px-4 mb-4  rating-review-select-page">
                     <h5 class="mb-4">Leave Review</h5>
                     <p class="mb-2">Rate the listing</p>
+                    <form action="/<%=listing.category%>/<%=listing._id%>/reviews" method="POST" class="validate-form" novalidate>
                     <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= listing._id  %>" required>
                     <div class="mb-4"></div>
-                    <form action="/<%=listing.category%>/<%=listing._id%>/reviews" method="POST" class="validate-form" novalidate>
                         <div class="form-group">
                             <label>Your Review</label>
                             <textarea class="form-control mb-3" name="body" id="body[review]"></textarea>

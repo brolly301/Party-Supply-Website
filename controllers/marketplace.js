@@ -31,7 +31,15 @@ module.exports.displayListings = async(req, res) => {
 module.exports.displayListingShow = async(req, res) => {
     const {id} = req.params
     const listing = await Product.findById(id).populate('reviews')
-   res.render("pages/products/marketplace/marketplaceShowPage", {listing, id});
+
+    let overallReview = 0
+    let totalRating = 0
+    for (let i =0; i<listing.reviews.length; i++) {
+       totalRating += listing.reviews[i].rating
+       overallReview = totalRating / listing.reviews.length
+    }
+
+   res.render("pages/products/marketplace/marketplaceShowPage", {listing, id, overallReview});
  }
 
 module.exports.displayListingEdit = async(req, res) => {

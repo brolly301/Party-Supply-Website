@@ -17,8 +17,7 @@
                                 <p><%= review.body  %></p>
                             </div>
                             <div class="reviews-members-body">
-                                <p class="starability-result" data-rating="<%=review.rating%>">
-                                  </p>
+                                <div class="d-flex justify-content-between"> <h3 class="mt-1" data-star="<%=review.rating%>"></h3>
                                 </p> <% if (signedInUser && signedInUser.username === review.username) { %>
                                     <form action="/balloons/<%= product._id  %>?_method=DELETE" method="POST">
                                         <input type="hidden" name="id" id="id" value="<%= review.id  %>">
@@ -29,8 +28,8 @@
                             </div>
                         </div>
                         <hr>
-                </div>
-                <% } %>
+                    </div>
+                    <% } %>
                 <div class="bg-white rounded  px-4 mb-4  rating-review-select-page">
                     <h5 class="mb-4">Leave Review</h5>
                     <p class="mb-2">Rate the Product</p>
