@@ -32,11 +32,22 @@
                     <% } %>
                 <div class="bg-white rounded  px-4 mb-4  rating-review-select-page">
                     <h5 class="mb-4">Leave Review</h5>
-                    <p class="mb-2">Rate the Product</p>
+                    <p class="mb-3">Rate the Product</p>
                     
                     <form action="/<%=product.category%>/<%=product._id%>/reviews" method="POST" class="validate-form" novalidate>
-                        <input  style="width: 445px;" type="range" max="5" min="1" name="rating" id="rating[review]" value="<%= product._id  %>" required>
-                    <div class="mb-4"></div>
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="rating" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="rating" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="rating" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="rating" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="rating" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                          </fieldset>
                         <div class="form-group">
                             <label>Your Review</label>
                             <textarea class="form-control mb-3" name="body" id="body[review]"></textarea>
