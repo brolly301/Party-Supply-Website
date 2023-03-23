@@ -1,68 +1,22 @@
 const express = require('express')
 const router = express.Router();
+const account = require('../controllers/account')
 const catchAsync = require("../utilities/catchAsync");
-const User = require('../models/user')
-const Order = require('../models/order')
-const Product = require('../models/product')
-const Review = require('../models/review')
 
-router.get("/:username", (req, res) => {
-    res.render("pages/authentication/account/account");
-  });
+router.get("/:username", account.displayUserAccount);
 
-router.get("/:username/reviews", async(req, res) => {
-    const products = await Product.find({reviews: {$exists: true, $not: {$size: 0}}}).populate('reviews')
-    const reviews = await Review.find({username: req.user.username})
-    console.log(reviews)
-    res.render("pages/authentication/account/reviews", {products, reviews});
-  });
+router.get("/:username/reviews", account.displayUserReviews);
 
-router.delete("/:username/reviews", catchAsync(async (req, res) => {
-    await Review.findByIdAndDelete(req.body.id)
-    console.log(req.body.id)
-    
-    res.redirect('back');
-  }));    
+router.delete("/:username/reviews", catchAsync(account.deleteUserReviews));    
 
-router.get("/:username/listings", async(req, res) => {
-    const {username} = req.user
-    const listings = await Product.find({username: username})
-    res.render("pages/authentication/account/listings", {listings});
-  });
+router.get("/:username/listings", account.displayUserListings);
 
-router.get("/:username/orders", async(req, res) => {
-    const {username} = req.user
-    const orders = await Order.find({username: username}).populate('basket')
-    res.render("pages/authentication/account/orders", {orders});
-  });
+router.get("/:username/orders", account.displayUserOrders);
 
-router.get("/:username/orders/:id", async(req, res) => {
+router.get("/:username/orders/:id", account.displayUserOrderDetails);
 
-  const { id } = req.params;
-  const orders = await Order.findById(id).populate('basket')
-  res.render("pages/authentication/account/orderProducts", {orders});
-  });
+router.get("/:username/:edit", account.displayUserEditPage);
 
-router.get("/:username/:edit", (req, res) => {
-    res.render("pages/authentication/account/accountEdit");
-  });
+router.put("/:username", catchAsync(account.editUserAccount))
 
-
-router.put("/:username", catchAsync(async(req, res) => {
-  const {username} = req.params
-  const {password} = req.body
-  await User.find({username})
-  await User.updateMany({username}, {...req.body})
-
-  //Setting password
-  await User.findByUsername(username).then(function(user) {
-    if (user) {
-      user.setPassword(password, () => {
-        user.save();
-      })
-    }
-  })
-  res.redirect(username);
-}))
-
-  module.exports = router;
+module.exports = router;
