@@ -85,12 +85,20 @@ module.exports.displayProducts = async (req, res) => {
   module.exports.displayThemeShow = async (req, res) => {
     const { id } = req.params;
     const product = await Product.findById(id).populate('reviews')
+
+    let overallReview = 0
+    let totalRating = 0
+    for (let i =0; i<product.reviews.length; i++) {
+       totalRating += product.reviews[i].rating
+       overallReview = totalRating / product.reviews.length
+    }
+
     if (!product) {
       req.flash('error', 'Unable to find product.')
       return res.redirect('/balloons')
     }
     
-     res.render("pages/products/productShowPage", { product });
+     res.render("pages/products/productShowPage", { product, overallReview });
   }
 
   module.exports.postReview = async (req, res) => {
