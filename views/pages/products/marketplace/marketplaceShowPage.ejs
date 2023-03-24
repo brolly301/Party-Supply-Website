@@ -25,8 +25,8 @@
                                             <h6 class="font-14">Quantity</h6>
                                             <div class="d-flex">
                                                 <% if (!signedInUser || signedInUser.username !== listing.username ) { %>
-                                                <input type="number" min="1" value="1" class="form-control" placeholder="Qty" style="width: 90px;">
-                                                <input type="hidden" name="listingId" value="<%= listing._id  %>">
+                                                <input type="number" name="scrollQTY" min="1" value="1" class="form-control" placeholder="Qty" style="width: 90px;">
+                                                <input type="hidden" name="productId" value="<%= listing._id  %>">
                                                     <input type="hidden" name="name" value="<%= listing.name  %>">
                                                     <input type="hidden" name="price" value="<%= listing.price  %>">
                                                     <input type="hidden" name="quantity" value="<%= listing.quantity  %>">
@@ -44,14 +44,14 @@
                                                 </form>
                                                 <% } %>
                                         </div>
-                            
+                                    </form>
                                         <!-- listing description -->
                                         <div class="mt-4">
                                             <h6 class="font-14">Description:</h6>
                                             <p>Introducing our new listing, designed to enhance your daily life in a multitude of ways. Our listing is crafted with the highest quality materials and innovative technology, ensuring durability and reliability for years to come.</p>
                                         </div>
 
-                                    </form>
+                                    
                                 </div> <!-- end col -->
                             </div> <!-- end row-->
                         </div> <!-- end card-body-->

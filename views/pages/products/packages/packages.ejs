@@ -38,6 +38,8 @@
                         <input type="hidden" name="quantity" value="<%= package[i].quantity  %>">
                         <input type="hidden" name="image" value="<%= package[i].image  %>">
                         <input type="hidden" name="description" value="<%= package[i].description  %>">
+                        <input type="hidden" name="category" value="<%= package[i].category  %>">
+
                       <button type="submit" class="btn btn-outline-primary my-3" style="width:246px">Add to Basket</button>
                     </form>
                     <form action="/wishlist" method="POST">
