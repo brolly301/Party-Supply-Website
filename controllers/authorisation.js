@@ -31,8 +31,28 @@ module.exports.postRegistration = async (req, res) => {
             const options = {
               from: "marcrobertjohn@gmail.com",
               to: email,
-              subject: `Welcome ${firstName} ${lastName} to Party Supplies`,
-              text: `This is an automated message for welcoming you to our website. `
+              subject: `Registration Confirmation for Party Supplies`,
+              html: `Dear ${firstName} ${lastName}, <br>
+              <br>
+              We are delighted to confirm your registration for Party Supplies! Thank you for choosing to join us on this exciting journey.<br>
+              <br>
+              Your registration has been received and processed. We are thrilled to have you as a part of our Party Supplies community. <br>
+              With your registration, you have secured your place to access our service. Here are the details of your registration:<br>
+              <br>
+              Full Name: ${firstName} ${lastName}<br>
+              Username: ${username}<br>
+              Email: ${phoneNumber}<br>
+              Phone Number: ${email}<br>
+              <br>
+              We hope you are as excited as we are for Party Supplies! Our team is working hard to ensure that your experience is as smooth and enjoyable as possible.<br>
+              If you have any questions or concerns, please do not hesitate to reach out to us. We are always here to assist you and answer any queries you may have.<br>
+              <br>
+              Thank you again for choosing to be a part of Party Supplies. We look forward to seeing you there!<br>
+              <br>
+              Best regards,<br>
+              <br>
+              Marc Brolly<br>
+              Party Supplies Team.`
             }
           
             transporter.sendMail(options, function (err, info) {
@@ -88,7 +108,7 @@ module.exports.displayContactUsPage = async (req, res) => {
    }
 
 module.exports.postContactUs = async (req, res) => {
-    const {name, subject, message} = req.body
+    const {name, subject, email, message} = req.body
   
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -102,7 +122,8 @@ module.exports.postContactUs = async (req, res) => {
       from: name,
       to: "marcrobertjohn@gmail.com",
       subject: subject,
-      text: `${message}`
+      html: `Contact Email: ${email} <br>
+      ${message}`
     }
   
     transporter.sendMail(options, function (err, info) {
