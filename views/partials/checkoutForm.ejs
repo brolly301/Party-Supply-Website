@@ -1,40 +1,53 @@
-<div class="container">
+<div class="container py-2">
     <form action="/checkout" method="POST" class="validate-form" novalidate>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="customerName">Customer Name</label>
-            <input type="text" id="customerName" name="customerName" class="form-control" required />
-            <div class="invalid-feedback">Please enter a customer name.</div>
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col">
+        <div class="card my-4 shadow-3">
+          <div class="row g-0">
+            <div class="col-xl-6 d-xl-block bg-image c-item">
+              <img src="https://images.unsplash.com/photo-1582902281043-69c645f40cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="Sample photo"
+                class="img-fluid c-img" />
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h3 class="mb-4 ">Delivery Details</h3>
+                <div class="row">
+                    <div class="form-outline mb-4">
+                      <input type="text" id="customerName" name="customerName" placeholder="Customer Name" class="form-control form-control-lg" required/>
+                     </div>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="address" name="address"placeholder="Address Line" class="form-control form-control-lg" required/>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="city" name="city"placeholder="City / Town" class="form-control form-control-lg" required/>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="postcode" name="postcode" placeholder="Postcode" class="form-control form-control-lg" required/>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="country" name="country" placeholder="Country" class="form-control form-control-lg" required/>
+                      </div>
+                    </div>
+                  </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="email" name="email" placeholder="Email Address" class="form-control form-control-lg" required/>
+                </div>
+                <div class="form-outline mb-4">
+                  <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Contact Number" class="form-control form-control-lg" required/>
+                </div>
+                <div class="d-flex justify-content-center pt-3">
+                  <button id="order" class="btn btn-primary btn-lg ms-2">Place Order</button>
+                </div>
+            </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="email">Email</label>
-            <input type="text" id="email" name="email" class="form-control" required />
-            <div class="invalid-feedback">Please enter a valid email address.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="phoneNumber">Phone Number</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required />
-            <div class="invalid-feedback">Please enter a valid phone number.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="address">Address</label>
-            <input type="text" id="address" name="address" class="form-control" required/>
-            <div class="invalid-feedback">Please enter an address.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="city">City</label>
-            <input type="text" id="city" name="city" class="form-control" required />
-            <div class="invalid-feedback">Please enter a city name.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="country">Country</label>
-            <input type="text" id="country" name="country" class="form-control" required/>
-            <div class="invalid-feedback">Please enter a country.</div>
-        </div>
-        <div class="form-outline mb-4">
-            <label class="form-label" for="postcode">Postcode</label>
-            <input type="password" id="postcode" name="postcode" class="form-control" required />
-            <div class="invalid-feedback">Please enter a postcode.</div>
-        </div>
-            <button id="order" class="btn btn-primary mb-4">Order</button>
-    </form>
-</div>
+      </div>
+    </div>
+  </div>

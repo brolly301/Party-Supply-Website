@@ -82,7 +82,7 @@ module.exports.postOrder = async(req, res) => {
   
   })
 
-  res.render("pages/checkout/checkoutComplete");
+  return res.redirect("checkout/checkoutComplete");
   }
 
 module.exports.postPayment = async(req, res) => {
