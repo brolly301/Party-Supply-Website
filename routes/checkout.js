@@ -5,13 +5,13 @@ const catchAsync = require("../utilities/catchAsync");
 
 router.route("/")
 .get(checkout.displayCheckout)
-.post(checkout.postOrder)
+.post(catchAsync(checkout.postOrder))
 
-router.get("/checkoutComplete", checkout.displayCheckoutConfirmation);
+router.get("/checkoutComplete", catchAsync(checkout.displayCheckoutConfirmation));
 
 router.route("/payment")
 .get(checkout.displayPaymentPage)
-.post(checkout.postPayment)
+.post(catchAsync(checkout.postPayment))
  
 router.get("/config", checkout.displayConfig)
 

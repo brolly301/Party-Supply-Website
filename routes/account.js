@@ -11,11 +11,11 @@ router.route("/:username/reviews")
 .get(account.displayUserReviews)
 .delete(catchAsync(account.deleteUserReviews)) 
 
-router.get("/:username/listings", account.displayUserListings);
+router.get("/:username/listings", catchAsync(account.displayUserListings));
 
-router.get("/:username/orders", account.displayUserOrders);
+router.get("/:username/orders", catchAsync(account.displayUserOrders));
 
-router.get("/:username/orders/:id", account.displayUserOrderDetails);
+router.get("/:username/orders/:id", catchAsync(account.displayUserOrderDetails));
 
 router.get("/:username/:edit", account.displayUserEditPage);
 

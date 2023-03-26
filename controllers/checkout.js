@@ -4,7 +4,7 @@ const stripe = Stripe("sk_test_51MgRG0AYx3n7HkYcaolBrw29SN2beilaDLgGCEYSzRnnQOPY
 const nodemailer = require('nodemailer');
 require('dotenv').config()
 
-module.exports.displayCheckout = async(req, res) => {
+module.exports.displayCheckout = (req, res) => {
   res.render("pages/checkout/checkout");
   }
 
@@ -14,7 +14,7 @@ module.exports.displayCheckoutConfirmation = async(req, res) => {
   res.render("pages/checkout/checkoutComplete", {order: order[0]});
   }
 
-module.exports.displayPaymentPage = async(req, res) => {
+module.exports.displayPaymentPage = (req, res) => {
   res.render("pages/checkout/payment");
   }
 

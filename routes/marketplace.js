@@ -6,14 +6,14 @@ const {isLoggedIn, validateMarketplace} = require("../views/pages/middleware")
 
 router.get("/", marketplace.displayMarketplaceSplash );
 
-router.get("/listings", marketplace.displayListings);
+router.get("/listings", catchAsync(marketplace.displayListings));
 
 router.route("/listings/:id")
-.get(marketplace.displayListingShow)
-.delete(marketplace.deleteListing)
+.get(catchAsync(marketplace.displayListingShow))
+.delete(catchAsync(marketplace.deleteListing))
 
 router.route("/listings/:id/edit")
-.get(marketplace.displayListingEdit)
+.get(catchAsync(marketplace.displayListingEdit))
 .put(isLoggedIn, validateMarketplace, catchAsync(marketplace.editListing))
 
 router.post("/listings/:id/reviews", isLoggedIn, catchAsync(marketplace.postReview));
