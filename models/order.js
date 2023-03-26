@@ -34,12 +34,12 @@ const OrderSchema = new Schema({
         image: String,
         description: String,
     }],
-    price: {
+    totalPrice: {
         type: Number
     },
     date: {
-        type: Date,
-        default: Date.now() + 1000 * 60 * 60 * 24
+        type: Number,
+        default: Date.now()
     }
 })
 

@@ -9,7 +9,9 @@ module.exports.displayCheckout = async(req, res) => {
   }
 
 module.exports.displayCheckoutConfirmation = async(req, res) => {
-  res.render("pages/checkout/checkoutComplete");
+  const order = await Order.find().sort({date: -1}).limit(1)
+  console.log(order[0].basket)
+  res.render("pages/checkout/checkoutComplete", {order: order[0]});
   }
 
 module.exports.displayPaymentPage = async(req, res) => {
@@ -19,7 +21,7 @@ module.exports.displayPaymentPage = async(req, res) => {
 module.exports.postOrder = async(req, res) => {
   const deliveryDetails = req.body
   if (!req.user) {
-    const newOrder = new Order({...deliveryDetails, basket:[...req.session.basket.products]})
+    const newOrder = new Order({...deliveryDetails, basket:[...req.session.basket.products], totalPrice: req.session.basket.totalBasketPrice})
     await newOrder.save()
 
     const transporter = nodemailer.createTransport({
@@ -48,10 +50,10 @@ module.exports.postOrder = async(req, res) => {
     
     })
 
-    return res.render("pages/checkout/payment");
+    return res.redirect("checkout/checkoutComplete");
   }
   const {username} = req.user
-  const newOrder = new Order({...deliveryDetails, username, basket:[...req.session.basket.products]})
+  const newOrder = new Order({...deliveryDetails, username, basket:[...req.session.basket.products], totalPrice: req.session.basket.totalBasketPrice})
   await newOrder.save()
 
   const transporter = nodemailer.createTransport({
@@ -80,7 +82,7 @@ module.exports.postOrder = async(req, res) => {
   
   })
 
-  res.render("pages/checkout/payment");
+  res.render("pages/checkout/checkoutComplete");
   }
 
 module.exports.postPayment = async(req, res) => {

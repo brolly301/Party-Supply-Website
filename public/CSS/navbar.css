@@ -60,6 +60,16 @@
     height: 240px;
 }
 
+.o-Item {
+    height: 150px;
+}
+
+.o-img{
+   height: 100%;
+   width: 80%;
+   object-fit: cover;
+}
+
 .c-img{
    height: 100%;
    width: 100%;
