@@ -17,7 +17,6 @@ module.exports.validateMarketplace = (req,res,next) => {
           condition: Joi.string().required(),
           size: Joi.string().optional().allow(''),
           description: Joi.string().required(),
-          image: Joi.string().required(),
           price: Joi.number().required().min(0),
         }).required()
       })

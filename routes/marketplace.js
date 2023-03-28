@@ -3,6 +3,10 @@ const router = express.Router();
 const catchAsync = require("../utilities/catchAsync");
 const marketplace = require('../controllers/marketplace')
 const {isLoggedIn, validateMarketplace} = require("../views/pages/middleware")
+const multer = require('multer')
+const {storage} = require('../cloudinary/index')
+const upload = multer({ storage })
+
 
 router.get("/", marketplace.displayMarketplaceSplash );
 
@@ -20,6 +24,6 @@ router.post("/listings/:id/reviews", isLoggedIn, catchAsync(marketplace.postRevi
 
 router.route("/newListing")
 .get(isLoggedIn, marketplace.displayNewListingPost)
-.post(isLoggedIn, validateMarketplace ,catchAsync(marketplace.postNewListing))
+.post(isLoggedIn, upload.array('marketplace[marketplaceImage]'),  validateMarketplace ,catchAsync(marketplace.postNewListing))
 
 module.exports = router;

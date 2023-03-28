@@ -77,7 +77,8 @@ module.exports.postNewListing = async (req, res) => {
     const {username} = req.user
     const postDetails = req.body.marketplace
     const newListing = new Product({...postDetails, username})
+    newListing.marketplaceImage = req.files.map(f => ({url: f.path, fileName: f.filename}))
     newListing.save()
-    const listings = await Product.find({category: 'Marketplace'})
-    res.render('pages/products/marketplace/marketplaceMain', {listings})
+    console.log(newListing)
+    res.redirect(`/marketplace/listings/${newListing._id}`)
   }

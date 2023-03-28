@@ -24,7 +24,13 @@ const ProductSchema = new Schema({
     quantity: {
         type: Number,
         default: 1
-    }
+    },
+    marketplaceImage: [
+       {
+         url: String,
+         fileName: String
+       }
+    ]
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

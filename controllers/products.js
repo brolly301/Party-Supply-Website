@@ -26,6 +26,7 @@ module.exports.displayProducts = async (req, res) => {
     } else {
       (await Product.find({ category: uppercaseFirstLetter(name) }).skip(page * productsPerPage).limit(productsPerPage)).forEach(product => products.push(product))
     }
+
    
     res.render("pages/products/products", { products, name, totalProducts, productsPerPage, totalPages});
   };

@@ -39,7 +39,7 @@ const OrderSchema = new Schema({
     },
     date: {
         type: Number,
-        default: Date.now()
+        default: Date.now
     }
 })
 
