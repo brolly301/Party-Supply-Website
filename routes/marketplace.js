@@ -18,7 +18,7 @@ router.route("/listings/:id")
 
 router.route("/listings/:id/edit")
 .get(catchAsync(marketplace.displayListingEdit))
-.put(isLoggedIn, validateMarketplace, catchAsync(marketplace.editListing))
+.put(isLoggedIn, upload.array('marketplace[marketplaceImage]'),  validateMarketplace, catchAsync(marketplace.editListing))
 
 router.post("/listings/:id/reviews", isLoggedIn, catchAsync(marketplace.postReview));
 

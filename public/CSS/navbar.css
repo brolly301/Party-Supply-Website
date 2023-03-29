@@ -39,6 +39,14 @@
 #wishlist:hover {
     color:red;
 }
+
+#wishlist:hover {
+    color:red;
+}
+#basket:hover {
+    color:rgb(91, 175, 74);
+}
+
 #navbar-wishlist:hover {
     color: rgb(214, 36, 119);
 }
@@ -53,7 +61,7 @@
 }
 
 .productMain-item {
-    height: 440px;
+    height: 340px;
 }
 
 
@@ -91,7 +99,7 @@ h2.header {
 #searchInput {
     background-color: rgba(1, 1, 1, 0) ;
     width: 100px;
-    color: white;
+    color: rgb(0, 0, 0);
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;

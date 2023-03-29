@@ -1,9 +1,7 @@
 <% layout('layouts/boilerplate')%>
-<div class="container">
-
-    <h1 class=" text-center">Edit Listing</h1>
-
-    <form action="/marketplace/listings/<%=listing._id%>/edit?_method=PUT" method="POST" class="validate-form" novalidate>
+<h1 class="text-center mt-4">Edit Listing</h1>
+<div class="container d-flex justify-content-center" >
+    <form style="width: 500px" action="/marketplace/listings/<%=listing._id%>/edit?_method=PUT" method="POST" class="validate-form" enctype="multipart/form-data" novalidate>
         <div class="form-outline mb-4">
             <label class="form-label" for="name">Item Name</label>
             <input type="text" id="name" name="marketplace[name]" class="form-control" value="<%=listing.name%>" required />
@@ -26,11 +24,21 @@
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="image">Image</label>
-            <input type="text" id="image" name="marketplace[image]"  class="form-control" value="<%=listing.image%>" required/>
+            <input type="file" id="image" name="marketplace[marketplaceImage]"  class="form-control"  multiple <%=listing.marketplaceImage[0].length <=1 ? required : ''  %> />
         </div>
         <div class="form-outline mb-4">
             <label class="form-label" for="price">Price</label>
             <input type="text" id="price" name="marketplace[price]" class="form-control" value="<%=listing.price%>" required/>
+        </div>
+        <div class="mb-4 ">
+            
+            <% listing.marketplaceImage.forEach(function(img, i) {%>
+                <img src="<%= img.thumbnail %>" class="img-thumbnail">
+                <div class="form-check-inline">
+                   <input type="checkbox"  id="image-<%=i%>" name="deleteImages[]" value="<%=img.fileName%>">
+                </div>
+                <label for="image-<%=i%>">Delete?</label>
+            <%}); %>
         </div>
         <button class="btn btn-success">Save</button>
     </form>

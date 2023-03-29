@@ -16,6 +16,7 @@ const passport = require('passport')
 const LocalAuth = require('passport-local')
 const User = require('./models/user')
 const MongoStore = require('connect-mongo')
+const mongoSanitize = require('express-mongo-sanitize')
 
 const packages = require ('./routes/packages')
 const marketplace = require ('./routes/marketplace')
@@ -73,6 +74,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(mongoSanitize())
 
 
 app.use(express.json())

@@ -18,7 +18,8 @@ module.exports.validateMarketplace = (req,res,next) => {
           size: Joi.string().optional().allow(''),
           description: Joi.string().required(),
           price: Joi.number().required().min(0),
-        }).required()
+        }).required(),
+        deleteImages: Joi.array()
       })
       const {error} = marketplaceSchema.validate(req.body)
       if (error) {

@@ -1,5 +1,6 @@
 const Product = require('../models/product')
 const Review = require("../models/review");
+const {cloudinary} = require("../cloudinary/index")
 
 module.exports.displayMarketplaceSplash = (req, res) => {
   res.render("pages/products/marketplace/marketplaceSplash");
@@ -50,7 +51,18 @@ module.exports.displayListingEdit = async(req, res) => {
 
 module.exports.editListing = async(req, res) => {
     const {id} = req.params
-    await Product.findByIdAndUpdate(id, { ...req.body.marketplace })
+    console.log(req.body)
+    const product = await Product.findByIdAndUpdate(id, { ...req.body.marketplace })
+    const images = req.files.map(f => ({url: f.path, fileName: f.filename}))
+    product.marketplaceImage.push(...images)
+    await product.save()
+    if (req.body.deleteImages) {
+      for (let filename of req.body.deleteImages) {
+        await cloudinary.uploader.destroy(filename)
+      }
+    await product.updateOne({$pull: {marketplaceImage: {fileName: {$in: req.body.deleteImages}}}})
+    console.log(product)
+    }
     res.redirect(`/marketplace/listings/${id}`);
   }
 

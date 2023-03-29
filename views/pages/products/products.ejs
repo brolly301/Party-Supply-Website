@@ -2,9 +2,9 @@
 
 <% layout('layouts/boilerplate')%>
 <div class="container text-center productPage mt-4 " >
-    <h1> <%= products[0].category %> </h1>
+    <h1 class="mb-2"> <%= products[0].category %> </h1>
     
-    <div class="d-flex justify-content-between align-items-center mb-3"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  <h4> Items(<%= totalProducts.length %>)</h4></div>
+    <div class="d-flex justify-content-between align-items-center mb-2 mt-1"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted mt-2 ">Elevate Your Event with Stunning Balloon Decorations</h4>  <h5> Items(<%= totalProducts.length %>)</h5></div>
         <div class="row ">
         <hr>
             <% for (let i = 0; i < products.length; i++) {%>
@@ -14,11 +14,11 @@
                         <a class="productMain-item" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"><img  class="c-img" 
                           src=<%=products[i].image%>
                           class="card-img-top"></a>
-                        <div class="card-body">
+                        <div class="card-body ">
                           <div class="text-center">
-                            <h4 class="card-title"><%=products[i].name%></h4>
+                            <h5 class="card-title"><%=products[i].name%></h5>
                             <p class="text-muted mb-2"><%=products[i].description%></p>
-                            <h4 class="mb-3">£<%=products[i].price%></h4>
+                            <h5 class="mb-1">£<%=products[i].price%></h5>
                           </div>
                          
                             <form action="/basket" method="POST">
@@ -29,9 +29,9 @@
                               <input type="hidden" name="image" value="<%= products[i].image  %>">
                               <input type="hidden" name="category" value="<%= products[i].category  %>">
                               <input type="hidden" name="description" value="<%= products[i].description  %>">
-                              <div> <a class="btn btn-success border border-dark mb-2" href="<%= products[i].category.toLowerCase()  %>/<%= products[i]._id  %>"> View</a></div>
+                              <hr>
                               <div class="d-flex justify-content-center">
-                              <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
+                              <button type="submit" class="btn"><span id="basket" class="material-symbols-outlined">shopping_cart</button>
                           </form>
                           <form action="/wishlist" method="POST">
                             <input type="hidden" name="id" value="<%= products[i]._id  %>">
