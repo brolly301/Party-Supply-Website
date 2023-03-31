@@ -1,7 +1,16 @@
 <% layout('layouts/boilerplate')%>
-<h1 class="text-center">My Listings</h1>
+<div class="container-fluid  mt-4">
+<h1 class="text-center mt-4">My Listings</h1>
 <% if (listings < 1 ) {%>
-  <h3 class="text-center">You currently have no listings!</h3>
+  <div class="text-center">
+  <h4 >You have not posted any listings yet!</h4>
+  <hr class="container">
+  <div class="d-flex  justify-content-center">
+  <a href="/marketplace/newListing"><button class="btn btn-warning  btn-lg basketButton" >Post Listing</button></a>
+</div>
+   <img class="img-fluid noPosts " src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680276539/icons8-no-image-100_djdkb9.png" alt="">
+  </div>
+</div>
   <%  } else {%>
 
 <section>
@@ -23,19 +32,24 @@
                     </a>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-6 col-xl-6">
+                <div class="col-md-6 col-lg-6 col-xl-6 text-left">
                   <h5> <%=listing.name%></h5>
-                  <p class="mb-4 mb-md-0">
-                    <%=listing.description%>
-                  </p>
+                  <p class="mb-4 mb-md-0"> <%=listing.condition%></p>
+                  <p class="mb-4 mb-md-0"> <%=listing.size%></p>
+                  <p class="mb-4 mb-md-0"> <%=listing.category%></p>
+                  <p class="mb-4 mb-md-0"> <%=listing.description%></p>
                 </div>
                 <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                   <div class="d-flex flex-row align-items-center mb-1">
                     <h4 class="mb-1 me-1"> £<%=listing.price%>.00</h4>
                   </div>
-                  <a href="/marketplace/listings/<%=listing.id%>">View</a>
-                  <a href="/marketplace/listings/<%=listing.id%>/edit">Edit</a>
-                  <a href="">Delete</a>
+                  <div class="d-grid gap-2">
+                  <a class="btn btn-primary" href="/marketplace/listings/<%=listing.id%>">View</a>
+                  <a class="btn btn-success" href="/marketplace/listings/<%=listing.id%>/edit">Edit</a>
+                  <form class="d-grid gap-2" action="/marketplace/listings/<%=listing.id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger" >Delete</button>
+                  </form> 
+                </div>
                 </div>
               </div>
             </div>

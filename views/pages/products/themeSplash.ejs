@@ -1,11 +1,13 @@
 <% layout('layouts/boilerplate')%>
     <div class="container text-center mt-4 ">
         <h1><%= subCategory.charAt(0).toUpperCase() + subCategory.slice(1)  %></h1>
-        <div class="d-flex justify-content-center align-items-center mb-3"><h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  </div>
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <h4 class="text-muted"> <%= subCategory === 'occasions' ? 'Get the Party Started: Discover Exciting Themes for Your Next Bash!' : 'Transform Your Look with Our Incredible Party Costumes'   %>   </h4>  
+        </div>
         <hr>
             <div class="row">
                 <% for (let i=0; i < products.length; i++) {%>
-                    <div class="col-12 col-md-6 mb-4" style="height: 400px">
+                    <div class="col-12 <%= subCategory === 'costumes' ? 'col-md-12 mb-4' : 'col-md-6 mb-4'   %>  " style="height: 400px">
                         <a href="/themes/<%= subCategory  %>/<%= products[i].name.toLowerCase().replace(/ /g, "")   %>"><img class="mb-2 img-fluid c-img" src="<%=products[i].image%>" style=width:100%;height:350px;></a>
                         <h2><%=products[i].name%></h2>
                     </div>
@@ -13,3 +15,5 @@
             </div>
     </div>
     </div>
+
+    

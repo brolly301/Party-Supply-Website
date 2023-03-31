@@ -40,6 +40,14 @@
     color:red;
 }
 
+#wishlist {
+   font-size: 32px;
+}
+#basket {
+   font-size: 32px;
+}
+
+
 #wishlist:hover {
     color:red;
 }
@@ -118,4 +126,46 @@ h2.header {
 
 #checkoutForm {
   width: 500px;
+}
+
+.emptyBasket {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    left: -10px;
+    bottom: 75px
+}
+
+.noPosts {
+    width: 210px;
+    height: 210px;
+    position: relative;
+    bottom: 45px
+}
+
+.noReviews {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    bottom: 35px
+}
+
+.noWishlist {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    bottom: 35px
+}
+
+.basketButton {
+   position: relative;
+   top: 230px
+}
+
+.logo {
+    position: relative;
+    bottom: -190px;
+    left: -150px;
+    height: 450px;
+    width: 1050px;
 }

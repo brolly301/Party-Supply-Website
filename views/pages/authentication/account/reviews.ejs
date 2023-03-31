@@ -1,9 +1,16 @@
 <% layout('layouts/boilerplate')%>
-<div class="container-fluid text-center">
-    <h1 class="text-center">Reviews</h1>
-    </div>
-    <% if (reviews < 1 ) {%>
-      <h3 class="text-center">You have not left any reviews yet!</h3>
+<div class="container-fluid text-center mt-4">
+    <h1>Reviews</h1>
+    
+    <% if (!reviews || reviews < 1 ) {%>
+       <h4 >You have not left any reviews yet!</h4>
+       <hr class="container">
+  <div class="d-flex  justify-content-center">
+  <a href="/"><button class="btn btn-primary  btn-lg basketButton" >Post Review</button></a>
+</div>
+   <img class="img-fluid noReviews" src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680277824/reviews_uugjh2.png" alt="">
+  </div>
+      </div>
       <%  } else {%>
 
 <section >
@@ -18,6 +25,8 @@
                   <th scope="col">Review</th>
                   <th scope="col">Rating</th>
                   <th scope="col">Date</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <% for (let i =0; i<products.length; i++) {%>
@@ -27,29 +36,28 @@
                   <td class="align-middle">
                     <p class="mb-0 ml-4" style="font-weight: 500;"><%= [i + 1]  %></p>
                   </td>
-                  <td class="align-middle">
+                  <td class="align-left">
                     <p class="mb-0 ml-4" style="font-weight: 500;"><%= products[i].reviews[j].body  %></p>
                   </td>
                   <td class="align-middle">
                     <p class="mb-0 ml-4" style="font-weight: 500;"><%= products[i].reviews[j].rating  %></p>
                   </td>
                   <td class="align-middle">
-                    <p class="mb-0 ml-4" style="font-weight: 500;">24/01/22</p>
+                    <p class="mb-0 ml-4" style="font-weight: 500;"><%=  new Date(products[i].reviews[j].createdDate).toString().substring(4, 21)  %></p>
                   </td>
                   <td class="align-middle">
-                    <div class="d-flex flex-row">
                     <a href="/<%=products[i].category.toLowerCase()%>/<%= products[i].id %>">
-                        <button class="btn btn-primary">View</button>
-                         </a>
-                        
-                         <form action="/balloons/<%= products[i]._id  %>?_method=DELETE" method="POST">
-                            <input type="hidden" name="id" id="id" value="<%= products[i].reviews[j].id  %>">
-                            <button class="btn btn-danger mb-2">Delete</button>
-                        </form>
-                    </div>
+                      <button class="btn btn-primary mb-0 ml-4">View</button>
+                       </a>
+                  </td>
+                  <td class="align-middle">
+                    <form action="/balloons/<%= products[i]._id  %>?_method=DELETE" method="POST">
+                      <input type="hidden" name="id" id="id" value="<%= products[i].reviews[j].id  %>">
+                      <button class="btn btn-danger mb-0 ml-4 ">Delete</button>
+                  </form>
                   </td>
                 </div>
-                 
+               
                   <% } %>
                 
               <% } %>

@@ -4,9 +4,12 @@
 <div class="container text-center productPage mt-4 " >
     <h1 class="mb-2"> <%= products[0].category %> </h1>
     
-    <div class="d-flex justify-content-between align-items-center mb-2 mt-1"><%- include('../../partials/sortingDropdown') %> <h4 class="text-muted mt-2 ">Elevate Your Event with Stunning Balloon Decorations</h4>  <h5> Items(<%= totalProducts.length %>)</h5></div>
+    <div class="d-flex justify-content-between align-items-center mb-2 mt-1"><%- include('../../partials/sortingDropdown') %> 
+      <h4 class="text-muted "><%= products[0].category === 'Balloons' ? 'Elevate Your Event with Stunning Balloon Decorations' : 'Vibrant Party Decorations to Make Your Celebration Unforgettable!'   %></h4>  <h5> Items(<%= totalProducts.length %>)</h5>
+    </div>
         <div class="row ">
         <hr>
+        
             <% for (let i = 0; i < products.length; i++) {%>
               
                 <div class="col-12 col-md-3 mb-4">

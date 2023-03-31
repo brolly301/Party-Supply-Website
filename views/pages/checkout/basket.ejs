@@ -1,10 +1,17 @@
 <% layout('layouts/boilerplate')%>
 <div class="container-fluid ">
-    <h1 class="text-center">Basket</h1>
+    <h1 class="text-center mt-4">Basket</h1>
 
     <% if (!session.basket || !session.basket.totalBasketPrice ) {%>
-        <h2 class="text-center">No items in basket.</h2>
-      
+      <div class="container-fluid text-center ">
+      <h4 >Your Shopping Basket is Currently Empty!</h4>
+      <hr class="container">
+      <div class="d-flex  justify-content-center">
+      <a href="/"><button class="btn btn-danger  btn-lg basketButton" >Back to Homepage</button></a>
+    </div>
+       <img class="img-fluid emptyBasket " src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680123115/shopping-cart_cg90zu.png" alt="">
+       </div>
+      </div>
     <%}else {%>
 
  <section >

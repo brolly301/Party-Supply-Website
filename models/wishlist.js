@@ -8,6 +8,7 @@ const WishlistSchema = new Schema({
         ref: 'Product',
         default: void 0
     }],
+   
     
 })
 

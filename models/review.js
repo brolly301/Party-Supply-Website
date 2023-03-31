@@ -7,7 +7,7 @@ const ReviewSchema = new Schema({
     rating: Number,
     createdDate: {
         type: Number,
-        default: Date.now()
+        default: Date.now
     } 
 })
 
