@@ -72,6 +72,10 @@
     height: 340px;
 }
 
+.packageMain-item {
+    height: 240px;
+}
+
 
 .o-Item {
     height: 150px;
@@ -168,4 +172,16 @@ h2.header {
     left: -150px;
     height: 450px;
     width: 1050px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.page-heading{
+    font-size: 21px;
+}
+
+.items {
+    font-size: 18px;
 }

@@ -5,7 +5,7 @@
     <h1 class="mb-2"> <%= products[0].category %> </h1>
     
     <div class="d-flex justify-content-between align-items-center mb-2 mt-1"><%- include('../../partials/sortingDropdown') %> 
-      <h4 class="text-muted "><%= products[0].category === 'Balloons' ? 'Elevate Your Event with Stunning Balloon Decorations' : 'Vibrant Party Decorations to Make Your Celebration Unforgettable!'   %></h4>  <h5> Items(<%= totalProducts.length %>)</h5>
+      <h5 class="text-muted page-heading"><%= products[0].category === 'Balloons' ? 'Elevate Your Event with Stunning Balloon Decorations' : 'Vibrant Party Decorations to Make Your Celebration Unforgettable!'   %></h5>  <h6 class="items"> Items(<%= totalProducts.length %>)</h6>
     </div>
         <div class="row ">
         <hr>

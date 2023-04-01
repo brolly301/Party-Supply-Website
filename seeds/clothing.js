@@ -1,15 +1,17 @@
 module.exports.mens = [{
     name: 'Man Product',
-    price: 10,
+    price: 39.99,
     category: 'Mens',
 },{
     name: 'Man Product',
-    price: 10,
+    price: 29.99,
     category: 'Mens',
 },{
     name: 'Man Product',
-    price: 10,
+    price: 33.99,
+    image: '',
     category: 'Mens',
+    description: ''
 }]
 
 module.exports.womens = [{

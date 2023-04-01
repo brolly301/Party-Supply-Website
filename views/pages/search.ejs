@@ -1,10 +1,11 @@
 <% layout('layouts/boilerplate')%>
-<div class="container text-center">
+<div class="container text-center mt-4">
     <h1>Search</h1>
-    
+    <h5 class="page-heading">Enter a search result below </h5>
+    <hr>
     <form action="/search" method="GET">
         <input type="text" name="search" id="search">
-        <button class="mb-4">Search</button>
+        <button class="btn btn-secondary mb-1">Search</button>
     </form>
     
     <div class="row">

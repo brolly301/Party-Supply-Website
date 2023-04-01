@@ -262,4 +262,34 @@ module.exports = [{
     image: `https://img.freepik.com/free-photo/christmas-concept-with-balls-copy-space_23-2148731069.jpg?w=740&t=st=1676452638~exp=1676453238~hmac=2439baec404da254db8b892efba52edd55a7737110b2d0c9d807b1716d2d1c35`,
     color: 'Yellow',
     category: 'Balloons'
+},{
+    name: `Random Coloured Balloons`,
+    description: `Collection of 12 Random Coloured Balloons`,
+    price: `25.99`,
+    image: `https://cdn.stocksnap.io/img-thumbs/960w/balloons-party_DNWA3H3LCU.jpg`,
+    color: 'Grey',
+    category: 'Balloons'
+},
+{
+    name: `Blue and White Balloons`,
+    description: `Collection of 12 Yellow Balloons`,
+    price: `15.39`,
+    image: `https://cdn.stocksnap.io/img-thumbs/960w/wedding-balloons_D86E2A6574.jpg`,
+    color: 'Yellow',
+    category: 'Balloons'
+},{
+    name: `Silver Balloons`,
+    description: `Collection of 12 Grey Balloons`,
+    price: `12.49`,
+    image: `https://img.freepik.com/premium-photo/silver-photo-zone-with-air-balloons-new-year-background_175086-1003.jpg?w=900`,
+    color: 'Grey',
+    category: 'Balloons'
+},
+{
+    name: `Gold Balloons`,
+    description: `Collection of 12 Yellow Balloons`,
+    price: `15`,
+    image: `https://img.freepik.com/free-photo/christmas-concept-with-balls-copy-space_23-2148731069.jpg?w=740&t=st=1676452638~exp=1676453238~hmac=2439baec404da254db8b892efba52edd55a7737110b2d0c9d807b1716d2d1c35`,
+    color: 'Yellow',
+    category: 'Balloons'
 },]
