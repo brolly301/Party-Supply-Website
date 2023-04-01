@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const Basket = require("../models/basket");
+const product = require("../models/product");
 
 module.exports.displayBasket = async (req, res) => {
     if (req.session.basket) {
@@ -50,7 +51,7 @@ module.exports.postBasketItem = async (req, res) => {
           return res.redirect('back')
         } else {
           const newCart = await Basket.create({
-            products: [{ productId, quantity, name, price, image, description, category }]
+            products: [{ productId, quantity, name, price, image, description}]
           });
           req.session.basket = newCart
           req.session.basket.totalBasketPrice = price * 10
@@ -97,9 +98,15 @@ module.exports.decreaseItemQuantity = async (req, res) => {
   
     if (itemIndex > -1) {
     let productItem = cart.products[itemIndex];
+    if (productItem.quantity <=1) {
+      cart.products.splice(itemIndex, 1)
+      req.flash('success', 'Removed from Basket')
+      return res.redirect('back')
+    } else {
       productItem.quantity-- ;
-      cart.products[itemIndex] = productItem;
+      cart.products[itemIndex] = productItem; 
+      return res.redirect('back')
     }
-      req.flash('success', 'Quantity decreased')
-      res.redirect('back')
+    }
+      
 }

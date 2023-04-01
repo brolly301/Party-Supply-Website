@@ -122,6 +122,11 @@ h2.header {
     background: rgba(197, 228, 248, 0.4) !important;
 }
 
+.footer-dark {
+    background-image: none;
+    background: rgba(197, 228, 248, 0.4) !important;
+}
+
 #marketplaceSplash {
     object-fit: cover;
     height: 400px;
