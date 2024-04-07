@@ -1,136 +1,176 @@
 #basketQuantity {
-    font-size: 12px;
-    background: #4a8d41;
-    color: #fff;
-    padding: 2px;
-    padding-right: 5px;
+  font-size: 12px;
+  background: #4a8d41;
+  color: #fff;
+  padding: 2px;
+  padding-right: 5px;
 
-   
-    vertical-align: top;
-    -webkit-border-radius: 9px;
-    -moz-border-radius: 9px;
-    border-radius: 9px;
-    border: 1px solid black;
+  vertical-align: top;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  border: 1px solid black;
 }
 
 #removeBasket:hover {
-   color: red;
+  color: red;
 }
 
 .pageNumber {
-        display: block;
-        height: 45px;
-        width: 40px;
-        line-height: 40px;
-        -moz-border-radius: 30px; /* or 50% */
-        border-radius: 30px; /* or 50% */
-        background-color: rgb(119, 115, 115);
-        color: white;
-        text-align: center;
-        font-size: 1.4em;
-        border: 2px solid black;
+  display: block;
+  height: 45px;
+  width: 40px;
+  line-height: 40px;
+  -moz-border-radius: 30px; /* or 50% */
+  border-radius: 30px; /* or 50% */
+  background-color: rgb(119, 115, 115);
+  color: white;
+  text-align: center;
+  font-size: 1.4em;
+  border: 2px solid black;
 }
 
 #orderDropdown {
-    position: relative;
-    top: 7px
+  position: relative;
+  top: 7px;
 }
 
 #wishlist:hover {
-    color:red;
+  color: red;
 }
 
 #wishlist {
-   font-size: 32px;
+  font-size: 32px;
 }
 #basket {
-   font-size: 32px;
+  font-size: 32px;
 }
-
 
 #wishlist:hover {
-    color:red;
+  color: red;
 }
 #basket:hover {
-    color:rgb(91, 175, 74);
+  color: rgb(91, 175, 74);
 }
 
 #navbar-wishlist:hover {
-    color: rgb(214, 36, 119);
+  color: rgb(214, 36, 119);
 }
 
 .c-item {
-    height: 780px;
+  height: 780px;
+}
+
+@media (max-width: 768px) {
+  .c-item {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .c-item img {
+    height: 400px;
+  }
+}
+
+.c-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .productShow-item {
-    height: 440px;
-    width: 405px;
+  height: 440px;
+  width: 100%;
 }
 
 .productMain-item {
-    height: 340px;
+  height: 340px;
 }
 
 .packageMain-item {
-    height: 240px;
+  height: 240px;
 }
 
+@media (max-width: 1000px) {
+  .o-Item img {
+    height: 70px;
+  }
+}
 
 .o-Item {
-    height: 150px;
+  height: 150px;
 }
 
-.o-img{
-   height: 100%;
-   width: 80%;
-   object-fit: cover;
+.o-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.c-img{
-   height: 100%;
-   width: 100%;
-   object-fit: cover;
+@media (max-width: 1000px) {
+  .w-item img {
+    height: 100px;
+  }
+}
+
+.w-item {
+  height: 150px;
+}
+
+.w-img {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.h-item {
+  height: 410px;
+}
+
+.h-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 body {
-    font-family: 'Jost';
-    background: rgba(197, 228, 248, 0.3) !important;
+  font-family: "Jost";
+  background: rgba(197, 228, 248, 0.3) !important;
 }
 
 h2.header {
-    color: white;
-    top: 0;
-    font-size: 70px;
-    position: absolute;
-    top: 160px;
-    text-align: center;
-    width: 100%;
+  color: white;
+  top: 0;
+  font-size: 70px;
+  position: absolute;
+  top: 160px;
+  text-align: center;
+  width: 100%;
 }
 
 #searchInput {
-    background-color: rgba(1, 1, 1, 0) ;
-    width: 100px;
-    color: rgb(0, 0, 0);
-    border-top: hidden;
-    border-left: hidden;
-    border-right: hidden;
+  background-color: rgba(1, 1, 1, 0);
+  width: 100px;
+  color: rgb(0, 0, 0);
+  border-top: hidden;
+  border-left: hidden;
+  border-right: hidden;
 }
 
 .navbar-dark {
-    background-image: none;
-    background: rgba(197, 228, 248, 0.4) !important;
+  background-image: none;
+  background: rgba(197, 228, 248, 0.4) !important;
 }
 
 .footer-dark {
-    background-image: none;
-    background: rgba(197, 228, 248, 0.4) !important;
+  background-image: none;
+  background: rgba(197, 228, 248, 0.4) !important;
 }
 
 #marketplaceSplash {
-    object-fit: cover;
-    height: 400px;
-    width: 800px;
+  object-fit: cover;
+  height: 600px;
 }
 
 #checkoutForm {
@@ -138,55 +178,55 @@ h2.header {
 }
 
 .emptyBasket {
-    width: 250px;
-    height: 250px;
-    position: relative;
-    left: -10px;
-    bottom: 75px
+  width: 250px;
+  height: 250px;
+  position: relative;
+  left: -10px;
+  bottom: 75px;
 }
 
 .noPosts {
-    width: 210px;
-    height: 210px;
-    position: relative;
-    bottom: 45px
+  width: 210px;
+  height: 210px;
+  position: relative;
+  bottom: 45px;
 }
 
 .noReviews {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    bottom: 35px
+  width: 180px;
+  height: 180px;
+  position: relative;
+  bottom: 35px;
 }
 
 .noWishlist {
-    width: 180px;
-    height: 180px;
-    position: relative;
-    bottom: 35px
+  width: 180px;
+  height: 180px;
+  position: relative;
+  bottom: 35px;
 }
 
 .basketButton {
-   position: relative;
-   top: 230px
+  position: relative;
+  top: 230px;
 }
 
 .logo {
-    position: relative;
-    bottom: -190px;
-    left: -150px;
-    height: 450px;
-    width: 1050px;
+  position: relative;
+  bottom: -190px;
+  left: -150px;
+  height: 450px;
+  width: 1050px;
 }
 
 h1 {
-    font-size: 36px;
+  font-size: 36px;
 }
 
-.page-heading{
-    font-size: 21px;
+.page-heading {
+  font-size: 21px;
 }
 
 .items {
-    font-size: 18px;
+  font-size: 18px;
 }

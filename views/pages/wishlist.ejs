@@ -1,76 +1,73 @@
 <% layout('layouts/boilerplate')%>
-<div class="container-fluid text-center mt-4">
-  
+  <div class="container-fluid text-center mt-4">
     <h1 class="text-center">Wishlist</h1>
     <% if (!wishlist || wishlist.products < 1) {%>
-      <h4 >Your Wishlist is Currently Empty!</h4>
+      <h4>Your Wishlist is Currently Empty!</h4>
       <hr class="container">
-        <div class="d-flex  justify-content-center">
-        <a href="/"><button class="btn btn-success  btn-lg basketButton" >Browse Products</button></a>
+      <div class="d-flex  justify-content-center">
+        <a href="/"><button class="btn btn-success  btn-lg basketButton">Browse Products</button></a>
       </div>
-         <img class="img-fluid noWishlist " src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680278844/wish-list_ggmwqf.png" alt="">
-      <%  } else {%>
-
-      </div>
-    <section >
-        <div class="container py-3">
-          <div class="row d-flex justify-content-center align-items-center">
-            <div class="col">
-              <div class="table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="h5">Wishlist</th>
-                      <th scope="col">Product Name</th>
-                      <th scope="col">Category</th>
-                      <th scope="col">Price</th>
-                      <th scope="col"> </th>
-                    </tr>
-                  </thead>
-                  <% for (let i =0; i< wishlist.products.length; i++) { %>
-                      
-                  <tbody>
-                    <tr>
-                      <td class="align-middle">
-                          <div class="flex-column ms-4">
-                            <img src="<%= wishlist.products[i].image %>" class="img-fluid rounded-3"
-                            style="width: 120px; height: 150px;" alt="Book">
-                          </div>
-                        </td>
-                      <td class="align-middle">
-                        <p class="mb-0" style="font-weight: 500;"><%= wishlist.products[i].name  %></p>
-                      </td>
-                      <td class="align-middle">
-                        <p class="mb-0 ml-4" style="font-weight: 500;"><%= wishlist.products[i].category  %></p>
-                      </td>
-                      <td class="align-middle">
-                        <p class="mb-0 ml-4" style="font-weight: 500;">£<%= wishlist.products[i].price  %></p>
-                      </td>
-                      <td class="align-middle">
-                        <div class="d-flex flex-sm-row justify-content-lg-around">
-                        <a href="/<%= wishlist.products[i].category.toLowerCase() %>/<%=wishlist.products[i].id%> " class="mb-0 btn btn-primary " style="font-weight: 500;">View</a>
-                        
+      <img class="img-fluid noWishlist "
+        src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680278844/wish-list_ggmwqf.png" alt="">
+      <% } else {%>
+  </div>
+  <section>
+    <div class="container py-3">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" class="h5">Wishlist</th>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Price</th>
+                  <th scope="col"> </th>
+                </tr>
+              </thead>
+              <% for (let i=0; i< wishlist.products.length; i++) { %>
+                <tbody>
+                  <tr>
+                    <td class="align-middle">
+                      <div class="flex-column ms-4 w-item">
+                        <img src="<%= wishlist.products[i].image %>" class="img-fluid rounded-3 w-img" alt="Book">
+                      </div>
+                    </td>
+                    <td class="align-middle">
+                      <p class="mb-0" style="font-weight: 500;">
+                        <%= wishlist.products[i].name %>
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                      <p class="mb-0 ml-4" style="font-weight: 500;">
+                        <%= wishlist.products[i].category %>
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                      <p class="mb-0 ml-4" style="font-weight: 500;">£<%= wishlist.products[i].price %>
+                      </p>
+                    </td>
+                    <td class="align-middle">
+                      <div class="d-flex flex-sm-row justify-content-lg-around">
+                        <a href="/<%= wishlist.products[i].category.toLowerCase() %>/<%=wishlist.products[i].id%> "
+                          class="mb-0 btn btn-primary " style="font-weight: 500;">View</a>
                         <form action="/wishlist?_method=DELETE" method="POST">
                           <input type="hidden" name="id" id="id" value="<%= wishlist.products[i].id  %>">
                           <button class="btn btn-danger">Delete</button>
                         </form>
                       </div>
-                      </td>
-                      <td class="align-middle">
-                       
-                      </td>
-                     
-                      
+                    </td>
+                    <td class="align-middle">
+                    </td>
+                    <% } %>
                       <% } %>
-                      <% } %>
-                    
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  </tr>
+                </tbody>
+            </table>
           </div>
         </div>
-      </section>   
-    
+      </div>
     </div>
+  </section>
+  </div>

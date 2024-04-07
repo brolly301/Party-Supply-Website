@@ -1,111 +1,117 @@
 <% layout('layouts/boilerplate')%>
-<div class="container-fluid ">
+  <div class="container-fluid ">
     <h1 class="text-center mt-4">Basket</h1>
-
     <% if (!session.basket || !session.basket.totalBasketPrice ) {%>
       <div class="container-fluid text-center ">
-      <h4 >Your Shopping Basket is Currently Empty!</h4>
-      <hr class="container">
-      <div class="d-flex  justify-content-center">
-      <a href="/"><button class="btn btn-danger  btn-lg basketButton" >Back to Homepage</button></a>
-    </div>
-       <img class="img-fluid emptyBasket " src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680123115/shopping-cart_cg90zu.png" alt="">
-       </div>
+        <h4>Your Shopping Basket is Currently Empty!</h4>
+        <hr class="container">
+        <div class="d-flex  justify-content-center">
+          <a href="/"><button class="btn btn-danger  btn-lg basketButton">Back to Homepage</button></a>
+        </div>
+        <img class="img-fluid emptyBasket "
+          src="https://res.cloudinary.com/dtcoefjmm/image/upload/v1680123115/shopping-cart_cg90zu.png" alt="">
       </div>
-    <%}else {%>
-
- <section >
-    <div class="container py-3">
-      <div class="row d-flex justify-content-center align-items-center">
-        <div class="col">
-          <div class="table-responsive">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col" class="h5">Shopping Basket</th>
-                  <th scope="col">Category</th>
-                  <th class="px-4" scope="col">Quantity</th>
-                  <th scope="col">Price</th>
-                </tr>
-              </thead>
-              <% for(let i = 0; i<session.basket.products.length; i++) {%>
-              <tbody>
-                <tr>
-                  <th scope="row">
-                    <div class="d-flex align-items-center o-item">
-                      <img src="<%= session.basket.products[i].image %>" class="img-fluid rounded-3 o-img"
-                        style="width: 120px; height: 150px;" alt="Book">
-                      <div class="flex-column ms-4">
-                        <p class="mb-2"><%= session.basket.products[i].name %></p>
-                        <p class="mb-0"><%= session.basket.products[i].description %></p>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="align-middle">
-                    <p class="mb-0" style="font-weight: 500;"><%= session.basket.products[i].category %></p>
-                  </td>
-                  <td class="align-middle">
-                    <div class="d-flex flex-row"> <form action="/basket?_method=PATCH" method="POST">
+  </div>
+  <%}else {%>
+    <section>
+      <div class="container py-3">
+        <div class="row d-flex justify-content-center align-items-center">
+          <div class="col">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="h5">Shopping Basket</th>
+                    <th scope="col">Category</th>
+                    <th class="px-4" scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                </thead>
+                <% for(let i=0; i<session.basket.products.length; i++) {%>
+                  <tbody>
+                    <tr>
+                      <th scope="row">
+                        <div class="d-flex align-items-center o-item">
+                          <img src="<%= session.basket.products[i].image %>" class="img-fluid rounded-3 o-img"
+                            style="width: 120px; height: 150px;" alt="Book">
+                          <div class="flex-column ms-4">
+                            <p class="mb-2">
+                              <%= session.basket.products[i].name %>
+                            </p>
+                            <p class="mb-0">
+                              <%= session.basket.products[i].description %>
+                            </p>
+                          </div>
+                        </div>
+                      </th>
+                      <td class="align-middle">
+                        <p class="mb-0" style="font-weight: 500;">
+                          <%= session.basket.products[i].category %>
+                        </p>
+                      </td>
+                      <td class="align-middle">
+                        <div class="d-flex flex-row">
+                          <form action="/basket?_method=PATCH" method="POST">
                             <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
-                              <button class="btn btn-link px-2">
-                                <i class="fas fa-minus"></i>
-                              </button>
-                            </form>
-                      <p class="form-control form-control-sm my-1 " style="width: 30px;" ><%= session.basket.products[i].quantity %></p>
-                     <form action="/basket?_method=PUT" method="POST">
-                    <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
-                      <button class="btn btn-link px-2">
-                        <i class="fas fa-plus"></i>
-                      </button>
-                    </form>
-                    </div>
-                  </td>
-                  <td class="align-middle ">
-                    <div class="d-flex flex-row">
-                    <p class="mt-2" style="font-weight: 500;">£<%= session.basket.products[i].price  %>.99</p> 
-                    <form action="/basket?_method=DELETE" method="POST">
-                        <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
-                        <button id="removeBasket" class="btn position-relative"><span class="material-symbols-outlined">delete</span> </button>
-                    </form>
-                   </div>
-                  </td>
-                  <% } %>
-                </tr>
-              </tbody>
-            </table>
+                            <button class="btn btn-link px-2">
+                              <i class="fas fa-minus"></i>
+                            </button>
+                          </form>
+                          <p class="form-control form-control-sm my-1 " style="width: 30px;">
+                            <%= session.basket.products[i].quantity %>
+                          </p>
+                          <form action="/basket?_method=PUT" method="POST">
+                            <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
+                            <button class="btn btn-link px-2">
+                              <i class="fas fa-plus"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </td>
+                      <td class="align-middle ">
+                        <div class="d-flex flex-row">
+                          <p class="mt-2" style="font-weight: 500;">£<%= session.basket.products[i].price %>
+                          </p>
+                          <form action="/basket?_method=DELETE" method="POST">
+                            <input type="hidden" name="productId" value="<%= session.basket.products[i].productId  %>">
+                            <button id="removeBasket" class="btn position-relative"><span
+                                class="material-symbols-outlined">delete</span> </button>
+                          </form>
+                        </div>
+                      </td>
+                      <% } %>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-<div class="d-flex container justify-content-center align-items-center  text-center">
-  <div class="col-lg-4 col-xl-3 text">
-    <div class="d-flex justify-content-between" style="font-weight: 500;">
-      <p class="mb-2">Subtotal</p>
-      <p class="mb-2">£<%= session.basket.totalBasketPrice  %>.00</p>
-    </div>
-
-    <div class="d-flex justify-content-between" style="font-weight: 500;">
-      <p class="mb-0">Delivery</p>
-      <p class="mb-0">£3.99</p>
-    </div>
-
-    <hr class="my-4">
-
-    <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
-      <p class="mb-2">Total:</p>
-      <p class="mb-2">£<%= (session.basket.totalBasketPrice + 3.99).toFixed(2)  %></p>
-    </div>
-
-    <form action="/checkout" method="GET">
-    <button type="submit" class="btn btn-primary btn-block btn-lg mb-3">
-      <div class="d-flex justify-content-between">
-        <span>Checkout</span>
+    </section>
+    <div class="d-flex container justify-content-center align-items-center  text-center">
+      <div class="col-lg-4 col-xl-4 col-md-11 col-sm-11 col-11 text">
+        <div class="d-flex justify-content-between" style="font-weight: 500;">
+          <p class="mb-2">Subtotal</p>
+          <p class="mb-2">£<%= session.basket.totalBasketPrice %>
+          </p>
+        </div>
+        <div class="d-flex justify-content-between" style="font-weight: 500;">
+          <p class="mb-0">Delivery</p>
+          <p class="mb-0">£3.99</p>
+        </div>
+        <hr class="my-4">
+        <div class="d-flex justify-content-between mb-4" style="font-weight: 500;">
+          <p class="mb-2">Total:</p>
+          <p class="mb-2">£<%= (session.basket.totalBasketPrice + 3.99).toFixed(2) %>
+          </p>
+        </div>
+        <form action="/checkout" method="GET">
+          <button type="submit" class="btn btn-primary btn-block btn-lg mb-3">
+            <div class="d-flex justify-content-between">
+              <span>Checkout</span>
+            </div>
+          </button>
+        </form>
       </div>
-    </button>
-</form>
-  </div>
-
-</div>
-<%}%>
-
+    </div>
+    <%}%>

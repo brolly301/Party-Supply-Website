@@ -1,85 +1,91 @@
 <% layout('layouts/boilerplate')%>
-
-<div class="container-fluid mt-4 ">
-    <h1 class="text-center"> Account Details </h1>
-
-
-<div class="container d-flex justify-content-center ">
-    
-    <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-    <div class="card h-100" >
-        <div class="card-body">
-            <div class="row gx-5">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <h6 class="mb-2 text-primary">Personal Details</h6>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="fullName">First Name</label>
-                        <input readonly type="text" class="form-control"  id="fullName" value="<%= signedInUser.firstName %>">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="email">Surname</label>
-                        <input readonly type="email" class="form-control" id="eMail" value="<%= signedInUser.lastName %>">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="phone">Email</label>
-                        <input readonly type="text" class="form-control" id="phone" value="<%= signedInUser.email %>">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="phone">Phone Number</label>
-                        <input readonly type="text" class="form-control" id="phone" value="<%= signedInUser.phoneNumber %>">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="phone">Date of Birth</label>
-                        <input readonly type="text" class="form-control" id="phone" value="<%= signedInUser.username %>">
-                    </div>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="form-group my-3">
-                        <label for="phone">Username</label>
-                        <input readonly type="text" class="form-control" id="phone" value="<%= signedInUser.username %>">
-                    </div>
-                </div>
-                 
-        </div>
-        <div class="row ">
-           
-            
-                <div class="card-body ">
-                    <div class="account-settings">
-                        <div class="user-profile text-center d-flex justify-content-between ">
-                            
-                            <form action="/account/<%= signedInUser.username %>/edit" method="GET" class="" novalidate>
-                                <button class="btn btn-outline-primary" style="width: 200px;">Edit Profile</button>
-                               </form>
-                                <form action="/account/<%= signedInUser.username %>/orders" method="GET" class="" novalidate>
-                                <button class="btn btn-outline-primary " style="width: 200px;" >Orders</button>
-                               </form>
-                                <form action="/account/<%= signedInUser.username %>/listings" method="GET" class="" novalidate>
-                                <button class="btn btn-outline-primary" style="width: 200px;">Listings</button>
-                               </form>
-                                <form action="/account/<%= signedInUser.username %>/reviews" method="GET" class="" novalidate>
-                                <button class="btn btn-outline-primary " style="width: 200px;">Reviews</button>
-                               </form>
+    <div class="container-fluid mt-4">
+        <h1 class="text-center">Account Details</h1>
+        <div class="container d-flex justify-content-center">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row gx-5">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 text-primary">Personal Details</h6>
+                            </div>
+                            <!-- Personal Details Inputs -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 ">
+                                <!-- First Name -->
+                                <div class="form-group my-3">
+                                    <label for="fullName">First Name</label>
+                                    <input readonly type="text" class="form-control" id="fullName"
+                                        value="<%= signedInUser.firstName %>">
+                                </div>
+                                <!-- Email -->
+                                <div class="form-group my-3">
+                                    <label for="email">Surname</label>
+                                    <input readonly type="email" class="form-control" id="eMail"
+                                        value="<%= signedInUser.lastName %>">
+                                </div>
+                                <!-- Date of Birth -->
+                                <div class="form-group my-3">
+                                    <label for="phone">Date of Birth</label>
+                                    <input readonly type="text" class="form-control" id="phone"
+                                        value="<%= signedInUser.username %>">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <!-- Email -->
+                                <div class="form-group my-3">
+                                    <label for="phone">Email</label>
+                                    <input readonly type="text" class="form-control" id="phone"
+                                        value="<%= signedInUser.email %>">
+                                </div>
+                                <!-- Phone Number -->
+                                <div class="form-group my-3">
+                                    <label for="phone">Phone Number</label>
+                                    <input readonly type="text" class="form-control" id="phone"
+                                        value="<%= signedInUser.phoneNumber %>">
+                                </div>
+                                <!-- Username -->
+                                <div class="form-group my-3">
+                                    <label for="phone">Username</label>
+                                    <input readonly type="text" class="form-control" id="phone"
+                                        value="<%= signedInUser.username %>">
+                                </div>
+                            </div>
                         </div>
-                       
+                        <!-- Account Settings Buttons -->
+                        <div class="row">
+                            <div class="card-body">
+                                <div class="account-settings">
+                                    <div class="user-profile text-center d-flex flex-wrap justify-content-center">
+                                        <!-- Edit Profile Button -->
+                                        <form action="/account/<%= signedInUser.username %>/edit" method="GET"
+                                            class="mx-2 my-2" novalidate>
+                                            <button class="btn btn-outline-primary " style="width: 200px;">Edit
+                                                Profile</button>
+                                        </form>
+                                        <!-- Orders Button -->
+                                        <form action="/account/<%= signedInUser.username %>/orders" method="GET"
+                                            class="mx-2 my-2" novalidate>
+                                            <button class="btn btn-outline-primary"
+                                                style="width: 200px;">Orders</button>
+                                        </form>
+                                        <!-- Listings Button -->
+                                        <form action="/account/<%= signedInUser.username %>/listings" method="GET"
+                                            class="mx-2 my-2" novalidate>
+                                            <button class="btn btn-outline-primary"
+                                                style="width: 200px;">Listings</button>
+                                        </form>
+                                        <!-- Reviews Button -->
+                                        <form action="/account/<%= signedInUser.username %>/reviews" method="GET"
+                                            class="mx-2 my-2" novalidate>
+                                            <button class="btn btn-outline-primary"
+                                                style="width: 200px;">Reviews</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
-
-  
-</div>

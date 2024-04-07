@@ -1,12 +1,13 @@
 <% layout('layouts/boilerplate')%>
-<div class="container mt-3 mb-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+    <div class="container mt-3 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
                     <div class="invoice p-3 ">
                         <h2 class="text-center">Order Confirmation</h2>
                         <h6 class="text-center">Thank you, <%=order.customerName%> for your latest order.</h6>
-                        <h6 class="text-center">Your order has been confirmed and will be delivered within a few days.</h6>
+                        <h6 class="text-center">Your order has been confirmed and will be delivered within a few days.
+                        </h6>
                         <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
                             <table class="table table-borderless">
                                 <tbody>
@@ -14,25 +15,32 @@
                                         <td>
                                             <div class="py-2">
                                                 <span class="d-block text-muted">Order Date</span>
-                                            <span><%= new Date(order.date).toString().substring(4, 15) %></span>
+                                                <span>
+                                                    <%= new Date(order.date).toString().substring(4, 15) %>
+                                                </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="py-2">
                                                 <span class="d-block text-muted">Order ID</span>
-                                            <span><%=order.id.substring(19, 24).toUpperCase()%></span>
+                                                <span>
+                                                    <%=order.id.substring(19, 24).toUpperCase()%>
+                                                </span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="py-2">
                                                 <span class="d-block text-muted">Payment</span>
-                                            <span><img src="https://img.icons8.com/color/48/000000/mastercard.png" width="20" /></span>
+                                                <span><img src="https://img.icons8.com/color/48/000000/mastercard.png"
+                                                        width="20" /></span>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="py-2">
                                                 <span class="d-block text-muted">Delivery Address</span>
-                                            <span><%= `${order.address}, ${order.city}, ${order.postcode} ` %></span>                                              
+                                                <span>
+                                                    <%= `${order.address}, ${order.city}, ${order.postcode} ` %>
+                                                </span>
                                             </div>
                                         </td>
                                     </tr>
@@ -40,82 +48,85 @@
                             </table>
                         </div>
                         <% for (let basket of order.basket) { %>
-                        <div class="product border-bottom table-responsive">
-                            <table class="table table-borderless">
-                                 <tbody>
-                                    <tr>
-                                        <td class="o-Item" >
-                                        <img src="<%=basket.image%>" class="o-img">
-                                    </td>
-                                    <td width="60%">
-                                        <span class="font-weight-bold"><%=basket.name%></span>
-                                        <div class="product-qty">
-                                            <span class="d-block">Quantity:<%=basket.quantity%></span>
-                                            <span>Category: <%=basket.category%></span>
-                                        </div>
-                                    </td>
-                                    <td width="20%">
-                                        <div class="text-right">
-                                            <span class="font-weight-bold">£<%=basket.price%></span>
-                                        </div>
-                                    </td>
-                                    </tr>
-                                </tbody> 
+                            <div class="product border-bottom table-responsive">
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td class="o-Item">
+                                                <img src="<%=basket.image%>" class="o-img">
+                                            </td>
+                                            <td width="60%">
+                                                <span class="font-weight-bold">
+                                                    <%=basket.name%>
+                                                </span>
+                                                <div class="product-qty">
+                                                    <span class="d-block">Quantity:<%=basket.quantity%></span>
+                                                    <span>Category: <%=basket.category%></span>
+                                                </div>
+                                            </td>
+                                            <td width="20%">
+                                                <div class="text-right">
+                                                    <span class="font-weight-bold">£<%=basket.price%></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </div>
-                        <% } %>
-                            <div class="row d-flex justify-content-end">
-                                <div class="col-md-5">
-                                    <table class="table table-borderless">
-                                        <tbody class="totals">
-                                            <tr>
-                                                <td>
-                                                    <div class="text-left">
-                                                        <span class="text-muted">Subtotal</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="text-right">
-                                                        <span>£<%= order.totalPrice%></span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                             <tr>
-                                                <td>
-                                                    <div class="text-left">
-                                                        <span class="text-muted">Delivery Fee</span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="text-right">
-                                                        <span>£3.99</span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                             <tr class="border-top border-bottom">
-                                                <td>
-                                                    <div class="text-left">
-
-                                                        <span class="font-weight-bold">Total</span>
-                                                        
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="text-right">
-                                                        <span class="font-weight-bold">£<%= order.totalPrice + 3.99%></span>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <% } %>
+                                <div class="row d-flex justify-content-end">
+                                    <div class="col-md-5">
+                                        <table class="table table-borderless">
+                                            <tbody class="totals">
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-left">
+                                                            <span class="text-muted">Subtotal</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span>£<%= order.totalPrice%></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-left">
+                                                            <span class="text-muted">Delivery Fee</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span>£3.99</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr class="border-top border-bottom">
+                                                    <td>
+                                                        <div class="text-left">
+                                                            <span class="font-weight-bold">Total</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span class="font-weight-bold">£<%= (order.totalPrice +
+                                                                    3.99).toFixed(2)%></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" text-center">
-                            <p class="mt-5">We have sent you an order confirmation email outlining all of the details above.</p>
-                            <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
-                            <span>Party Supplies</span>
-                        </div> </div>
+                                <div class=" text-center">
+                                    <p class="mt-5">We have sent you an order confirmation email outlining all of the
+                                        details above.</p>
+                                    <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+                                    <span>Party Supplies</span>
+                                </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
