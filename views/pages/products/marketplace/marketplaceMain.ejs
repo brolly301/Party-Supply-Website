@@ -1,52 +1,60 @@
-<% layout('layouts/boilerplate')%>
-    <div class="container text-center mt-4 " >
-        <h1> <%= listings[0].category %> </h1>
-        
-        <div class="d-flex justify-content-between align-items-center mb-3"><%- include('../../../partials/marketplaceDropdown') %> <h4 class="text-muted">Elevate Your Event with Stunning Balloon Decorations</h4>  <h4> Items(<%= totalProducts.length %>)</h4></div>
-           <div class="row ">
-            <hr>
-                    <% for (let listing of listings) {%>
-                     
-                        <div class="col-12 col-md-3 mb-4">
-                                  <div class="card text-black">
-                                    <a class="productMain-item" href="/marketplace/listings/<%= listing._id  %>"><img style="width: 305px"; height="310px"
-                                      src=<%=listing.marketplaceImage[0].url%>
-                                      class="card-img-top c-img"
-                                    />
-                                </a>
-                                    <div class="card-body">
-                                      <div class="text-center">
-                                        <h4 class="card-title"><%=listing.name%></h4>
-                                        <p class="text-muted mb-2"><%=listing.description%></p>
-                                        <h4 class="mb-3">£<%=listing.price%></h4>
-                                      </div>
-                                      
-                                      <form action="/basket" method="POST">
-                                        <input type="hidden" name="productId" value="<%= listing._id  %>">
-                                        <input type="hidden" name="name" value="<%= listing.name  %>">
-                                        <input type="hidden" name="price" value="<%= listing.price  %>">
-                                        <input type="hidden" name="quantity" value="<%= listing.quantity  %>">
-                                        <input type="hidden" name="image" value="<%= listing.image  %>">
-                                        <input type="hidden" name="category" value="<%= listing.category  %>">
-                                        <input type="hidden" name="description" value="<%= listing.description  %>">
-                                        <div> <a class="btn btn-success border border-dark mb-2" href="/marketplace/listings/<%= listings._id  %>"> View</a></div>
-                                        <button type="submit" class="btn btn-primary border border-dark">Add to Basket</button>
-                                    </form>
-                                    </div>
-                                  </div>
-                              </div>
-                    <% } %>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-around mb-4">
-              <% for (let i = 0; i < totalProducts.length / productsPerPage - 1; i++) {%>
-                <a style="text-decoration:none"  href="/marketplace/listings?page=<%=[i + 1]%>"><h4  class="pageNumber"><%=[i + 2]%></h4></a>
-            <% } %>
-
-            </div>   
-            
+<% layout('layouts/boilerplate') %>
+  <div class="container text-center mt-4">
+    <h1>
+      <%= listings[0].category %>
+    </h1>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+      <%- include('../../../partials/marketplaceDropdown') %>
+        <h4 class="text-muted mt-2 mt-md-0">Elevate Your Event with Stunning Balloon Decorations</h4>
+        <h4 class="mt-2 mt-md-0">Items(<%= totalProducts.length %>)</h4>
     </div>
-
-
-
-
+    <div class="row">
+      <hr>
+      <% for (let listing of listings) { %>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="card text-black h-100">
+            <a class="productMain-item" href="/marketplace/listings/<%= listing._id %>">
+              <img src="<%= listing.marketplaceImage[0].url %>" class="card-img-top c-img"
+                style="width: 100%; height: 180p;" alt="<%= listing.name %>">
+            </a>
+            <div class="card-body d-flex flex-column">
+              <div class="text-center mb-3">
+                <h4 class="card-title">
+                  <%= listing.name %>
+                </h4>
+                <p class="text-muted mb-2">
+                  <%= listing.description %>
+                </p>
+                <h4 class="mb-3">£<%= listing.price %>
+                </h4>
+              </div>
+              <form action="/basket" method="POST" class="mt-auto">
+                <input type="hidden" name="productId" value="<%= listing._id %>">
+                <input type="hidden" name="name" value="<%= listing.name %>">
+                <input type="hidden" name="price" value="<%= listing.price %>">
+                <input type="hidden" name="quantity" value="<%= listing.quantity %>">
+                <input type="hidden" name="image" value="<%= listing.image %>">
+                <input type="hidden" name="category" value="<%= listing.category %>">
+                <input type="hidden" name="description" value="<%= listing.description %>">
+                <div>
+                  <a class="btn btn-success border border-dark mb-2 w-100"
+                    href="/marketplace/listings/<%= listing._id %>">View</a>
+                </div>
+                <button type="submit" class="btn btn-primary border border-dark w-100">Add to Basket</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-center mb-4">
+      <% for (let i=0; i < totalProducts.length / productsPerPage - 1; i++) { %>
+        <a class="text-decoration-none" href="/marketplace/listings?page=<%= i + 1 %>">
+          <h4 class="pageNumber">
+            <%= i + 2 %>
+          </h4>
+        </a>
+        <% } %>
+    </div>
+  </div>

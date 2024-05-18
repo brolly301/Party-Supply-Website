@@ -1,85 +1,71 @@
 <section>
-    <div class="container ">
-      <div class="row justify-content-center ">
-        <div class="col-12 col-lg-9 col-xl-7">
-            <div class="card-body  p-md-3" >
-              <form action="/register" method="POST" class="validate-form" novalidate>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-  
-                    <div class="form-outline">
-                     
-                        <input type="text" id="firstName" name="firstName" class="form-control "  placeholder="First Name" required/>
-                      
-                    </div>
-  
-                  </div>
-                  <div class="col-md-6 mb-4">
-  
-                    <div class="form-outline">
-                      
-                        <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last Name" required/>
-                      
-                    </div>
-  
-                  </div>
+  <div class="container">
+    <div class="row justify-content-center mb-5">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card-body p-md-3">
+          <form action="/register" method="POST" class="validate-form" novalidate>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="firstName" name="firstName" class="form-control form-control-lg"
+                    placeholder="First Name" required />
                 </div>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-4 d-flex align-items-center">
-  
-                    <div class="form-outline datepicker w-100">
-                     
-                        <input type="text" name="username" class="form-control" id="username" placeholder="Username" required/>
-                      
-                    </div>
-  
-                  </div>
-                  <div class="col-md-6 mb-4 d-flex align-items-center">
-  
-                    <div class="form-outline datepicker w-100">
-                      
-                        <input type="text"  name="birthday" class="form-control" placeholder="Date of Birth" id="birthday" />
-                      
-                    </div>
-  
-                  </div>
-                 
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="text" id="lastName" name="lastName" class="form-control form-control-lg"
+                    placeholder="Last Name" required />
                 </div>
-  
-                <div class="row">
-                  <div class="col-md-6 mb-4 pb-2">
-                    <div class="form-outline">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" required/>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4 pb-2">
-                    <div class="form-outline">
-                        <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required/>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 mb-4 pb-2">
-                    <div class="form-outline">
-                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" />
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4 pb-2">
-                    <div class="form-outline">
-                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" class="form-control" />
-                    </div>
-                  </div>
-                </div>
-  
-  
-                <div >
-                    <button class="btn btn-success mb-4" style="width:160px">Sign Up</button>
-                </div>
-              </form>
+              </div>
             </div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline datepicker">
+                  <input type="text" name="username" class="form-control form-control-lg" id="username"
+                    placeholder="Username" required />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline datepicker">
+                  <input type="text" name="birthday" class="form-control form-control-lg" placeholder="Date of Birth"
+                    id="birthday" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="Email"
+                    required />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control form-control-lg"
+                    placeholder="Phone Number" required />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="password" id="password" name="password" placeholder="Password"
+                    class="form-control form-control-lg" />
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+                    class="form-control form-control-lg" />
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button class="btn btn-success mb-4 w-100">Sign Up</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

@@ -1,20 +1,21 @@
-<% layout('layouts/boilerplate')%>
-<section class="container" >
-    <h1  class="text-center mt-4">Packages</h1>
-    <div class="d-flex justify-content-center align-items-center mb-3"><h5 class="text-muted">Party Planning Made Easy: Check Out Our All-Inclusive Packages!</h5>  </div>
-       <hr>
-      </section>
-    <% for (let i = 0; i<package.length; i++) {%>
-    <div class="container py-2 ">
+<% layout('layouts/boilerplate') %>
+  <section class="container">
+    <h1 class="text-center mt-4">Packages</h1>
+    <div class="d-flex justify-content-center align-items-center mb-3">
+      <h5 class="text-muted">Party Planning Made Easy: Check Out Our All-Inclusive Packages!</h5>
+    </div>
+    <hr>
+  </section>
+  <% for (let i=0; i < package.length; i++) { %>
+    <div class="container py-2">
       <div class="row justify-content-center mb-3">
         <div class="col-md-12 col-xl-10">
           <div class="card shadow-0 border rounded-3">
             <div class="card-body">
               <div class="row">
                 <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
-                  <div class=" hover-zoom ripple rounded ripple-surface packageMain-item">
-                    <img src="<%=package[i].image%>"
-                      class="c-img" />
+                  <div class="hover-zoom ripple rounded ripple-surface packageMain-item">
+                    <img src="<%= package[i].image %>" class="img-fluid c-img" alt="<%= package[i].name %>" />
                     <a href="#!">
                       <div class="hover-overlay">
                         <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
@@ -23,38 +24,45 @@
                   </div>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-6">
-                  <h5> <%=package[i].name%></h5>
+                  <h5>
+                    <%= package[i].name %>
+                  </h5>
                   <p class="mb-4 mb-md-0">
-                    <%=package[i].description%>
+                    <%= package[i].description %>
                   </p>
                 </div>
-                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-lg-start">
                   <div class="d-flex flex-row align-items-center mb-1">
-                    <h4 class="mb-1 me-1"> £<%=package[i].price%>.00</h4>
+                    <h4 class="mb-1 me-1">£<%= package[i].price %>.00</h4>
                   </div>
-                  <h6 class="text-success">Free shipping</h6>
-                  <a href="/packages/<%=package[i]._id%>" class="btn btn-primary" style="width:246px">More Details</a>
-                    <form  action="/basket" method="POST">
-                        <input type="hidden" name="productId" value="<%= package[i]._id  %>">
-                        <input type="hidden" name="name" value="<%= package[i].name  %>">
-                        <input type="hidden" name="price" value="<%= package[i].price  %>">
-                        <input type="hidden" name="quantity" value="<%= package[i].quantity  %>">
-                        <input type="hidden" name="image" value="<%= package[i].image  %>">
-                        <input type="hidden" name="description" value="<%= package[i].description  %>">
-                        <input type="hidden" name="category" value="<%= package[i].category  %>">
-
-                      <button type="submit" class="btn btn-outline-primary my-3" style="width:246px">Add to Basket</button>
-                    </form>
-                    <form action="/wishlist" method="POST">
-                      <input type="hidden" name="id" value="<%= package[i]._id  %>">
-                  <button  class="btn btn-primary" style="width:246px">Add to Wishlist</button>
+                  <h6 class="text-success mb-4">Free shipping</h6>
+                  <a href="/packages/<%= package[i]._id %>" class="btn btn-primary mb-2 w-100">More Details</a>
+                  <form action="/basket" method="POST" class="mb-2">
+                    <input type="hidden" name="productId" value="<%= package[i]._id %>">
+                    <input type="hidden" name="name" value="<%= package[i].name %>">
+                    <input type="hidden" name="price" value="<%= package[i].price %>">
+                    <input type="hidden" name="quantity" value="<%= package[i].quantity %>">
+                    <input type="hidden" name="image" value="<%= package[i].image %>">
+                    <input type="hidden" name="description" value="<%= package[i].description %>">
+                    <input type="hidden" name="category" value="<%= package[i].category %>">
+                    <button type="submit" class="btn btn-outline-primary" style="width: 100%;">Add to Basket</button>
+                  </form>
+                  <form action="/wishlist" method="POST">
+                    <input type="hidden" name="id" value="<%= package[i]._id %>">
+                    <button class="btn btn-primary" style="width: 100%;">Add to Wishlist</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <%  } %>
       </div>
- 
- 
+    </div>
+    <% } %>
+      <style>
+        @media (max-width: 767.98px) {
+          .border-lg-start {
+            border-left: none !important;
+          }
+        }
+      </style>
